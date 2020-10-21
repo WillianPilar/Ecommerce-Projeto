@@ -17,7 +17,7 @@ import br.com.team.java.model.Usuario;
 import br.com.team.java.service.UsuarioService;
 
 @RestController
-@RequestMapping("banana")
+@RequestMapping("/banana")
 public class UsuarioController {
 	
 	@Autowired
