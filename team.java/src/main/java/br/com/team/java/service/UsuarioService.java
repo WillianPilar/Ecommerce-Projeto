@@ -37,7 +37,7 @@ public class UsuarioService {
 		this.usuarioRepository.deleteById(id);
 	}
 	
-	public Usuario update(int id,Usuario usuario) {
+	public Usuario atualizarUsuario(int id,Usuario usuario) {
  		Optional<Usuario> obj = this.usuarioRepository.findById(id);
  		
  		Usuario update = null;
