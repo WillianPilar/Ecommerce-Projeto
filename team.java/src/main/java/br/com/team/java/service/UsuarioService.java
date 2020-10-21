@@ -1,0 +1,59 @@
+package br.com.team.java.service;
+
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+
+import br.com.team.java.model.Usuario;
+
+import br.com.team.java.repository.UsuarioRepository;
+
+@Service
+public class UsuarioService {
+	
+	@Autowired
+	public UsuarioRepository usuarioRepository;
+
+	
+	public Usuario salvarUsuario(Usuario usuario) {
+ 		return this.usuarioRepository.save(usuario);
+ 	}
+	
+	public Usuario consultarUsuarioId( int id ){
+ 		
+ 		return this.usuarioRepository.findById(id).get();
+ 	}
+	
+	public List<Usuario> consultarTodosUsuarios(){
+		return this.usuarioRepository.findAll();
+	}
+	
+	public void delete (int id) {
+		this.usuarioRepository.deleteById(id);
+	}
+	
+	public Usuario update(int id,Usuario usuario) {
+ 		Optional<Usuario> obj = this.usuarioRepository.findById(id);
+ 		
+ 		Usuario update = null;
+ 		
+ 		if (obj.isPresent()) {
+ 			update = obj.get();
+ 			update.setEmail(usuario.getEmail());
+ 			update.setNome(usuario.getNome());
+ 			update.setSenha(usuario.getSenha()); 	
+ 			
+ 			update = this.usuarioRepository.save(update);
+ 		}
+ 		
+ 		return update;
+ 	} 
+	
+	
+
+}
