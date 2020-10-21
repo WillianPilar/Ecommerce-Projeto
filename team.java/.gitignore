@@ -32,4 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
+<<<<<<< HEAD
 src/main/resources
+=======
+src/main/resources
+>>>>>>> 381fd2de9afc31fa3fb868391b710fad87f15805
