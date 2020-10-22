@@ -11,7 +11,7 @@ export class ProdutoListComponent implements OnInit {
   constructor(private produtoService : ProdutoService) { }
 
   ngOnInit(): void {
-    this.listaDoProduto();
+    this.ListarOsProduto();
   }
 
   ListarOsProduto(){
@@ -21,5 +21,10 @@ export class ProdutoListComponent implements OnInit {
     }, (error) =>{
       console.log(error);
     });
+  }
+
+ 
+  excluirProduto(prod){
+    this.produtoService.delete(prod.id);
   }
 }
