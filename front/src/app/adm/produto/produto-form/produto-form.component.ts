@@ -32,7 +32,6 @@ export class ProdutoFormComponent implements OnInit {
         } ),
       imagens: ['',[]]
       })
-
    }
 
    ngOnInit(): void {
