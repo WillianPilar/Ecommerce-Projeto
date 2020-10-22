@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'categoria', component: CategoriaListComponent },
   { path: 'categoria/form', component: CategoriaFormComponent },
 
+  { path: 'produto',component: ProdutoListComponent},
   { path: 'produto/form', component: ProdutoFormComponent },
   { path: 'produto/list', component: ProdutoListComponent },
 

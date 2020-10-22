@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.team.java.model.Produto;
@@ -33,6 +34,12 @@ public class ProdutoController {
 	public ResponseEntity<Produto> getOne(@PathVariable int id){
 		Produto produto = this.produtoService.getOne(id);
 		return ResponseEntity.ok().body(produto);
+	}
+	
+	@GetMapping(value="/search/{nome}")
+	public ResponseEntity<List<Produto>>findByNomeContainsIgnoreCase(@PathVariable String nome){
+		List<Produto> p = this.produtoService.findByNomeContainsIgnoreCase(nome);
+		return ResponseEntity.ok().body(p);
 	}
 	
 	@PostMapping

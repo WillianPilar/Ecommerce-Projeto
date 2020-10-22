@@ -46,4 +46,8 @@ public class ProdutoService {
 		this.produtoRepository.deleteById(id);
 	}
 	
+	public List<Produto> findByNomeContainsIgnoreCase(String produto){
+		return this.produtoRepository.findByNomeContainsIgnoreCase(produto);
+	}
+	
 }
