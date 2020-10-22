@@ -1,6 +1,5 @@
 package br.com.team.java.model;
 
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
