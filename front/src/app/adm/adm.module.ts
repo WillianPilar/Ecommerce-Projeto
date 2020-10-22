@@ -20,12 +20,8 @@ import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.compo
   imports: [
     CommonModule,
     AdmRoutingModule,
-    HttpClientModule,
     SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
     NgxPaginationModule,
-    ToastrModule.forRoot(),
     RouterModule
   ]
 })
