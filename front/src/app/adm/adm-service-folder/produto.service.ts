@@ -34,6 +34,10 @@ export class ProdutoService {
     return this.httpClient.post(`${this.url}`, produto);
   }
 
+  public pagination(pagina: number, linhas: number){
+    return this.httpClient.get(`${this.url}/produto/paginador?pagina=${pagina}&linhas=${linhas}`);
+  }
+
 
 
 }
