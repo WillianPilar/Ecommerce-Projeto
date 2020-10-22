@@ -26,7 +26,7 @@ public class Produto {
 	private String descricao;
 	private double preco;
 	
-	//private Categoria categoria
+	//private Categoria categoria;
 	//private List<Imagem> imagem
 	
 }
