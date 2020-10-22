@@ -9,6 +9,7 @@ export class CategoriaService {
 
 
   public url = `${environment.urlApi}/categoria`
+  
   constructor(private httpClient : HttpClient) { }
 
   public getAllCategorias(){
@@ -32,7 +33,7 @@ export class CategoriaService {
   }
 
   public pagination(pagina : number, linhas : number, busca : string){
-    
+
   }
 
 }
