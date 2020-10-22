@@ -5,8 +5,5 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AdmService {
-  constructor(private httpClient:HttpClient) {}
-
-  
-
+  constructor(private httpClient:HttpClient) { }
 }

@@ -1,1 +1,30 @@
-<p>produto-form works!</p>
+<form [formGroup]="produtoForm">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label>Produto</label>
+      <input type="text" class="form-control" formControlName="nome" placeholder="Produto">
+    </div>
+    <div class="form-group col-md-2">
+      <label >Preço</label>
+      <input type="text" class="form-control" formControlName="preco" placeholder="Preço">
+    </div>
+    <div class="form-group  col-md-2" formGroupName="categoria">
+      <label>Categoria</label>
+      <input type="text" class="form-control"  formControlName="id" placeholder="Categoria">
+    </div>
+  </div>
+  <div class="form-row">
+  <div class="form-group col-md-8">
+    <label>Descrição</label>
+    <input type="text" class="form-control" formControlName="descricao" placeholder="Descrição do Produto">
+  </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Imagem</label>
+      <input type="text" class="form-control" formControlName="imagens">
+  </div>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="EnviarProduto()">Cadastrar</button>
+</form>
