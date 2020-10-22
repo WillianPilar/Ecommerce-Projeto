@@ -12,4 +12,8 @@ export class ProdutoFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  EnviarProduto(){
+    
+  }
+
 }
