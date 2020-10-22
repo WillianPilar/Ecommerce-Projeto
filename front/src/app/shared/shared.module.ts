@@ -4,6 +4,8 @@ import {  HttpClientModule } from '@angular/common/http';
 import { MostrarErrosComponent } from './components/mostrar-erros/mostrar-erros.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -16,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
+    NgxPaginationModule
 
   ],
   exports:[MostrarErrosComponent,ToastrModule, FormsModule, ReactiveFormsModule, HttpClientModule]
