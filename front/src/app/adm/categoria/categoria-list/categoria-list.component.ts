@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  ToastrService } from 'ngx-toastr';
 import { CategoriaService } from '../../adm-service-folder/categoria.service';
 
 @Component({
@@ -14,13 +15,27 @@ export class CategoriaListComponent implements OnInit {
   constructor(private categoriaService : CategoriaService) { }
 
   ngOnInit(): void {
+    this.getAllCategorias();
   }
 
   public getAllCategorias(){
     this.categoriaService.getAllCategorias()
     .subscribe(
       (response) => {
+        this.categoria = response;
         console.log(response);
+      }
+    )
+  }
+
+  public deletarCategoria(id : any){
+    this.categoriaService.delete(id)
+    .subscribe(
+      (response) => {
+        console.log(response);
+        alert("categoria deletada com sucesso!");
+        this.getAllCategorias();
+        //this.toastr.success("categoria deletada com sucesso!")
       }
     )
   }

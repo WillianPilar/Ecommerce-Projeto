@@ -22,10 +22,7 @@ import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.compo
     RouterModule,
     HttpClientModule,
     SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
     NgxPaginationModule,
-    ToastrModule.forRoot(),
     RouterModule
   ]
 })
