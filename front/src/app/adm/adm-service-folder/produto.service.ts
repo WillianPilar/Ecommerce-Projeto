@@ -13,19 +13,19 @@ export class ProdutoService {
 
   }
 
-  private getAll(){
+  public getAll(){
     return this.httpClient.get(this.url);
   }
 
-  private getOne(id:number){
+  public getOne(id:number){
     return this.httpClient.get(`${this.url}/id`);
   }
 
-  private update(id:number, dados){
+  public update(id:number, dados){
     return this.httpClient.patch(`${this.url}/id`,dados);
   }
 
-  private delete(id:number){
+  public delete(id:number){
     this.httpClient.delete(`${this.url}/id`);
   }
 

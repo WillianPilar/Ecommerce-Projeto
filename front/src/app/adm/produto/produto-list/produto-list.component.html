@@ -10,11 +10,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let prod of listaDoProduto">
         <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <td>{{prod.nome}}</td>
+        <td>{{prod.descricao}}</td>
+        <td>@{{prod.preco}}</td>
       </tr>
     </tbody>
   </table>
