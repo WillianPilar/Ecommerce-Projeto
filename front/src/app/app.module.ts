@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { LayoutModule } from './layout/layout.module';
 
 
 
@@ -21,12 +23,9 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AdmModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     AppRoutingModule,
-    SharedModule,
-    FormsModule,
-    RouterModule,
-    HttpClientModule
+    LayoutModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

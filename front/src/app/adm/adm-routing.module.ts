@@ -9,7 +9,6 @@ import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.compo
 
 const routes: Routes = [
   { path: "usuarios", component: UsuariosComponent },
-
   { path: "usuarios/form", component: UsuarioFormComponent },
   { path: 'categoria', component: CategoriaListComponent },
   { path: 'categoria/form', component: CategoriaFormComponent },
@@ -20,8 +19,6 @@ const routes: Routes = [
 
   { path: 'categoria/form/:id', component: CategoriaFormComponent },
   { path: 'produto/form/:id', component: ProdutoFormComponent },
-
-
 ];
 
 @NgModule({
