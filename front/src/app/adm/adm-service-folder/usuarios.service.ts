@@ -11,4 +11,10 @@ export class UsuariosService {
   public consultarUsuarios(){
     return this.httpClient.get("http://localhost:8081/usuarios");
   }
+
+  public cadastrarUsuario(body){
+    return this.httpClient.post("http://localhost:8081/usuarios",body);
+  }
+
+
 }

@@ -1,0 +1,29 @@
+<div class="container">
+    <!-- TABELA DE USUARIOS -->
+    <div class="d-flex justify-content">
+        <h2 class="h2 mr-5"> Lista de Usuários</h2>
+        <button class="btn btn-dark mb-2" [routerLink]="['form']">
+            Cadastrar Usuario
+        </button>
+    </div>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Senha</th>
+            <th style="text-align:center;" colspan="2">Operações</th>
+        </tr>
+
+        <tr *ngFor="let user of usuarios">
+            <td>{{ user?.id }}</td>
+            <td>{{ user?.nome }}</td>
+            <td>{{ user?.email }}</td>
+            <td>{{ user?.senha }}</td>
+            <td colspan="2" style="text-align:center;"><button class="btn btn-dark mr-2">Editar </button>
+                <button class="btn btn-danger" (click)="deletarUsuario(user?.id)">Deletar</button>
+            </td>
+        </tr>
+
+    </table>
+</div>
