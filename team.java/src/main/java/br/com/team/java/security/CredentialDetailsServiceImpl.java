@@ -24,6 +24,6 @@ public class CredentialDetailsServiceImpl implements UserDetailsService {
 		}
 		
 		return new CredencialSecurityModel (usuario.getId(), usuario.getEmail(), 
-				usuario.getSenha(), usuario.getNome(),  usuario.getPerfis() );
+				usuario.getSenha(), usuario.getNome(),  usuario.getPerfisSetList() );
 	}
 }

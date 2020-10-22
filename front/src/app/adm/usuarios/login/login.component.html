@@ -1,0 +1,20 @@
+<form [formGroup]="formLogin" (submit)="onSubmit()" class="col-4">
+  <div class="form-group">
+      <label for="Email">Email</label>
+      <input type="text" class="form-control" formControlName="email"
+          placeholder="Insira o seu email">
+  </div>
+
+  <app-mostrar-erros [isError]="isErrorField('email')" [mensagem]="'Email obrigatório'"></app-mostrar-erros>
+
+  <div class="form-group">
+      <label for="senha">Senha</label>
+      <input type="password" class="form-control" formControlName="senha" placeholder="Insira a sua senha">
+  </div>
+
+  <app-mostrar-erros [isError]="isErrorField('senha')" [mensagem]="'Senha obrigatória'"></app-mostrar-erros>
+
+
+
+  <button class="btn btn-dark" type="submit" class="btn btn-primary mt-4">Logar</button>
+</form>

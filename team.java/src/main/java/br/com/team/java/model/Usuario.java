@@ -45,7 +45,11 @@ public class Usuario {
 	private Set<Integer> perfis = new HashSet<>();
 	
 	
-	public Set<Perfil> getPerfis() {
+//	public Set<Perfil> getPerfis() {
+//		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+//	}
+	
+	public Set<Perfil> getPerfisSetList() {
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
 	

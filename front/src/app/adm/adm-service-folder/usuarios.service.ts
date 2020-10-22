@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
+
+  public authSubject = new Subject<boolean>();
 
   constructor(private httpClient:HttpClient) { }
 
@@ -26,6 +29,15 @@ export class UsuariosService {
 
   public deletarUsuario(id:number){
     return this.httpClient.delete(`http://localhost:8081/usuarios/${id}`);
+  }
+
+  //LOGIN 
+  public logar(body:any){
+    return this.httpClient.post('http://localhost:8081/autenticacao',body);
+  }
+
+  public sendMessage(msg:boolean){
+    this.authSubject.next(msg);
   }
 
 

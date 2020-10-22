@@ -40,7 +40,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 	};
 	
 	private static final String[] PUBLIC_ENDPOINT_POST = {
-			"/autenticacao"	
+			"/autenticacao"	, "/usuarios"
 	};
 		
 	@Autowired

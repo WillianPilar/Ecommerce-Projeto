@@ -13,8 +13,10 @@ export class UsuarioFormComponent implements OnInit {
   formUsuarios: FormGroup;
   idUsuario: number = 0;
   isEdicao: boolean = false;
+  exibir: boolean = false;
   texto: string = "Cadastrar";
   textoBotao: string = 'Salvar';
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +28,8 @@ export class UsuarioFormComponent implements OnInit {
       id: ['', []],
       nome: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      senha: ['', [Validators.required]]
+      senha: ['', [Validators.required]],
+      perfis: ['',[ ]]
     });
   }
 

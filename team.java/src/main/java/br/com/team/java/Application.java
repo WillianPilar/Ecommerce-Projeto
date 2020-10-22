@@ -39,14 +39,22 @@ public class Application implements CommandLineRunner{
 		
 		
 		Usuario u = Usuario.builder()
-					.nome("Cliente")
-					.email("cliente@hotmail.com")
-					.senha( this.bCryptPasswordEncoder.encode("cliente") )
+					.nome("Admin")
+					.email("admin@admin.com")
+					.senha( this.bCryptPasswordEncoder.encode("admin") )
 					.build();
 
-		u.addPerfil(Perfil.CLIENTE);		
+		u.addPerfil(Perfil.ADMIN);		
 		u= this.usuarioRepository.save(u);
-				
+		
+		Usuario c = Usuario.builder()
+				.nome("Cliente 1")
+				.email("cliente@cliente.com")
+				.senha( this.bCryptPasswordEncoder.encode("cliente") )
+				.build();
+
+	c.addPerfil(Perfil.CLIENTE);		
+	c= this.usuarioRepository.save(c);
 		
 	}
 
