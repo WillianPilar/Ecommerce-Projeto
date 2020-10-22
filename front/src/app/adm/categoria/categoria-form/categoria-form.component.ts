@@ -60,7 +60,7 @@ export class CategoriaFormComponent implements OnInit {
       .subscribe(
         (dados) => {
           console.log( dados );
-          this.toastr.success('Aluno salvo com sucesso!');
+          this.toastr.success('Categoria salva com sucesso!');
           this.router.navigate(['adm/categoria']);
         }
       )

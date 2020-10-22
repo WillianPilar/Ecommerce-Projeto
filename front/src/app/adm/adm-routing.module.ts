@@ -9,6 +9,13 @@ import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.compo
 
 const routes: Routes = [
   { path: "usuarios", component: UsuariosComponent },
+// <<<<<<< HEAD
+// // <<<<<<< HEAD
+// // =======
+
+// // >>>>>>> 00c56041252ec62375fa5e91a059ca660943bad5
+// =======
+// >>>>>>> 229027322c1224dbe7fcdb129738c7f1ad5f2469
   { path: "usuarios/form", component: UsuarioFormComponent },
   { path: 'categoria', component: CategoriaListComponent },
   { path: 'categoria/form', component: CategoriaFormComponent },
