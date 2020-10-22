@@ -1,3 +1,6 @@
+import { CategoriaListComponent } from './categoria/categoria-list/categoria-list.component';
+import { CategoriaFormComponent } from './categoria/categoria-form/categoria-form.component';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,13 +9,22 @@ import { ProdutoFormComponent } from './produto/produto-form/produto-form.compon
 import { ProdutoListComponent } from './produto/produto-list/produto-list.component';
 import { RouterModule } from '@angular/router';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [ProdutoFormComponent, ProdutoListComponent],
+  declarations: [CategoriaFormComponent, CategoriaListComponent],
   imports: [
     CommonModule,
     AdmRoutingModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    ToastrModule.forRoot()
   ]
 })
 export class AdmModule { }
