@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: 'categoria/form/:id', component: CategoriaFormComponent },
   { path: 'produto/form', component: ProdutoFormComponent },
   { path: 'produto/list', component: ProdutoListComponent },
-  { path: 'categoria/form/:id', component: CategoriaFormComponent }
 
 
 ];
