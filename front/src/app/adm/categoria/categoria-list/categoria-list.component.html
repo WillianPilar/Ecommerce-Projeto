@@ -9,5 +9,24 @@
   </div>
 </div>
 
-qqq
-qq
+<table class="table">
+  <tr>
+      <th> ID </th>
+      <th> Nome </th>
+      <th> Descricao </th>
+      <th> Operações </th>
+  </tr>
+
+  <tr *ngFor="let catApi of categoria">
+      <td> {{ catApi?.id  }} </td>
+      <td> {{ catApi?.nome  }} </td>
+      <td> {{ catApi?.descricao  }} </td>
+      <td>
+        <button class="btn btn-warning mr-2" [routerLink]="['/categorias/form/' , catApi?.id ]" > Editar </button>
+        <button class="btn btn-danger" (click)="deletarCategoria(catApi?.id)" > Deletar </button>
+      </td>
+  </tr>
+
+</table>
+
+<div class="d-flex justify-content-center">
