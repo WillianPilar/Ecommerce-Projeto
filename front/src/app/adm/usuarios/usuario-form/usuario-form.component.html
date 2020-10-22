@@ -1,9 +1,9 @@
-<h2>Cadastrar Usuário</h2>
+<h2>{{texto}} Usuário</h2>
 <form [formGroup]="formUsuarios" (submit)="onSubmit()">
     <div class="form-group" *ngIf="isEdicao">
       <!-- ID do ALUNO -->
       <label for="id">ID</label>
-      <input type="text" class="form-control" formControlName="id" placeholder="ID do usuário">
+      <input type="text" class="form-control" formControlName="id" readonly placeholder="ID do usuário">
     </div>
       <!-- Nome do Aluno -->
     <div class="form-group">
@@ -34,6 +34,6 @@
     <app-mostrar-erros [isError]="isErrorField('senha')" [mensagem] = "'Senha Obrigatória'">
     </app-mostrar-erros>
     
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-primary">{{textoBotao}}</button>
 
   </form>

@@ -11,16 +11,16 @@ import { UsuariosService } from '../../adm-service-folder/usuarios.service';
 })
 export class UsuarioFormComponent implements OnInit {
   formUsuarios: FormGroup;
-  public noti: number = 0;
+  idUsuario: number = 0;
   isEdicao: boolean = false;
-  idAluno: number = 0;
+  texto: string = "Cadastrar";
   textoBotao: string = 'Salvar';
 
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService, private usuariosService:UsuariosService) {
+    private toastr: ToastrService, private usuariosService: UsuariosService) {
     this.formUsuarios = this.formBuilder.group({
       //valor inicial e os validadores
       id: ['', []],
@@ -35,39 +35,55 @@ export class UsuarioFormComponent implements OnInit {
       .params.subscribe(
         (parametros) => {
           console.log(parametros);
-
-          // if (parametros.id){
-          //   this.isEdicao = true;
-          //   this.idAluno = parametros.id;
-          //   this.getOneAluno(parametros.id);
-          //   this.textoBotao = 'Editar';
-          // }
+          if (parametros.id) {
+            this.isEdicao = true;
+            this.idUsuario = parametros.id;
+            this.consultarUsuarioId(this.idUsuario);
+            this.textoBotao = 'Editar';
+            this.texto = "Alterar";
+          }
         }
 
       )
   }
 
-  // onSubmit(){
+  onSubmit() {
 
-  //   if(this.isEdicao){
-  //     this.updateAluno(this.idAluno, this.meuForm.value);
-  //   }
-  //   else{
-  //     this.createAluno(this.meuForm.value);
-  //   }
-  // }
+    if (this.isEdicao) {
+       this.alterarUsuario(this.idUsuario, this.formUsuarios.value);
+    }
+    else {
+      this.cadastrarUsuario(this.formUsuarios.value);
+    }
+  }
 
-  public cadastrarUsuario() {
-    this.usuariosService.cadastrarUsuario(this.formUsuarios.value).subscribe(
-      (response)=>{
+
+  public consultarUsuarioId(idUsuario) {
+    this.usuariosService.consultarUsuarioId(idUsuario).subscribe(
+      (response) => {
+        this.formUsuarios.patchValue(response);
+      }
+    );
+  }
+
+  public cadastrarUsuario(body) {
+    this.usuariosService.cadastrarUsuario(body).subscribe(
+      (response) => {
         console.log(response);
       }
     );
-        }
+  }
 
-
-  public onSubmit() {
-    this.cadastrarUsuario();
+  private alterarUsuario(id,body){
+    this.usuariosService.alterarUsuario(id, body)
+    .subscribe(
+      (dados) =>{
+        console.log(dados);
+        //this.toastr.success('Usuario Alterado com Sucesso!');
+        // this.router.navigate(['/alunos']);
+        // console.log(JSON.stringify(dados));
+      }
+    )
   }
 
 
