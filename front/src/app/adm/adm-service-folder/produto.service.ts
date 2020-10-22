@@ -31,7 +31,7 @@ export class ProdutoService {
   }
 
   public save(produto){
-    this.httpClient.post(`${this.url}`, produto)
+    return this.httpClient.post(`${this.url}`, produto);
   }
 
 
