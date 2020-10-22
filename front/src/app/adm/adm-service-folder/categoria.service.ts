@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CategoriaPagination } from 'src/app/shared/models/categoria-pagination';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,7 +10,7 @@ export class CategoriaService {
 
 
   public url = `${environment.urlApi}/categoria`
-  
+
   constructor(private httpClient : HttpClient) { }
 
   public getAllCategorias(){
@@ -33,7 +34,7 @@ export class CategoriaService {
   }
 
   public pagination(pagina : number, linhas : number, busca : string){
-
+    return this.httpClient.get<CategoriaPagination>(`${this.url}/pagination?pagina=${pagina}&linhas=${linhas}&busca=${busca}`);
   }
 
 }

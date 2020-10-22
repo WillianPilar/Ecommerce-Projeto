@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Toast, ToastrService } from 'ngx-toastr';
+import {  ToastrService } from 'ngx-toastr';
 import { CategoriaService } from '../../adm-service-folder/categoria.service';
 
 @Component({
@@ -60,8 +60,8 @@ export class CategoriaFormComponent implements OnInit {
       .subscribe(
         (dados) => {
           console.log( dados );
+          this.toastr.success('Categoria salva com sucesso!');
           this.router.navigate(['adm/categoria']);
-          this.toastr.success('Aluno salvo com sucesso!');
         }
       )
   }
