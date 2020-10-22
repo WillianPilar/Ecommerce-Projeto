@@ -11,9 +11,8 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { ProdutoFormComponent } from './produto/produto-form/produto-form.component';
 import { ProdutoListComponent } from './produto/produto-list/produto-list.component';
+import { RouterModule } from '@angular/router';
 
-
-    
 
 @NgModule({
   declarations: [CategoriaFormComponent, CategoriaListComponent,ProdutoFormComponent,ProdutoListComponent,ProdutoListComponent,UsuariosComponent],
@@ -25,7 +24,8 @@ import { ProdutoListComponent } from './produto/produto-list/produto-list.compon
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    RouterModule
   ]
 })
 export class AdmModule { }
