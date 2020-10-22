@@ -8,11 +8,16 @@ import { ProdutoListComponent } from './produto/produto-list/produto-list.compon
 
 const routes: Routes = [
   { path: "usuarios", component: UsuariosComponent },
+  
   { path: 'categoria', component: CategoriaListComponent },
   { path: 'categoria/form', component: CategoriaFormComponent },
-  { path: 'categoria/form/:id', component: CategoriaFormComponent },
+
   { path: 'produto/form', component: ProdutoFormComponent },
   { path: 'produto/list', component: ProdutoListComponent },
+
+
+  { path: 'categoria/form/:id', component: CategoriaFormComponent },
+  
 
 
 ];
