@@ -22,4 +22,9 @@ export class ProdutoListComponent implements OnInit {
       console.log(error);
     });
   }
+
+ 
+  excluirProduto(prod){
+    this.produtoService.delete(prod.id);
+  }
 }

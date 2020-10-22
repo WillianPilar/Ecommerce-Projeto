@@ -15,6 +15,12 @@
         <td>{{prod.nome}}</td>
         <td>{{prod.descricao}}</td>
         <td>@{{prod.preco}}</td>
+        <td>
+            <button class="btn" [routerLink]="['/produto/form', prod.id]">Atualizar</button>
+        </td>
+        <td>
+            <button class="btn" (click) = "deletarDoCarrinho(prod)">Deletar</button>
+        </td>
       </tr>
     </tbody>
   </table>
