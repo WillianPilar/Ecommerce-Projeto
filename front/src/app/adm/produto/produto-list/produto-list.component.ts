@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../../adm-service-folder/produto.service';
 
@@ -23,8 +24,15 @@ export class ProdutoListComponent implements OnInit {
     });
   }
 
- 
-  excluirProduto(prod){
-    this.produtoService.delete(prod.id);
+
+  excluirProduto(id){
+    this.produtoService.delete(id).subscribe(
+      (response)=>{
+        this.ListarOsProduto();
+      },
+      (error) =>{
+        console.log(error);
+      }
+    );
   }
 }

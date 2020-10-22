@@ -11,15 +11,15 @@
     </thead>
     <tbody>
       <tr *ngFor="let prod of listaDoProduto">
-        <th scope="row">1</th>
+        <th scope="row">{{prod.id}}</th>
         <td>{{prod.nome}}</td>
         <td>{{prod.descricao}}</td>
-        <td>@{{prod.preco}}</td>
+        <td>{{prod.preco}}</td>
         <td>
-            <button class="btn" [routerLink]="['/produto/form', prod.id]">Atualizar</button>
+            <button class="btn" [routerLink]="['/adm/produto/form', prod.id]">Atualizar</button>
         </td>
         <td>
-            <button class="btn" (click) = "deletarDoCarrinho(prod)">Deletar</button>
+            <button class="btn" (click)="excluirProduto(prod.id)">Deletar</button>
         </td>
       </tr>
     </tbody>

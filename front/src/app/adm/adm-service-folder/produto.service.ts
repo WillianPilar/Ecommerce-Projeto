@@ -19,15 +19,15 @@ export class ProdutoService {
   }
 
   public getOne(id:number){
-    return this.httpClient.get(`${this.url}/id`);
+      return this.httpClient.get(`${this.url}/${id}`);
   }
 
   public update(id:number, dados){
-    return this.httpClient.patch(`${this.url}/id`,dados);
+    return this.httpClient.patch(`${this.url}/${id}`,dados);
   }
 
   public delete(id:number){
-    this.httpClient.delete(`${this.url}/id`);
+    return this.httpClient.delete(`${this.url}/${id}`);
   }
 
   public save(produto){

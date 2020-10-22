@@ -37,12 +37,11 @@ export class ProdutoFormComponent implements OnInit {
    ngOnInit(): void {
     this.activedRoute.params.subscribe((parametros)=>{
 
-      if(parametros.id){
+      if(parametros.id){  console.log("to aaaqui "+ parametros.id);
         this.isEdicao =true;
         this.idProduto =parametros.id;
-        this.getOne(parametros.id);
         this.textoBotao ='Editar';
-
+        this.getOne(parametros.id);
       }
     });
 
@@ -64,21 +63,26 @@ export class ProdutoFormComponent implements OnInit {
   }
 
   private getOne(id){
-    this.produtoService.getOne(id).subscribe((dados)=>{this.produtoForm.patchValue(dados)})
+     this.produtoService.getOne(id).subscribe(
+       (dados)=>{
+         
+         this.produtoForm.patchValue(dados)
+        }
+      )
   }
 
   private update(id,produto){
     this.produtoService.update(id,produto).subscribe(
       (dados)=>{
         //alert('Atualizado com Sucesso');
-        this.router.navigate(['/admin/produtos/lista']);
+        this.router.navigate(['/adm/produto/list']);
     })
   }
 
   private save(produto){
     this.produtoService.save(produto).subscribe(
       (resultado)=>{
-        this.router.navigate(['/admin/produto/list']);
+        this.router.navigate(['/adm/produto/list']);
 
     });
   }
