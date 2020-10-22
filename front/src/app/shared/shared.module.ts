@@ -4,6 +4,7 @@ import {  HttpClientModule } from '@angular/common/http';
 import { MostrarErrosComponent } from './components/mostrar-erros/mostrar-erros.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 
 
 
@@ -16,8 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
 
   ],
-  exports:[MostrarErrosComponent,ToastrModule, FormsModule, ReactiveFormsModule, HttpClientModule]
+  exports:[MostrarErrosComponent,ToastrModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule]
 })
 export class SharedModule { }
