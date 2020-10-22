@@ -19,11 +19,11 @@ import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.compo
   imports: [
     CommonModule,
     AdmRoutingModule,
-    RouterModule,
-    HttpClientModule,
+    //RouterModule,
+    //HttpClientModule,
     SharedModule,
-    NgxPaginationModule,
-    RouterModule
+    //NgxPaginationModule,
+    
   ]
 })
 export class AdmModule { }
