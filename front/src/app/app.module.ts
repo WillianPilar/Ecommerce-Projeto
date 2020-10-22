@@ -7,9 +7,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CategoriaFormComponent } from './adm/categoria/categoria-form/categoria-form.component';
-
 import { AppRoutingModule } from './app-routing.module';
 
 import { RouterModule } from '@angular/router';
@@ -21,11 +18,9 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
-
     AppRoutingModule,
     FormsModule,
     RouterModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
