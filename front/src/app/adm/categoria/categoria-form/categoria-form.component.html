@@ -1,1 +1,33 @@
-<p>categoria-form works!</p>
+<form [formGroup]="meuForm" (submit)="onSubmit()">
+
+  <div class="form-group" *ngIf="isEdicao">
+    <label for="exampleInputEmail1">ID</label>
+    <input type="text" class="form-control" [readonly]="true" formControlName="id" placeholder="ID do Aluno">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Nome</label>
+    <input type="text" class="form-control" formControlName="nome" placeholder="Nome da categoria">
+  </div>
+  <app-mostrar-erros [isError]="isErrorField( 'nome' )" [mensagem]="'Nome obrigatório'"
+    (notificador)="receberNotificacao($event)"
+  >
+  </app-mostrar-erros>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Descricao</label>
+    <input type="text" class="form-control" formControlName="descricao" placeholder="Descrição">
+  </div>
+  <app-mostrar-erros [isError]="isErrorField( 'descricao' )" [mensagem]="'Descricão obrigatória'"
+    (notificador)="receberNotificacao($event)"></app-mostrar-erros>
+
+
+
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary mr-2" [disabled]="meuForm.valid == false" > {{ textoBotao }}</button>
+      <button type="button" class="btn btn-secondary"  [routerLink]="['/adm/categoria']" > Voltar </button>
+    </div>
+
+</form>
+

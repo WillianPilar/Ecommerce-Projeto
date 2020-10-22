@@ -17,7 +17,7 @@ import br.com.team.java.model.Produto;
 import br.com.team.java.service.ProdutoService;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("/produto")
 public class ProdutoController {
 	
 	@Autowired
@@ -41,7 +41,7 @@ public class ProdutoController {
 		return ResponseEntity.ok().body(p);
 	}
 	
-	@PatchMapping
+	@PatchMapping(value="{id}")
 	public  ResponseEntity<Produto> update(@RequestBody Produto produto, @PathVariable int id) {
 		Produto p = this.produtoService.update(id, produto);
 		return ResponseEntity.ok().body(p);
