@@ -22,7 +22,7 @@
       <td> {{ catApi?.nome  }} </td>
       <td> {{ catApi?.descricao  }} </td>
       <td>
-        <button class="btn btn-warning mr-2" [routerLink]="['/categorias/form/' , catApi?.id ]" > Editar </button>
+        <button class="btn btn-warning mr-2" [routerLink]="['/adm/categoria/form/' , catApi?.id ]" > Editar </button>
         <button class="btn btn-danger" (click)="deletarCategoria(catApi?.id)" > Deletar </button>
       </td>
   </tr>

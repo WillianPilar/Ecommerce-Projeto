@@ -13,10 +13,6 @@ import { ProdutoListComponent } from './produto/produto-list/produto-list.compon
 import { RouterModule } from '@angular/router';
 import { UsuariosComponent } from './usuarios/usuario-list/usuarios.component';
 import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.component';
-<<<<<<< HEAD
-
-=======
->>>>>>> 00c56041252ec62375fa5e91a059ca660943bad5
 
 @NgModule({
   declarations: [CategoriaFormComponent, CategoriaListComponent,ProdutoFormComponent,ProdutoListComponent,ProdutoListComponent,UsuariosComponent, UsuarioFormComponent],
@@ -26,10 +22,7 @@ import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.compo
     RouterModule,
     HttpClientModule,
     SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
     NgxPaginationModule,
-    ToastrModule.forRoot(),
     RouterModule
   ]
 })

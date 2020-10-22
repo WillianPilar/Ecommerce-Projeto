@@ -22,6 +22,7 @@ export class CategoriaListComponent implements OnInit {
     this.categoriaService.getAllCategorias()
     .subscribe(
       (response) => {
+        this.categoria = response;
         console.log(response);
       }
     )
@@ -33,6 +34,7 @@ export class CategoriaListComponent implements OnInit {
       (response) => {
         console.log(response);
         alert("categoria deletada com sucesso!");
+        this.getAllCategorias();
         //this.toastr.success("categoria deletada com sucesso!")
       }
     )
