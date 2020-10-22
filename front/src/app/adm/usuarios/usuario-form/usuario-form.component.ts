@@ -70,6 +70,7 @@ export class UsuarioFormComponent implements OnInit {
     this.usuariosService.cadastrarUsuario(body).subscribe(
       (response) => {
         console.log(response);
+        this.router.navigate(['adm/usuarios']);
       }
     );
   }
@@ -80,7 +81,7 @@ export class UsuarioFormComponent implements OnInit {
       (dados) =>{
         console.log(dados);
         //this.toastr.success('Usuario Alterado com Sucesso!');
-        // this.router.navigate(['/alunos']);
+        this.router.navigate(['adm/usuarios']);
         // console.log(JSON.stringify(dados));
       }
     )

@@ -20,7 +20,7 @@
             <td>{{ user?.nome }}</td>
             <td>{{ user?.email }}</td>
             <td>{{ user?.senha }}</td>
-            <td colspan="2" style="text-align:center;"><button class="btn btn-dark mr-2">Editar </button>
+            <td colspan="2" style="text-align:center;"><button class="btn btn-dark mr-2" [routerLink] = "['form', user?.id]">Editar </button>
                 <button class="btn btn-danger" (click)="deletarUsuario(user?.id)">Deletar</button>
             </td>
         </tr>
