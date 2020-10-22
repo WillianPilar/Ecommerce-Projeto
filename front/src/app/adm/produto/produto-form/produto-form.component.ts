@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-produto-form',
@@ -6,14 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./produto-form.component.css']
 })
 export class ProdutoFormComponent implements OnInit {
+  public produtoForm : FormGroup;
 
-  constructor() { }
+  constructor(private formBuilder : FormBuilder) {
+    this.produtoForm = this.formBuilder.group({
+      nome : ['', [Validators.required]],
+      descricao : ['', [Validators.required]],
+      preco : ['', [Validators.required]],
+      categoria :  this.formBuilder.group (
+        {
+          id : ['', [ ] ] ,
+          nome : [ '', [ ] ]
+        } ),
+      imagens: ['',[]]
+      })
+
+   }
 
   ngOnInit(): void {
   }
 
   EnviarProduto(){
-    
+
   }
 
 }
