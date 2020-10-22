@@ -1,34 +1,46 @@
+<<<<<<< HEAD
 <div class="d-flex mb-auto p-4 justify-content-center">
   <div class="mr-2 p-7">
     <input class="form-control" placeholder="Buscar" [(ngModel)]="nome" (keyup)="onLinhasChange()"/>
   </div>
+=======
+<div class="container py-3">
+  <div class="row">
+    <div class="col-4">
+      <input class="form-control" placeholder="Buscar..." [(ngModel)]="nome" (keyup)="onLinhasChange()" />
+    </div>
+    <div class="col-7"></div>
+    <div class="col-1">
+>>>>>>> eca40dba1dc0a5411cae6a21f863b588f0307859
       <button class="btn btn-primary" [routerLink]="['form']">Criar</button>
+    </div>
+  </div>
 </div>
 
 <div class="container">
   <div class="table-responsive">
-      <table class="table table-status">
-  <thead class="thead-dark">
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Descricao</th>
-      <th>Operações</th>
-    </tr>
-  </thead>
+    <table class="table table-status">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Descricao</th>
+          <th>Operações</th>
+        </tr>
+      </thead>
 
-  <tbody class="thead-light">
-    <tr *ngFor="let catApi of paginacao?.content">
-      <td> {{ catApi?.id  }} </td>
-      <td> {{ catApi?.nome  }} </td>
-      <td> {{ catApi?.descricao  }} </td>
-      <td>
-        <button class="btn btn-warning mr-2" [routerLink]="['/adm/categoria/form/' , catApi?.id ]"> Editar </button>
-        <button class="btn btn-danger" (click)="deletarCategoria(catApi?.id)"> Deletar </button>
-      </td>
-  </tbody>
-</table>
-</div>
+      <tbody class="thead-light">
+        <tr *ngFor="let catApi of paginacao?.content">
+          <td> {{ catApi?.id  }} </td>
+          <td> {{ catApi?.nome  }} </td>
+          <td> {{ catApi?.descricao  }} </td>
+          <td>
+            <button class="btn btn-warning mr-2" [routerLink]="['/adm/categoria/form/' , catApi?.id ]"> Editar </button>
+            <button class="btn btn-danger" (click)="deletarCategoria(catApi?.id)"> Deletar </button>
+          </td>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 

@@ -1,9 +1,15 @@
 package br.com.team.java.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +32,11 @@ public class Produto {
 	private String descricao;
 	private double preco;
 	
-	//private Categoria categoria;
+	@ManyToOne
+	@JoinColumn (name ="categoria")
+	private Categoria categoria;
+	
+	//@OneToMany (mappedBy = "produto")
 	//private List<Imagem> imagem
 	
 }
