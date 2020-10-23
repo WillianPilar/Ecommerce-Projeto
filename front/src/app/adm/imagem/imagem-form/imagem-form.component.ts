@@ -20,7 +20,8 @@ export class ImagemFormComponent implements OnInit {
 
   pegarCampos(){
     this.imagemForm = this.formBuilder.group({
-      url : ['', [Validators.required]]
+      url : ['', [Validators.required]],
+      nome :['', [Validators.required]]
       });
   }
   cadastrarImagem(){
@@ -37,7 +38,7 @@ export class ImagemFormComponent implements OnInit {
         console.log(error);
       });
     }
-    
+
   }
 
   verificarEdicao(){

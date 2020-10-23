@@ -1,4 +1,8 @@
-<div class="container" *ngFor="let imagem of imagens">
-  <img src="{{imagem.url}}" class="rounded mx-auto d-block">
-  <button class="btn btn-primary">Editar</button>
+<div class="card d-inline-flex mr-2 mb-2 mt-2 "   *ngFor="let imagem of imagens" style="width: 18rem;">
+  <img class="card-img-top" src="{{imagem.url}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{imagem.nome}}</h5>
+    <a href="#" class="btn btn-primary mr-4">Editar</a>
+    <a href="#" class="btn btn-primary">Deletar</a>
+  </div>
 </div>

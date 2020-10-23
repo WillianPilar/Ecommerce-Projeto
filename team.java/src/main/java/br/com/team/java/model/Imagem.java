@@ -28,6 +28,7 @@ public class Imagem {
 	@SequenceGenerator (name = "team_imagem_seq_id", sequenceName = "team_imagem_seq_id", allocationSize = 1)
 	private int id;
 	private String url;
+	private String nome;
 	
 	@ManyToOne
 	@JoinColumn (name ="produto_id")

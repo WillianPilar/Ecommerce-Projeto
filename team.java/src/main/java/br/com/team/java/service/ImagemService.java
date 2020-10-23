@@ -49,6 +49,7 @@ public class ImagemService {
 			novaImagem = imagemBuscada.get();
 
 			novaImagem.setUrl(imagem.getUrl());
+			novaImagem.setNome(imagem.getNome());
 			novaImagem.setProduto(imagem.getProduto());
 
 			novaImagem = imagemRepository.save(novaImagem);
