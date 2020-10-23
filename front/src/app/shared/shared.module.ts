@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CommonModule } from '@angular/common';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [MostrarErrosComponent],
@@ -16,7 +17,8 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    CarouselModule.forRoot(),
 
   ],
   exports:[ MostrarErrosComponent,
@@ -25,6 +27,8 @@ import { CommonModule } from '@angular/common';
             ReactiveFormsModule,
             HttpClientModule,
             RouterModule,
-            NgMultiSelectDropDownModule]
+            NgMultiSelectDropDownModule,
+            CarouselModule
+            ]
 })
 export class SharedModule { }

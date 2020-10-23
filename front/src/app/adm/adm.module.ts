@@ -11,6 +11,7 @@ import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.compo
 import { HomeComponent } from './home/home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 @NgModule({
   declarations: [
     CategoriaFormComponent,
@@ -20,7 +21,9 @@ import { RouterModule } from '@angular/router';
     UsuariosComponent,
     HomeComponent,
     UsuarioFormComponent,
+
   ], imports: [SharedModule, CommonModule,
-    AdmRoutingModule, NgxPaginationModule,RouterModule]
+    AdmRoutingModule, NgxPaginationModule,RouterModule,  CarouselModule.forRoot()]
 })
 export class AdmModule { }
+
