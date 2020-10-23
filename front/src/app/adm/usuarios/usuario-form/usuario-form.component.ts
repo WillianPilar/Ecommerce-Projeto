@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { UsuariosService } from '../../adm-service-folder/usuarios.service';
 
@@ -16,7 +17,17 @@ export class UsuarioFormComponent implements OnInit {
   exibir: boolean = false;
   texto: string = "Cadastrar";
   textoBotao: string = 'Salvar';
+  perfis = [1,2]
 
+  dropdownSettings : IDropdownSettings = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'url',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -88,6 +99,14 @@ export class UsuarioFormComponent implements OnInit {
         // console.log(JSON.stringify(dados));
       }
     )
+  }
+
+  /**documentação */
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
   }
 
 

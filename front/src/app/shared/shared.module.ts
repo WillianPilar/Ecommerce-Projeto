@@ -4,6 +4,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MostrarErrosComponent } from './components/mostrar-erros/mostrar-erros.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 
 
@@ -15,8 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ToastrModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
-  exports:[MostrarErrosComponent,ToastrModule, FormsModule, ReactiveFormsModule]
+  exports:[MostrarErrosComponent,ToastrModule, FormsModule, ReactiveFormsModule, NgMultiSelectDropDownModule]
 })
 export class SharedModule { }

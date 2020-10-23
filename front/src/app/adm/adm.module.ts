@@ -15,6 +15,7 @@ import { UsuariosComponent } from './usuarios/usuario-list/usuarios.component';
 import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.component';
 import { LoginComponent } from './usuarios/login/login.component';
 import { CadastroComponent } from './usuarios/cadastro/cadastro.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { CadastroComponent } from './usuarios/cadastro/cadastro.component';
     NgxPaginationModule,
     ToastrModule.forRoot(),
     RouterModule
+
   ]
 })
 export class AdmModule { }

@@ -25,13 +25,20 @@
     <app-mostrar-erros [isError]="isErrorField('email')" [mensagem] = "'Email Obrigatório'">
     </app-mostrar-erros>
 
-    <div class = "form-group">
+    <!-- <div class = "form-group">
       <label class= "mr-sm-2"> Perfil </label>
-      <select class = "form-control">
+      <select formControlName = "" class = "form-control">
       <option value="1">Admin</option>
       <option value="2">Cliente</option>
     </select>
+    </div> -->
+
+    <div class="form-group">
+    <ng-multiselect-dropdown [placeholder]="'Perfils'" [data]="perfis" formControlName="perfis"
+    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+    </ng-multiselect-dropdown>
     </div>
+
 
     <div class="form-group" >
       <label for="senha">Senha</label>
