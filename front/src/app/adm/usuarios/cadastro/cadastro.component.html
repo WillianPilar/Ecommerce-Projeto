@@ -1,11 +1,8 @@
+
 <h2>{{texto}} Usuário</h2>
-<form [formGroup]="formUsuarios" (submit)="onSubmit()">
-    <div class="form-group" *ngIf="isEdicao">
-      <!-- ID do Usuario -->
-      <label for="id">ID</label>
-      <input type="text" class="form-control" formControlName="id" readonly placeholder="ID do usuário">
-    </div>
-      <!-- Nome do Usuario -->
+<form [formGroup]="formCadastro" (submit)="onSubmit()">
+
+    <!-- Nome do Usuario -->
     <div class="form-group">
       <label for="nome">Nome</label>
       <input type="text" class="form-control" formControlName="nome" placeholder="Nome do usuário">
@@ -16,7 +13,7 @@
     </app-mostrar-erros>
 
 
-      <!-- RA do ALUNO -->
+    <!-- Email do ALUNO -->
     <div class="form-group">
       <label for="email">Email</label>
       <input type="email" class="form-control" formControlName="email" placeholder="Email do usuário">
@@ -24,21 +21,6 @@
 
     <app-mostrar-erros [isError]="isErrorField('email')" [mensagem] = "'Email Obrigatório'">
     </app-mostrar-erros>
-
-    <!-- <div class = "form-group">
-      <label class= "mr-sm-2"> Perfil </label>
-      <select formControlName = "" class = "form-control">
-      <option value="1">Admin</option>
-      <option value="2">Cliente</option>
-    </select>
-    </div> -->
-
-    <div class="form-group">
-    <ng-multiselect-dropdown [placeholder]="'Perfils'" [data]="perfis" formControlName="perfis"
-    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-    </ng-multiselect-dropdown>
-    </div>
-
 
     <div class="form-group" >
       <label for="senha">Senha</label>
@@ -51,3 +33,4 @@
     <button type="submit" class="btn btn-primary">{{textoBotao}}</button>
 
   </form>
+
