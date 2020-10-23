@@ -24,11 +24,20 @@ export class ImagemFormComponent implements OnInit {
       });
   }
   cadastrarImagem(){
-    this.imagemService.save(this.imagemForm.value).subscribe( (dados) => {
-      console.log(dados);
-    }, (error) => {
-      console.log(error);
-    });
+    if(this.isEdicao == true){
+      this.imagemService.update(this.idImagem,this.imagemForm.value).subscribe( (dados) => {
+        console.log(dados);
+      }, (error) => {
+        console.log(error);
+      });
+    }else{
+      this.imagemService.save(this.imagemForm.value).subscribe( (dados) => {
+        console.log(dados);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+    
   }
 
   verificarEdicao(){
@@ -45,10 +54,10 @@ export class ImagemFormComponent implements OnInit {
   }
 
   private pegarUmaImagemEPopularNoForm(id){
-    // this.imagemService.getOne(id).subscribe(
-    //   (dados)=>{
-    //     this.imagemForm.patchValue(dados)
-    //    }
-    //  )
+     this.imagemService.getOne(id).subscribe(
+       (dados)=>{
+         this.imagemForm.patchValue(dados)
+        }
+      )
  }
 }
