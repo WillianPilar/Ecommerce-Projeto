@@ -1,5 +1,6 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { Produto } from 'src/app/shared/models/produto';
+import { ProdutosPagination } from 'src/app/shared/models/produtos-pagination';
 import { ProdutoService } from '../../adm-service-folder/produto.service';
 
 @Component({
@@ -8,20 +9,36 @@ import { ProdutoService } from '../../adm-service-folder/produto.service';
   styleUrls: ['./produto-list.component.css']
 })
 export class ProdutoListComponent implements OnInit {
-  public listaDoProduto : any = [];
-  constructor(private produtoService : ProdutoService) { }
+
+  public listaDoProduto : ProdutosPagination;
+
+  public pagina         : number = 0;
+  public linhas         : number = 5;
+  public paginador: number = this.pagina + 1 ;
+
+  public totalElements  : number = 0;
+  public totalPages     : number = 0;
+
+  constructor(
+
+    private produtoService : ProdutoService
+
+    ) { }
 
   ngOnInit(): void {
     this.ListarOsProduto();
   }
 
   ListarOsProduto(){
-    this.produtoService.getAll().subscribe( (dadosPego) => {
-      console.log(dadosPego);
-      this.listaDoProduto = dadosPego;
-    }, (error) =>{
-      console.log(error);
-    });
+    this.produtoService.pagination(this.pagina, this.linhas)
+      .subscribe( (dadosPego : any) => {
+        console.log(dadosPego);
+        this.listaDoProduto = dadosPego;
+        this.totalElements = dadosPego.totalElements;
+        this.totalPages = dadosPego.totalPages;
+      }, (error) =>{
+        console.log(error);
+      });
   }
 
 
@@ -35,4 +52,17 @@ export class ProdutoListComponent implements OnInit {
       }
     );
   }
+
+  public onChangeSelected(): void {
+    this.ListarOsProduto();
+  }
+
+  pageChange(event : number){
+    console.log(event);
+    this.pagina = event - 1;
+    this.paginador = event;
+    this.ListarOsProduto();
+  }
+
+
 }

@@ -37,8 +37,8 @@ public class ProdutoController {
 		return ResponseEntity.ok().body(produto);
 	}
 	
-	@GetMapping(value="/search/{nome}")
-	public ResponseEntity<List<Produto>>findByNomeContainsIgnoreCase(@PathVariable String nome){
+	@GetMapping(value="/search")
+	public ResponseEntity<List<Produto>>findByNomeContainsIgnoreCase(@RequestParam String nome){
 		List<Produto> p = this.produtoService.findByNomeContainsIgnoreCase(nome);
 		return ResponseEntity.ok().body(p);
 	}
@@ -61,8 +61,9 @@ public class ProdutoController {
 	}
 	
 	@GetMapping(value ="paginador")
-	public ResponseEntity<Page<Produto>> paginacao(@RequestParam(value ="pagina", defaultValue = "0") int pagina, 
-							 @RequestParam(value ="linhas", defaultValue = "5") int linhas) {
+	public ResponseEntity<Page<Produto>> paginacao(
+							@RequestParam(value ="pagina", defaultValue = "0") int pagina, 
+							@RequestParam(value ="linhas", defaultValue = "5") int linhas ) {
 		Page<Produto> prod = this.produtoService.paginacao(pagina, linhas);
 		return ResponseEntity.ok().body(prod);
 	}

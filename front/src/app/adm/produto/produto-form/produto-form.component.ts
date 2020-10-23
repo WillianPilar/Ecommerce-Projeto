@@ -16,11 +16,14 @@ export class ProdutoFormComponent implements OnInit {
   public textoBotao : string = 'Salvar';
 
   constructor(
+
     private formBuilder : FormBuilder,
-     private produtoService : ProdutoService,
-      private activedRoute : ActivatedRoute,
-      private router : Router
-      ) {
+    private produtoService : ProdutoService,
+    private activedRoute : ActivatedRoute,
+    private router : Router
+
+  ) {
+
     this.produtoForm = this.formBuilder.group({
       nome : ['', [Validators.required]],
       descricao : ['', [Validators.required]],
@@ -35,16 +38,18 @@ export class ProdutoFormComponent implements OnInit {
    }
 
    ngOnInit(): void {
-    this.activedRoute.params.subscribe((parametros)=>{
 
-      if(parametros.id){  console.log("to aaaqui "+ parametros.id);
-        this.isEdicao =true;
-        this.idProduto =parametros.id;
-        this.textoBotao ='Editar';
-        this.getOne(parametros.id);
-      }
+    this.activedRoute.params
+      .subscribe((parametros)=>{
+
+        if(parametros.id){
+          this.isEdicao =true;
+          this.idProduto =parametros.id;
+          this.textoBotao ='Editar';
+          this.getOne(parametros.id);
+        }
+        
     });
-
 
   }
 
@@ -65,7 +70,7 @@ export class ProdutoFormComponent implements OnInit {
   private getOne(id){
      this.produtoService.getOne(id).subscribe(
        (dados)=>{
-         
+
          this.produtoForm.patchValue(dados)
         }
       )
