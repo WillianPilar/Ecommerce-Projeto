@@ -8,9 +8,9 @@ import { ProdutoFormComponent } from './produto/produto-form/produto-form.compon
 import { ProdutoListComponent } from './produto/produto-list/produto-list.component';
 import { UsuariosComponent } from './usuarios/usuario-list/usuarios.component';
 import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.component';
+import { HomeComponent } from './home/home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
-
 @NgModule({
   declarations: [
     CategoriaFormComponent,
@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
     ProdutoFormComponent,
     ProdutoListComponent,
     UsuariosComponent,
+    HomeComponent,
     UsuarioFormComponent,
   ], imports: [SharedModule, CommonModule,
     AdmRoutingModule, NgxPaginationModule,RouterModule]
