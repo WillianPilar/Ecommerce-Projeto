@@ -33,7 +33,7 @@ public class Produto {
 	private double preco;
 	
 	@ManyToOne
-	@JoinColumn (name ="categoria")
+	@JoinColumn (name ="categoria_id")
 	private Categoria categoria;
 	
 	//@OneToMany (mappedBy = "produto")
