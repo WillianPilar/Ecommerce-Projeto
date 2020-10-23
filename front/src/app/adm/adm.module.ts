@@ -19,15 +19,7 @@ import { RouterModule } from '@angular/router';
     ProdutoListComponent,
     UsuariosComponent,
     UsuarioFormComponent,
-    CommonModule,
-    AdmRoutingModule,
-    SharedModule,
-    NgxPaginationModule,
-    CommonModule,
-    AdmRoutingModule,
-    SharedModule,
-    NgxPaginationModule,
-    RouterModule
-  ]
+  ], imports: [SharedModule, CommonModule,
+    AdmRoutingModule, NgxPaginationModule,RouterModule]
 })
 export class AdmModule { }

@@ -22,7 +22,6 @@ import { HttpConfigInterceptorService } from './shared/interceptors/http-config-
     BrowserAnimationsModule,
     AppRoutingModule,
     LayoutModule,
-    RouterModule,
     SharedModule,
     HttpClientModule
   ],
