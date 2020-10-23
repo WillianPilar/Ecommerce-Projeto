@@ -1,11 +1,11 @@
-<h2>Cadastrar Usuário</h2>
+<h2>{{texto}} Usuário</h2>
 <form [formGroup]="formUsuarios" (submit)="onSubmit()">
     <div class="form-group" *ngIf="isEdicao">
-      <!-- ID do ALUNO -->
+      <!-- ID do Usuario -->
       <label for="id">ID</label>
-      <input type="text" class="form-control" formControlName="id" placeholder="ID do usuário">
+      <input type="text" class="form-control" formControlName="id" readonly placeholder="ID do usuário">
     </div>
-      <!-- Nome do Aluno -->
+      <!-- Nome do Usuario -->
     <div class="form-group">
       <label for="nome">Nome</label>
       <input type="text" class="form-control" formControlName="nome" placeholder="Nome do usuário">
@@ -14,8 +14,8 @@
     <app-mostrar-erros [isError]="isErrorField('nome')" [mensagem] = "'Nome Obrigatório'">
 
     </app-mostrar-erros>
-      
-    
+
+
       <!-- RA do ALUNO -->
     <div class="form-group">
       <label for="email">Email</label>
@@ -24,16 +24,30 @@
 
     <app-mostrar-erros [isError]="isErrorField('email')" [mensagem] = "'Email Obrigatório'">
     </app-mostrar-erros>
-    
+
+    <!-- <div class = "form-group">
+      <label class= "mr-sm-2"> Perfil </label>
+      <select formControlName = "" class = "form-control">
+      <option value="1">Admin</option>
+      <option value="2">Cliente</option>
+    </select>
+    </div> -->
 
     <div class="form-group">
+    <ng-multiselect-dropdown [placeholder]="'Perfils'" [data]="perfis" formControlName="perfis"
+    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+    </ng-multiselect-dropdown>
+    </div>
+
+
+    <div class="form-group" >
       <label for="senha">Senha</label>
       <input type="text" class="form-control" formControlName="senha" placeholder="Senha do usuário">
     </div>
 
     <app-mostrar-erros [isError]="isErrorField('senha')" [mensagem] = "'Senha Obrigatória'">
     </app-mostrar-erros>
-    
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+    <button type="submit" class="btn btn-primary">{{textoBotao}}</button>
 
   </form>
