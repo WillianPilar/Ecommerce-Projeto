@@ -25,6 +25,7 @@ public class ImagemService {
 	
 	public Imagem save(Imagem imagem) {
 		return this.imagemRepository.save(imagem);
+	}
 		
 	public List<Imagem> findAll(){
 		return this.imagemRepository.findAll();
