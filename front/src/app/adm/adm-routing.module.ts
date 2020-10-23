@@ -7,13 +7,15 @@ import { ProdutoFormComponent } from './produto/produto-form/produto-form.compon
 import { ProdutoListComponent } from './produto/produto-list/produto-list.component';
 import { UsuariosComponent } from './usuarios/usuario-list/usuarios.component';
 import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.component';
+import { LoginComponent } from './usuarios/login/login.component';
 
 const routes: Routes = [
   {path : '', component: HomeComponent },  
   {path : 'home', component: HomeComponent },
 
   { path: 'usuarios', component: UsuariosComponent },
-  { path: 'usuarios/form', component: UsuarioFormComponent },
+  { path: "usuarios/form", component: UsuarioFormComponent },
+  { path: "login", component: LoginComponent },
   { path: 'categoria', component: CategoriaListComponent },
   { path: 'categoria/form', component: CategoriaFormComponent },
 
@@ -23,6 +25,7 @@ const routes: Routes = [
 
   { path: 'categoria/form/:id', component: CategoriaFormComponent },
   { path: 'produto/form/:id', component: ProdutoFormComponent },
+  { path: "usuarios/form/:id", component: UsuarioFormComponent }
 ];
 
 @NgModule({
