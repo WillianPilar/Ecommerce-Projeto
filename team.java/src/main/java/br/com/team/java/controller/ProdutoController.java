@@ -61,8 +61,9 @@ public class ProdutoController {
 	}
 	
 	@GetMapping(value ="paginador")
-	public ResponseEntity<Page<Produto>> paginacao(@RequestParam(value ="pagina", defaultValue = "0") int pagina, 
-							 @RequestParam(value ="linhas", defaultValue = "5") int linhas) {
+	public ResponseEntity<Page<Produto>> paginacao(
+							@RequestParam(value ="pagina", defaultValue = "0") int pagina, 
+							@RequestParam(value ="linhas", defaultValue = "5") int linhas ) {
 		Page<Produto> prod = this.produtoService.paginacao(pagina, linhas);
 		return ResponseEntity.ok().body(prod);
 	}

@@ -5,7 +5,6 @@ import { MostrarErrosComponent } from './components/mostrar-erros/mostrar-erros.
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [MostrarErrosComponent],
   imports: [
@@ -14,8 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
-    NgxPaginationModule
+    RouterModule
 
   ],
   exports:[MostrarErrosComponent,ToastrModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule]
