@@ -10,6 +10,8 @@ import { UsuariosComponent } from './usuarios/usuario-list/usuarios.component';
 import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
+import { ImagemListComponent } from './imagem/imagem-list/imagem-list.component';
+import { ImagemFormComponent } from './imagem/imagem-form/imagem-form.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { RouterModule } from '@angular/router';
     ProdutoListComponent,
     UsuariosComponent,
     UsuarioFormComponent,
+    ImagemListComponent,
+    ImagemFormComponent,
   ], imports: [SharedModule, CommonModule,
     AdmRoutingModule, NgxPaginationModule,RouterModule]
 })
