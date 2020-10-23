@@ -30,4 +30,8 @@ public class ImagemController {
 	}
 	
 
+	public ResponseEntity<List<Imagem>> getAll(){
+		List<Imagem> l = this.imagemService.findAll();
+		return ResponseEntity.ok().body(l);
+	}
 }
