@@ -5,8 +5,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.com.team.java.model.Categoria;
 import br.com.team.java.model.Produto;
 import br.com.team.java.model.Usuario;
+import br.com.team.java.repository.CategoriaRepository;
 import br.com.team.java.repository.ProdutoRepository;
 import br.com.team.java.repository.UsuarioRepository;
 
@@ -18,6 +20,9 @@ public class Application implements CommandLineRunner {
 
 	@Autowired
 	public ProdutoRepository produtoRepository;
+	
+	@Autowired
+	public CategoriaRepository categoriaRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -38,6 +43,9 @@ public class Application implements CommandLineRunner {
 
 		p = Produto.builder().nome("Boneca").preco(30).build();
 		this.produtoRepository.save(p);
+		
+		Categoria a = Categoria.builder().nome("Carro").descricao("anda").build();
+		this.categoriaRepository.save(a);
 
 	}
 
