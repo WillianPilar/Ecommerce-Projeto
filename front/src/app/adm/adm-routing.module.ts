@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CategoriaListComponent } from './categoria/categoria-list/categoria-list.component';
@@ -9,9 +10,11 @@ import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.compo
 import { LoginComponent } from './usuarios/login/login.component';
 
 const routes: Routes = [
-  { path: "usuarios", component: UsuariosComponent },
+  {path : '', component: HomeComponent },  
+  {path : 'home', component: HomeComponent },
+
+  { path: 'usuarios', component: UsuariosComponent },
   { path: "usuarios/form", component: UsuarioFormComponent },
-  { path: "usuarios/form/:id", component: UsuarioFormComponent },
   { path: "login", component: LoginComponent },
   { path: 'categoria', component: CategoriaListComponent },
   { path: 'categoria/form', component: CategoriaFormComponent },
@@ -22,6 +25,7 @@ const routes: Routes = [
 
   { path: 'categoria/form/:id', component: CategoriaFormComponent },
   { path: 'produto/form/:id', component: ProdutoFormComponent },
+  { path: "usuarios/form/:id", component: UsuarioFormComponent }
 ];
 
 @NgModule({

@@ -18,11 +18,11 @@ public class ProdutoService {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
-
+	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-
-	public List<Produto> getAll() {
+	
+	public List<Produto> getAll(){
 		return this.produtoRepository.findAll();
 	}
 
@@ -31,12 +31,9 @@ public class ProdutoService {
 	}
 
 	public Produto save(Produto produto) {
-
-		if (produto.getCategoria() != null) {
-
-			Categoria c = this.categoriaRepository.findById(produto.getCategoria().getId())
+		if(produto.getCategoria() != null) {
+			br.com.team.java.model.Categoria c = this.categoriaRepository.findById(produto.getCategoria().getId())
 					.orElse(this.categoriaRepository.save(produto.getCategoria()));
-
 			produto.setCategoria(c);
 		}
 		return this.produtoRepository.save(produto);

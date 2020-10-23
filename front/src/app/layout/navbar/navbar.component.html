@@ -1,26 +1,34 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-  <a class="navbar-brand " href="#">Navbar</a>
+  <a class="navbar-brand " [routerLink]="['/home']" routerLinkActive="active">Treinamento BRQ</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div  class="collapse navbar-collapse " id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <div *ngIf="isAuthenticated">
       <li class="nav-item ">
-        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home<span class="sr-only"></span></a>
+        <a class="nav-link" [routerLink]="['/meu-perfil']" routerLinkActive="active">Meu Perfil<span class="sr-only"></span></a>
       </li>
+    </div>
+    <li class="nav-item ">
+      <a class="nav-link" [routerLink]="['/adm/login']" routerLinkActive="active">Login <span class="sr-only"></span></a>
+  </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['adm/produto']" routerLinkActive="active">Produtos</a>
       </li>
-      <li class="nav-item ">
-          <a class="nav-link" [routerLink]="['adm/produto/form']" routerLinkActive="active">Form Alunos<span class="sr-only"></span></a>
-        </li>
+      <!-- <li class="nav-item ">
+          <a class="nav-link" [routerLink]="['adm/produto/form']" routerLinkActive="active">Form Produtos<span class="sr-only"></span></a>
+        </li> -->
       <li class="nav-item ">
           <a class="nav-link" [routerLink]="['/adm/categoria']" routerLinkActive="active">Categoria <span class="sr-only"></span></a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link" [routerLink]="['adm/categoria/form']" routerLinkActive="active">Form Categoria <span class="sr-only"></span></a>
-      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="logout()">Logout</a>
+    </li>
+      <!-- <li class="nav-item ">
+        <a class="nav-link" [routerLink]="['/adm/categoria/form']" routerLinkActive="active">Categoria Form <span class="sr-only"></span></a>
+    </li> -->
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
