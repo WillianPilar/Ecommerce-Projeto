@@ -7,6 +7,7 @@ import { ProdutoListComponent } from './produto/produto-list/produto-list.compon
 import { UsuariosComponent } from './usuarios/usuario-list/usuarios.component';
 import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.component';
 import { LoginComponent } from './usuarios/login/login.component';
+import { ImagemListComponent } from './imagem/imagem-list/imagem-list.component';
 
 const routes: Routes = [
   { path: "usuarios", component: UsuariosComponent },
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: 'categoria', component: CategoriaListComponent },
   { path: 'categoria/form', component: CategoriaFormComponent },
-
+  { path: 'imagem/list', component : ImagemListComponent},
   { path: 'produto',component: ProdutoListComponent},
   { path: 'produto/form', component: ProdutoFormComponent },
   { path: 'produto/list', component: ProdutoListComponent },

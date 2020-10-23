@@ -1,1 +1,4 @@
-<p>imagem-list works!</p>
+<div class="container" *ngFor="let imagem of imagens">
+  <img src="{{imagem.url}}" class="rounded mx-auto d-block">
+  <button class="btn btn-primary">Editar</button>
+</div>

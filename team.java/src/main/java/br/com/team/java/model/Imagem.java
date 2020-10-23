@@ -25,11 +25,11 @@ import lombok.NoArgsConstructor;
 public class Imagem {
 	@Id
 	@GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "team_imagem_seq_id")
-	@SequenceGenerator (name = "team_imagem_seq_id", sequenceName = "team_imagemo_seq_id", allocationSize = 1)
+	@SequenceGenerator (name = "team_imagem_seq_id", sequenceName = "team_imagem_seq_id", allocationSize = 1)
 	private int id;
-	private int url;
+	private String url;
 	
 	@ManyToOne
-	@JoinColumn (name ="imagem_id")
+	@JoinColumn (name ="produto_id")
 	private Produto produto;
 }
