@@ -23,7 +23,6 @@ public class ImagemService {
 		return this.imagemRepository.save(imagem);
 	}
 		
-	public List<Imagem> findAll(){
 
 	public List<Imagem> getAll() {
 		return this.imagemRepository.findAll();
