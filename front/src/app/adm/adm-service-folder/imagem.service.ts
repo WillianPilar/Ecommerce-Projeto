@@ -13,9 +13,9 @@ export class ImagemService {
   constructor(private httpClient : HttpClient) { }
 
 
-  getOne(){
-    return this.httpClient.get(`${this.url}/thumb`);
-  }
+  // getOne(){
+  //   return this.httpClient.get(`${this.url}/thumb`);
+  // }
 
   getAll(){
     return this.httpClient.get(`${this.url}/all`);
