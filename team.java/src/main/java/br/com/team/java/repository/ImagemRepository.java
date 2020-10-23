@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.team.java.model.Imagem;
 
 @Repository
-interface ImagemRepository extends JpaRepository<Imagem, Integer> {
+public interface ImagemRepository extends JpaRepository<Imagem, Integer> {
 
 }
