@@ -5,8 +5,8 @@
         <th scope="col">Nome</th>
         <th scope="col">Descrição</th>
         <th scope="col">Preço</th>
-        <!-- <th scope="col">Categoria</th>
-        <th scope="col">Imagem</th> -->
+        <th scope="col">Categoria</th>
+        <!-- <th scope="col">Imagem</th> -->
       </tr>
     </thead>
     <tbody>
@@ -15,6 +15,8 @@
         <td>{{prod?.nome}}</td>
         <td>{{prod?.descricao}}</td>
         <td>{{prod?.preco}}</td>
+        <td>{{prod.categoria?.nome}}</td>
+        <!-- <td>{{prod?.imagem}}</td> -->
         <td>
             <button class="btn" [routerLink]="['/adm/produto/form', prod?.id]">Atualizar</button>
         </td>

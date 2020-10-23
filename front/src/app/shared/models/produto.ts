@@ -1,4 +1,5 @@
 import { Categoria } from './categoria';
+import { Imagem } from './imagem';
 
 export class Produto {
   id:number;
@@ -6,6 +7,6 @@ export class Produto {
   preco:number;
   descricao:string;
   categoria:Categoria[] = [];
-  imagem:any;
+  imagem:Imagem[] = [];
 
 }
