@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,11 +23,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "team_produto")
 public class Produto {
 	
 	@Id
-	@GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "produto_sequence")
-	@SequenceGenerator (name = "produto_sequence", sequenceName = "produto_seq_id", allocationSize = 1)
+	@GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "team_produto_seq_id")
+	@SequenceGenerator (name = "team_produto_seq_id", sequenceName = "team_produto_seq_id", allocationSize = 1)
 	private int id;
 	private String nome;
 	private String descricao;

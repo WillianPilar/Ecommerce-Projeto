@@ -5,7 +5,8 @@ import { MostrarErrosComponent } from './components/mostrar-erros/mostrar-erros.
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 @NgModule({
   declarations: [MostrarErrosComponent],
   imports: [
@@ -15,9 +16,15 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgxPaginationModule
+    NgMultiSelectDropDownModule
 
   ],
-  exports:[MostrarErrosComponent,ToastrModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule]
+  exports:[ MostrarErrosComponent,
+            ToastrModule,
+            FormsModule,
+            ReactiveFormsModule,
+            HttpClientModule,
+            RouterModule,
+            NgMultiSelectDropDownModule]
 })
 export class SharedModule { }

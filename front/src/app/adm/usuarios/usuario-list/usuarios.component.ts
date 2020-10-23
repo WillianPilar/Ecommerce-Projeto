@@ -26,7 +26,11 @@ export class UsuariosComponent implements OnInit {
   }
 
   public deletarUsuario(id){
-    console.log(id);
+   this.usuarioService.deletarUsuario(id).subscribe(
+    (response)=>{
+      this.consultarUsuarios();
+    }
+   );
   }
 
 }

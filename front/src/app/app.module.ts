@@ -1,18 +1,15 @@
 import { AdmModule } from './adm/adm.module';
-import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { Router, RouterModule } from '@angular/router';
-import { SharedModule } from './shared/shared.module';
-import { NavbarComponent } from './layout/navbar/navbar.component';
+import { RouterModule } from '@angular/router';
 import { LayoutModule } from './layout/layout.module';
-
-
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
+import { AuthInterceptorsService } from './shared/interceptors/auth-interceptors.service';
+import { HttpConfigInterceptorService } from './shared/interceptors/http-config-interceptor.service';
 
 
 @NgModule({
@@ -25,9 +22,22 @@ import { LayoutModule } from './layout/layout.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     LayoutModule,
-    RouterModule
+    RouterModule,
+    SharedModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptorsService,
+      multi : true
+    },
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : HttpConfigInterceptorService,
+      multi : true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
