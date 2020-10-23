@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CategoriaListComponent } from './categoria/categoria-list/categoria-list.component';
@@ -8,8 +9,11 @@ import { UsuariosComponent } from './usuarios/usuario-list/usuarios.component';
 import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.component';
 
 const routes: Routes = [
-  { path: "usuarios", component: UsuariosComponent },
-  { path: "usuarios/form", component: UsuarioFormComponent },
+  {path : '', component: HomeComponent },  
+  {path : 'home', component: HomeComponent },
+
+  { path: 'usuarios', component: UsuariosComponent },
+  { path: 'usuarios/form', component: UsuarioFormComponent },
   { path: 'categoria', component: CategoriaListComponent },
   { path: 'categoria/form', component: CategoriaFormComponent },
 

@@ -13,9 +13,10 @@ import { ProdutoListComponent } from './produto/produto-list/produto-list.compon
 import { RouterModule } from '@angular/router';
 import { UsuariosComponent } from './usuarios/usuario-list/usuarios.component';
 import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [CategoriaFormComponent, CategoriaListComponent,ProdutoFormComponent,ProdutoListComponent,ProdutoListComponent,UsuariosComponent, UsuarioFormComponent],
+  declarations: [CategoriaFormComponent, CategoriaListComponent,ProdutoFormComponent,ProdutoListComponent,ProdutoListComponent,UsuariosComponent, UsuarioFormComponent, HomeComponent],
   imports: [
     CommonModule,
     AdmRoutingModule,
