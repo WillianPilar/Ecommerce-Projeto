@@ -21,7 +21,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     UsuariosComponent,
     HomeComponent,
     UsuarioFormComponent,
-
   ], imports: [SharedModule, CommonModule,
     AdmRoutingModule, NgxPaginationModule,RouterModule,  CarouselModule.forRoot()]
 })

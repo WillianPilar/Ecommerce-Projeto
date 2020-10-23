@@ -6,17 +6,19 @@ import { CarouselConfig } from 'ngx-bootstrap/carousel';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  providers: [
-    { provide: CarouselConfig, useValue: { interval: 0, noPause: true, showIndicators: true } }
-  ]
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   public produtosApi: any = [];
   public produtosApiBackup: any = [];
   public categoriasDaBox: any = [];
+  public pagina: number = 0;
+  public paginador: number = this.pagina+1;
+  public linhas: number = 3;
+  public nome: string = "";
+  public totalElementos: number = 0;
+  public totalPaginas: number = 0;
 
-  @Input() slides ;
   constructor(
     private produtosService: ProdutoService,
     private categoriaService: CategoriaService,
@@ -27,13 +29,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getAllProdutos();
     this.getCategorias();
-    if(this.slides == null || this.slides == undefined || this.slides == ""){
-      this.slides= [
-         {image: 'assets/images/peomo.png'},
-         {image: 'assets/images/pic2.jpg'},
-         {image: 'assets/images/pic3.png'},
-       ];
-  }
+    this.pagination();
+
 }
 
   public getCategorias() {
@@ -68,6 +65,46 @@ export class HomeComponent implements OnInit {
     console.log("Depois " + produtos)
     this.produtosApi = produtos;
     console.log(id)
+  }
+
+  private pagination(): void {
+    this.produtosService.pagination(this.pagina, this.linhas).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.produtosApi = response.content;
+        this.totalElementos = response.totalElements;
+        this.totalPaginas = response.totalPages;
+      }
+    );
+  }
+
+  public onChangeSelected(): void {
+    this.pagination();
+  }
+
+  nextPage(): void {
+    this.pagina++;
+    this.pagination();
+  }
+
+  previousPage(): void {
+    this.pagina--;
+    if (this.pagina < 0) {
+      this.pagina = 0;
+    }
+    this.pagination();
+  }
+
+  public setPage(page: number): void {
+    this.pagina = page;
+    this.pagination();
+  }
+
+  pageChange(event){
+    console.log(event);
+    this.pagina = event - 1;
+    this.paginador = event;
+    this.pagination();
   }
 
   // inserirNoCarrinho(produto) {
