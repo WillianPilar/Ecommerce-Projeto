@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'produto/list', component: ProdutoListComponent },
 
   { path : 'imagem/form', component : ImagemFormComponent},
+  { path : 'imagem/form/:id', component : ImagemFormComponent},
 
   { path: 'categoria/form/:id', component: CategoriaFormComponent },
   { path: 'produto/form/:id', component: ProdutoFormComponent },

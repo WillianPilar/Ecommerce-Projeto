@@ -2,7 +2,7 @@
   <img class="card-img-top" src="{{imagem.url}}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{imagem.nome}}</h5>
-    <a href="#" class="btn btn-primary mr-4">Editar</a>
-    <a href="#" class="btn btn-primary">Deletar</a>
+    <a class="btn btn-primary mr-4" [routerLink]="['/adm/imagem/form', imagem?.id]">Editar</a>
+    <a class="btn btn-primary" (click)="deletarImagem(imagem?.id)">Deletar</a>
   </div>
 </div>

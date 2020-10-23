@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ImagemService } from '../../adm-service-folder/imagem.service';
 
 @Component({
@@ -12,10 +12,11 @@ export class ImagemFormComponent implements OnInit {
   public imagemForm : FormGroup;
   public isEdicao : boolean = false;
   public idImagem : any;
-  constructor(private formBuilder : FormBuilder, private imagemService : ImagemService, private activedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private formBuilder : FormBuilder, private imagemService : ImagemService, private activedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.pegarCampos();
+    this.verificarEdicao();
   }
 
   pegarCampos(){
@@ -28,12 +29,15 @@ export class ImagemFormComponent implements OnInit {
     if(this.isEdicao == true){
       this.imagemService.update(this.idImagem,this.imagemForm.value).subscribe( (dados) => {
         console.log(dados);
+        this.router.navigate(['/adm/imagem/list']);
       }, (error) => {
         console.log(error);
       });
     }else{
       this.imagemService.save(this.imagemForm.value).subscribe( (dados) => {
         console.log(dados);
+        this.router.navigate(['/adm/imagem/list']);
+
       }, (error) => {
         console.log(error);
       });

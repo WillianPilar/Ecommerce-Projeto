@@ -24,6 +24,15 @@ export class ImagemListComponent implements OnInit {
       })
   }
 
+  deletarImagem(id){
+    this.imagemService.delete(id).subscribe(
+      (dados)=> {
+        console.log("teoricamente excluido");
+        this.getAll();
+      }
+    )
+  }
+
 
 
 }
