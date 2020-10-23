@@ -63,14 +63,14 @@ public class Application implements CommandLineRunner {
 //			u = this.usuarioRepository.save(u);
 		
 		
-		Usuario u = Usuario.builder()
+		Usuario u2 = Usuario.builder()
 					.nome("Admin")
 					.email("admin@admin.com")
 					.senha( this.bCryptPasswordEncoder.encode("admin") )
 					.build();
 
-		u.addPerfil(Perfil.ADMIN);		
-		u= this.usuarioRepository.save(u);
+		u2.addPerfil(Perfil.ADMIN);		
+		u2= this.usuarioRepository.save(u2);
 		
 		Usuario c = Usuario.builder()
 				.nome("Cliente 1")
