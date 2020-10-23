@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.team.java.model.Produto;
+import br.com.team.java.repository.CategoriaRepository;
 import br.com.team.java.repository.ProdutoRepository;
 
 @Service
@@ -16,6 +17,9 @@ public class ProdutoService {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 	
 	public List<Produto> getAll(){
 		return this.produtoRepository.findAll();
@@ -26,6 +30,11 @@ public class ProdutoService {
 	}
 	
 	public Produto save(Produto produto) {
+		if(produto.getCategoria() != null) {
+			br.com.team.java.model.Categoria c = this.categoriaRepository.findById(produto.getCategoria().getId())
+					.orElse(this.categoriaRepository.save(produto.getCategoria()));
+			produto.setCategoria(c);
+		}
 		return this.produtoRepository.save(produto);
 	}
 	
