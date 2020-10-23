@@ -60,13 +60,13 @@ public class ProdutoService {
 		this.produtoRepository.deleteById(id);
 	}
 
-	public List<Produto> findByNomeContainsIgnoreCase(String produto) {
-		return this.produtoRepository.findByNomeContainsIgnoreCase(produto);
-	}
+//	public List<Produto> findByNomeContainsIgnoreCase(String produto) {
+//		return this.produtoRepository.findByNomeContainsIgnoreCase(produto);
+//	}
 
-	public Page<Produto> paginacao(int pagina, int linhas) {
+	public Page<Produto> paginacao(int pagina, int linhas, String busca) {
 		PageRequest pageRequest = PageRequest.of(pagina, linhas);
-		return this.produtoRepository.findAll(pageRequest);
+		return this.produtoRepository.findByNomeContainsIgnoreCase(busca, pageRequest);
 	}
 
 }

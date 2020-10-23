@@ -13,6 +13,7 @@ import br.com.team.java.model.Produto;
 public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 	
 	public List<Produto>findByNomeContainsIgnoreCase(String produto);
+	
 	public Page<Produto> findByNomeContainsIgnoreCase(String nome, Pageable pageable);
 
 }
