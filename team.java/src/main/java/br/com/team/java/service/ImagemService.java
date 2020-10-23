@@ -36,6 +36,10 @@ public class ImagemService {
 		}
 		return i;
 	}
+	
+	public Imagem getOneById(int id) {
+		return this.imagemRepository.findById(id).orElse(new Imagem());
+	}
 
 	public Imagem atualizarImagem(Imagem imagem, int id) {
 		Optional<Imagem> imagemBuscada = imagemRepository.findById(id);
