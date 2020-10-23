@@ -42,6 +42,13 @@ public class ImagemController {
 		return ResponseEntity.ok().body(l);
 	}
 	
+	@GetMapping(value="{id}")
+	public ResponseEntity<Imagem> getOneById(@PathVariable int id){
+		Imagem imagem = this.imagemService.getOne();
+		return ResponseEntity.ok().body(imagem);
+	}
+	
+	
 	@GetMapping(value="thumb")
 	public ResponseEntity<Imagem> getOne(){
 		Imagem imagem = this.imagemService.getOne();

@@ -13,10 +13,12 @@ export class ImagemService {
   constructor(private httpClient : HttpClient) { }
 
 
-  getOne(){
-    return this.httpClient.get(`${this.url}/thumb`);
-  }
-
+  // getOne(){
+  //   return this.httpClient.get(`${this.url}/thumb`);
+  // }
+   getOne(id:number){
+      return this.httpClient.get(`${this.url}/${id}`);
+    }
   getAll(){
     return this.httpClient.get(`${this.url}/all`);
   }
@@ -26,11 +28,11 @@ export class ImagemService {
   }
 
   delete(id){
-    return this.httpClient.delete(this.url, id);
+    return this.httpClient.delete(`${this.url}/${id}`);
   }
 
-  update(id){
-    return this.httpClient.patch(this.url, id);
+  update(id,body){
+    return this.httpClient.patch(`${this.url}/${id}`, body);
   }
 
 
