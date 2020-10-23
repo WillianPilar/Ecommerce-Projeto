@@ -14,8 +14,7 @@ export class ProdutoListComponent implements OnInit {
 
   public pagina         : number = 0;
   public linhas         : number = 5;
-  public paginador: number = this.pagina + 1 ;
-
+  public paginador      : number = this.pagina + 1 ;
   public totalElements  : number = 0;
   public totalPages     : number = 0;
 
