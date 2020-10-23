@@ -106,7 +106,9 @@ export class ProdutoFormComponent implements OnInit {
       );
   }
 
-
+  public isErrorField(fieldName) {
+    return (this.produtoForm.get(fieldName).valid == false && this.produtoForm.get(fieldName).touched == true);
+  }
 
 
 }

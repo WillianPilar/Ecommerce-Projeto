@@ -19,6 +19,8 @@ export class ProdutoListComponent implements OnInit {
   public totalElements  : number = 0;
   public totalPages     : number = 0;
 
+  public busca          : string = "";
+
   constructor(
 
     private produtoService : ProdutoService
@@ -30,7 +32,7 @@ export class ProdutoListComponent implements OnInit {
   }
 
   ListarOsProduto(){
-    this.produtoService.pagination(this.pagina, this.linhas)
+    this.produtoService.pagination(this.pagina, this.linhas, this.busca)
       .subscribe( (dadosPego : any) => {
         console.log(dadosPego);
         this.listaDoProduto = dadosPego;
@@ -51,6 +53,10 @@ export class ProdutoListComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  public onSearch(){
+    this.ListarOsProduto();
   }
 
   public onChangeSelected(): void {
