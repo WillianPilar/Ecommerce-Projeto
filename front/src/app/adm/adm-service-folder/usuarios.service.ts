@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { UsuarioPagination } from 'src/app/shared/models/usuario-pagination';
 
 @Injectable({
   providedIn: 'root'
@@ -31,13 +32,18 @@ export class UsuariosService {
     return this.httpClient.delete(`http://localhost:8081/usuarios/${id}`);
   }
 
-  //LOGIN 
+  //LOGIN
   public logar(body:any){
     return this.httpClient.post('http://localhost:8081/autenticacao',body);
   }
 
   public sendMessage(msg:boolean){
     this.authSubject.next(msg);
+  }
+
+  //Paginação
+  public paginationLike(pagina: number, linhas: number, nome: string){
+    return this.httpClient.get<UsuarioPagination>(`http://localhost:8081/usuarios/paginadorLike?pagina=${pagina}&linhas=${linhas}&nome=${nome}`);
   }
 
 

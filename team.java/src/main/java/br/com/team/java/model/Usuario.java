@@ -41,6 +41,7 @@ public class Usuario {
 	//Endereço
 	
 	
+	
 	//Perfil
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "PERFIS")

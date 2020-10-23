@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +62,10 @@ public class UsuarioService {
  		return update;
  	} 
 	
+	public Page<Usuario> paginacaoLike(int pagina,int linhas, String nome){
+		PageRequest pageRequest = PageRequest.of(pagina,linhas);
+		return this.usuarioRepository.findByNomeContainsIgnoreCase(nome,pageRequest);
+	}
 	
 
 }
