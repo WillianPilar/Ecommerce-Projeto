@@ -1,9 +1,8 @@
-
 <div class = "container mt-4">
   <form [formGroup]="formEndereco" (submit)="onSubmit()">
     <div class="form-group d-flex justify-content col-4 align-self-center ">
         <label class="align-self-center mr-2" for="cep">CEP</label>
-        <input class="w-60" type="text" class="form-control" formControlName="cep" placeholder="Informe o CEP">
+        <input class="w-60" type="text" class="form-control" maxlength="8" minlength="8" formControlName="cep" placeholder="Informe o CEP" (keyup)="cepFalse()">
         <button class="btn btn-danger ml-2" type="button" (click)="buscarCEP()">Buscar CEP</button>
     </div>
 
@@ -19,6 +18,8 @@
       <label for="numero">Número</label>
       <input type="text" class="form-control" formControlName="numero">
   </div>
+  
+  <app-mostrar-erros [isError]="isErrorField('numero')" [mensagem]="'Insira o número da casa'"></app-mostrar-erros>
 
     <div class="form-group">
         <label for="bairro">Bairro</label>
@@ -36,9 +37,7 @@
     </div>
 
 
-    <app-mostrar-erros [isError]="isErrorField('numero')"  [mensagem]="'Insira o número da casa'"></app-mostrar-erros>
-
+    
     <button class="btn btn-dark" type="submit" class="btn btn-primary mt-4">Registrar</button>
-
   </form>
 </div>

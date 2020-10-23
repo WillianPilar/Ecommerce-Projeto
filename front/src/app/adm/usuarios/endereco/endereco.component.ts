@@ -13,48 +13,72 @@ import { StorageService } from 'src/app/shared/services/storage.service';
 export class EnderecoComponent implements OnInit {
 
   formEndereco: FormGroup;
+  public endereco;
   public idLocalUser = this.storageService.getLocalUser()?.id;
+  public cep: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
-              private enderecoService: UsuariosService,
-              private router: Router,
-              private toastr: ToastrService,
-              private activatedRoute: ActivatedRoute,
-              private storageService : StorageService){}
+    private enderecoService: UsuariosService,
+    private router: Router,
+    private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute,
+    private storageService: StorageService) { }
 
 
 
 
   ngOnInit(): void {
     this.createForm();
+    this.preencherInformacoes();
+    console.log(this.cep);
   }
 
 
-  private createForm(){
+  private createForm() {
     this.formEndereco = this.formBuilder.group(
       {
-       cep : [ '',[ Validators.required] ],
-       estado : [""],
-       cidade : [""],
-       bairro: [""],
-       logradouro : [""],
-       numero : [""]
+        cep: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
+        estado: [""],
+        cidade: [""],
+        bairro: [""],
+        logradouro: [""],
+        numero: [""]
       },
     );
   }
 
-  onSubmit() {
-    let body  = Object.assign(this.formEndereco.value,{usuario:{id:this.idLocalUser}});
+
+  public CadastrarEndereco(body) {
     this.enderecoService.cadastrarEndereco(body).subscribe(
       (response) => {
         console.log(response);
         this.toastr.success("Endereço linkado com sucesso");
+        this.router.navigate(['meu-perfil']);
+
+
       }, (error) => {
         console.log(error.status);
         alert("Erro ao cadastrar endereço!");
       }
     );
+
   }
+
+  public cepFalse(){
+    this.cep = false;
+    alert();
+  }
+
+
+  public onSubmit() {
+    if (this.cep == true) {
+      let body = Object.assign(this.formEndereco.value, { usuario: { id: this.idLocalUser } });
+      this.CadastrarEndereco(body);
+    } else {
+      this.toastr.warning("Por favor busque o CEP antes de editar");
+    }
+  }
+
 
   public buscarCEP() {
 
@@ -62,9 +86,21 @@ export class EnderecoComponent implements OnInit {
       (response: any) => {
         console.log(response);
         this.formEndereco.patchValue({ estado: response.uf, bairro: response.bairro, cidade: response.localidade, logradouro: response.logradouro });
+        this.toastr.success("Validação de endereço feita com sucesso!");
+        this.cep = true;
       }
     );
-}
+  }
+
+  public preencherInformacoes() {
+    this.enderecoService.consultarUsuarioId(this.idLocalUser).subscribe(
+      (response: any) => {
+        this.endereco = response?.endereco;
+        this.formEndereco.patchValue(this.endereco);
+        console.log(this.endereco);
+      }
+    );
+  }
 
 
   isErrorField(fieldname) {
