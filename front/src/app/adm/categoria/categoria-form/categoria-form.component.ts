@@ -13,7 +13,7 @@ export class CategoriaFormComponent implements OnInit {
 
   meuForm : FormGroup;
   isEdicao : boolean = false;
-  textoBotao : string = 'salvar';
+  textoBotao : string = 'Salvar';
   idCategoria : number = 0;
 
 
