@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { CadastroRoutingModule } from './cadastro-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CadastroComponent } from './cadastro.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [CadastroComponent],
   imports: [
     CommonModule,
     CadastroRoutingModule,

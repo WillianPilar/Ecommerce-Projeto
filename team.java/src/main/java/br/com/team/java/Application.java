@@ -40,8 +40,8 @@ public class Application implements CommandLineRunner {
 		// TODO Auto-generated method stub
 
 		// Usuario u = new Usuario(0,"Usuario 1", "123456", "usuario@usuario.com" );
-		Usuario u = Usuario.builder().nome("Admin").email("admin@admin.com").senha("123456").build();
-		u = this.usuarioRepository.save(u);
+//		Usuario u = Usuario.builder().nome("Admin").email("admin@admin.com").senha("123456").build();
+//		u = this.usuarioRepository.save(u);
 
 		//Criando produtos para teste
 		Produto p = Produto.builder().nome("Bola").preco(10).build();
