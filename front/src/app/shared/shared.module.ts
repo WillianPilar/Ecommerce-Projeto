@@ -5,11 +5,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [MostrarErrosComponent],
   imports: [
-    //CommonModule,
+    CommonModule,
     HttpClientModule,
     ToastrModule.forRoot(),
     FormsModule,

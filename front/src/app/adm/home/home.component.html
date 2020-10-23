@@ -24,25 +24,24 @@
     </a>
 </div>
 
-<h1> <span class="badge badge-secondary mb-7">Mais vendidos</span></h1>
+<h1> <span class="badge badge-secondary justify-content-center mb-7">Mais vendidos</span></h1>
 
-<div class="row justify-content-md-center mb-5">
-    <div *ngFor="let produtoApi of produtosApi" class="col-md-4 mt-3">
-        <div class="card ml-1 mr-1" style="width: 18-rem;">
-            <img *ngIf="produtoApi.imagens.length>0" class="card-img-top" [src]="produtoApi?.imagens[0].url"
-                alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{ produtoApi?.nome  }}</h5>
-                <p class="card-text">Descrição: {{ produtoApi?.descricao  }} </p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Preço: R$ {{ produtoApi?.preco }},00</li>
-            </ul>
-            <button class="btn btn-warning mx-5 my-3" type="button"
-                (click)="inserirNoCarrinho(produtoApi)">Comprar</button>
+<div class="justify-content-left d-flex flex-direction-row">
+    <div *ngFor="let produtoApi of produtosApi" class="col-md-4 mt-3">      <!-- <img class="card-img-top" src="{{produtoApi.imagens.url}}" > -->
+      <div class="card-body">
+        <h5 class="card-title">{{produtoApi?.nome}}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Categoria: {{produtoApi?.categoria?.nome}}</li>
+        <li class="list-group-item">Descrição: {{produtoApi?.descricao}}</li>
+        <li class="list-group-item">Preço R$: {{produtoApi?.preco | currency:'BRL' : 'symbol' : '0.2-2'}}</li>
+      </ul>
+      <div class="card-body">
+        <div class="float-left">
+          <button class="btn btn-outline-success"  (click)="inserirNoCarrinho()">Colocar no Carrinho</button>
         </div>
+      </div>
     </div>
-</div>
-<br>
+  </div>
 <br>
 <br>
