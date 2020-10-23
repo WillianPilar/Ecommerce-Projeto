@@ -1,6 +1,7 @@
 package br.com.team.java.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,4 +19,19 @@ public class ImagemService {
 		return this.imagemRepository.findAll();
 	}
 	
+	
+	public Imagem atualizarImagem(Imagem imagem, int id) {
+		Optional<Imagem> imagemBuscada = imagemRepository.findById(id);
+		Imagem novaImagem = null;
+		
+		if(imagemBuscada.isPresent()) {
+			novaImagem = imagemBuscada.get();
+			
+			novaImagem.setUrl(imagem.getUrl());
+			novaImagem.setProduto(imagem.getProduto());
+			
+			novaImagem = imagemRepository.save(novaImagem);
+		}
+		return novaImagem;
+	}
 }
