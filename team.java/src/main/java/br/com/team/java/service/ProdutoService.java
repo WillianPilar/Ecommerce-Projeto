@@ -1,5 +1,7 @@
 package br.com.team.java.service;
 
+import java.awt.Image;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,8 +11,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.team.java.model.Categoria;
+import br.com.team.java.model.Imagem;
 import br.com.team.java.model.Produto;
 import br.com.team.java.repository.CategoriaRepository;
+import br.com.team.java.repository.ImagemRepository;
 import br.com.team.java.repository.ProdutoRepository;
 
 @Service
@@ -22,7 +26,10 @@ public class ProdutoService {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
-	public List<Produto> getAll(){
+	@Autowired
+	private ImagemRepository imagemRepository;
+
+	public List<Produto> getAll() {
 		return this.produtoRepository.findAll();
 	}
 
@@ -40,20 +47,26 @@ public class ProdutoService {
 	}
 
 	public Produto update(int id, Produto produto) {
-		Optional<Produto> a = this.produtoRepository.findById(id);
-		Produto update = null;
+		
+		Produto newProduto = this.produtoRepository.findById(id).get();
+		List<Imagem> imagens = new ArrayList<Imagem>();
 
-		if (a.isPresent()) {
-			update = a.get();
+		if (produto != null) {
+						
+			for (Imagem imagem : produto.getImagens()) {
+				imagem = imagemRepository.findById(imagem.getId()).get();
+				imagens.add(imagem);
+			}
 
-			update.setNome(produto.getNome());
-			update.setDescricao(produto.getDescricao());
-			update.setPreco(produto.getPreco());
-			update.setCategoria(produto.getCategoria());
-//			update.setImagem(produto.getImagem());
-			update = this.produtoRepository.save(update);
+			newProduto.setNome(produto.getNome());
+			newProduto.setDescricao(produto.getDescricao());
+			newProduto.setPreco(produto.getPreco());
+			newProduto.setCategoria(produto.getCategoria());
+			newProduto.setImagens(imagens);
+			
+			this.produtoRepository.save(newProduto);
 		}
-		return update;
+		return newProduto;
 	}
 
 	public void delete(int id) {

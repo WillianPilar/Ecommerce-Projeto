@@ -7,6 +7,6 @@ export class Produto {
   preco:number;
   descricao:string;
   categoria:Categoria[] = [];
-  imagem:Imagem[] = [];
+  imagens:Imagem[] = [];
 
 }

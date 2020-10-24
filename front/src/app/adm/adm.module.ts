@@ -12,6 +12,9 @@ import { HomeComponent } from './home/home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ImagemListComponent } from './imagem/imagem-list/imagem-list.component';
+import { ImagemFormComponent } from './imagem/imagem-form/imagem-form.component';
+
 @NgModule({
   declarations: [
     CategoriaFormComponent,
@@ -21,7 +24,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     UsuariosComponent,
     HomeComponent,
     UsuarioFormComponent,
-
   ], imports: [SharedModule, CommonModule,
     AdmRoutingModule, NgxPaginationModule,RouterModule,  CarouselModule.forRoot()]
 })

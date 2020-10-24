@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Categoria } from 'src/app/shared/models/categoria';
 import { CategoriaService } from '../../adm-service-folder/categoria.service';
+import { ImagemService } from '../../adm-service-folder/imagem.service';
 import { ProdutoService } from '../../adm-service-folder/produto.service';
 
 @Component({
@@ -18,12 +20,24 @@ export class ProdutoFormComponent implements OnInit {
   public textoBotao : string = 'Salvar';
 
   public categorias : Categoria[] = [];
+  public imagens : any = [];
+
+  dropdownSettings : IDropdownSettings = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'nome',
+    selectAllText: 'Selecionar Todas',
+    unSelectAllText: 'Desselecionar Todas',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
 
   constructor(
 
     private formBuilder : FormBuilder,
     private produtoService : ProdutoService,
     private categoriaService : CategoriaService,
+    private imagemService : ImagemService,
     private activedRoute : ActivatedRoute,
     private router : Router
 
@@ -39,8 +53,9 @@ export class ProdutoFormComponent implements OnInit {
           id : ['', [ ] ] ,
           nome : [ '', [ ] ]
         } ),
-      imagens: ['',[]]
-      })
+      imagens: ['', [ ] ]
+    })
+
    }
 
    ngOnInit(): void {
@@ -63,6 +78,8 @@ export class ProdutoFormComponent implements OnInit {
         }
 
     });
+
+    this.getAllImagens();
 
   }
 
@@ -88,6 +105,7 @@ export class ProdutoFormComponent implements OnInit {
   }
 
   private update(id,produto){
+    console.log(produto);
     this.produtoService.update(id,produto)
       .subscribe(
         (dados)=>{
@@ -104,6 +122,23 @@ export class ProdutoFormComponent implements OnInit {
           this.router.navigate(['/adm/produto/list']);
         }
       );
+  }
+
+  private getAllImagens(){
+    this.imagemService.getAll()
+      .subscribe(
+        (resp) => {
+          console.log (resp);
+          this.imagens = resp;
+        }
+      );
+  }
+
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
   }
 
   public isErrorField(fieldName) {
