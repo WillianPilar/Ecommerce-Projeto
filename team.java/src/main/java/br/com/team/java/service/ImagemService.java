@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.team.java.model.Imagem;
+import br.com.team.java.model.Produto;
 import br.com.team.java.repository.ImagemRepository;
 
 @Service
@@ -55,5 +58,10 @@ public class ImagemService {
 			novaImagem = imagemRepository.save(novaImagem);
 		}
 		return novaImagem;
+	}
+	
+	public Page<Imagem> paginacao(int pagina, int linhas, String busca) {
+		PageRequest pageRequest = PageRequest.of(pagina, linhas);
+		return this.imagemRepository.findByNomeContainsIgnoreCase(busca, pageRequest);
 	}
 }

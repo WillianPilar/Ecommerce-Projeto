@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: 'categoria', component: CategoriaListComponent },
   { path: 'categoria/form', component: CategoriaFormComponent },
+  { path: 'imagem', component : ImagemListComponent},
   { path: 'imagem/list', component : ImagemListComponent},
   { path: 'produto',component: ProdutoListComponent},
   { path: 'produto/form', component: ProdutoFormComponent },

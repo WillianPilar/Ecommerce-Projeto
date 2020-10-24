@@ -1,8 +1,10 @@
 <form [formGroup]="produtoForm">
   <div class="row justify-content-center mt-5">
 
+    <div class="col-sm-10">
+      <h2 class="text-center">Cadastro de Produtos</h2>
+    </div>
     <div class="col-sm-10 row">
-
       <div class="col-sm-12">
         <div class="col-sm-2 pl-0">
           <div class="form-group" *ngIf="isEdicao">
@@ -41,12 +43,24 @@
         </div>
         <app-mostrar-erros [isError]="isErrorField( 'preco' )" [mensagem]="'Preço obrigatório'"></app-mostrar-erros>
       </div>
-      <div class="col-sm-12">
+
+      <div class="col-sm-6">
         <div class="form-group">
-          <label for="inputCity">Imagem</label>
-          <input type="text" class="form-control" formControlName="imagens">
+          <label>Imagens</label>
+          <ng-multiselect-dropdown
+            [placeholder]="'Selecione as imagens do produto'"
+            [data]="imagens"
+            formControlName="imagens"
+            [settings]="dropdownSettings"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+
         </div>
+        <app-mostrar-erros [isError]="isErrorField( 'imagens' )" [mensagem]="'Link da imagem obrigatória!'"></app-mostrar-erros>
       </div>
+
       <div class="col-sm-12">
         <div class="form-group d-flex justify-content-between">
           <button type="submit" class="btn btn-primary" (click)="EnviarProduto()">{{textoBotao}}</button>

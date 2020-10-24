@@ -1,6 +1,7 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Produto } from 'src/app/shared/models/produto';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -22,7 +23,7 @@ export class ProdutoService {
       return this.httpClient.get(`${this.url}/${id}`);
   }
 
-  public update(id:number, dados){
+  public update(id:number, dados:Produto){
     return this.httpClient.patch(`${this.url}/${id}`,dados);
   }
 

@@ -35,6 +35,10 @@ export class ImagemService {
     return this.httpClient.patch(`${this.url}/${id}`, body);
   }
 
+  public pagination(pagina: number, linhas: number, busca: string){
+    return this.httpClient.get(`${this.url}/paginador?pagina=${pagina}&linhas=${linhas}&busca=${busca}`);
+  }
+
 
 
 

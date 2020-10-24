@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ImagemPagination } from 'src/app/shared/models/imagem-pagination';
 import { ImagemService } from '../../adm-service-folder/imagem.service';
 
 @Component({
@@ -8,18 +9,29 @@ import { ImagemService } from '../../adm-service-folder/imagem.service';
 })
 export class ImagemListComponent implements OnInit {
 
-  public imagens : any;
+  public imagens : ImagemPagination;
 
-  constructor(private imagemService : ImagemService) { }
+  public pagina             : number = 0;
+  public imagensPorPagina   : number = 20;
+  public paginador          : number = this.pagina + 1 ;
+  public totalElements      : number = 0;
+  public totalPages         : number = 0;
+  public busca              : string = "";
+
+  constructor(
+
+    private imagemService : ImagemService
+
+    ) { }
 
   ngOnInit(): void {
-    this.getAll();
+    this.getImagens();
 
   }
 
   getAll(){
     this.imagemService.getAll().subscribe(
-      (dados) =>{
+      (dados : any) =>{
         this.imagens = dados;
       })
   }
@@ -27,11 +39,33 @@ export class ImagemListComponent implements OnInit {
   deletarImagem(id){
     this.imagemService.delete(id).subscribe(
       (dados)=> {
-        console.log("teoricamente excluido");
         this.getAll();
       }
     )
   }
+
+  getImagens(){
+    this.imagemService.pagination(this.pagina, this.imagensPorPagina, this.busca)
+      .subscribe( (dados : any) => {
+        this.imagens = dados;
+        this.totalElements = dados.totalElements;
+        this.totalPages = dados.totalPages;
+      }, (error) =>{
+        console.log(error);
+      });
+  }
+
+  public onSearch(){
+    this.getImagens();
+  }
+
+  pageChange(event : number){
+    console.log(event);
+    this.pagina = event - 1;
+    this.paginador = event;
+    this.getImagens();
+  }
+
 
 
 

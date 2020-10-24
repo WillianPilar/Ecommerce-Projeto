@@ -13,7 +13,7 @@ export class ProdutoListComponent implements OnInit {
   public listaDoProduto : ProdutosPagination;
 
   public pagina         : number = 0;
-  public linhas         : number = 5;
+  public linhas         : number = 20;
   public paginador: number = this.pagina + 1 ;
 
   public totalElements  : number = 0;
@@ -34,7 +34,6 @@ export class ProdutoListComponent implements OnInit {
   ListarOsProduto(){
     this.produtoService.pagination(this.pagina, this.linhas, this.busca)
       .subscribe( (dadosPego : any) => {
-        console.log(dadosPego);
         this.listaDoProduto = dadosPego;
         this.totalElements = dadosPego.totalElements;
         this.totalPages = dadosPego.totalPages;
