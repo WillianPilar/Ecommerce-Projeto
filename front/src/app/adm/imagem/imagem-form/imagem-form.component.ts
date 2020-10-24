@@ -9,10 +9,18 @@ import { ImagemService } from '../../adm-service-folder/imagem.service';
   styleUrls: ['./imagem-form.component.css']
 })
 export class ImagemFormComponent implements OnInit {
+  
   public imagemForm : FormGroup;
   public isEdicao : boolean = false;
   public idImagem : any;
-  constructor(private router: Router, private formBuilder : FormBuilder, private imagemService : ImagemService, private activedRoute: ActivatedRoute) { }
+
+  constructor(
+    private router: Router,
+    private formBuilder : FormBuilder,
+    private imagemService : ImagemService,
+    private activedRoute: ActivatedRoute
+
+    ) { }
 
   ngOnInit(): void {
     this.pegarCampos();

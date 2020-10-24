@@ -24,8 +24,15 @@ import { ImagemFormComponent } from './imagem/imagem-form/imagem-form.component'
     UsuariosComponent,
     HomeComponent,
     UsuarioFormComponent,
-  ], imports: [SharedModule, CommonModule,
-    AdmRoutingModule, NgxPaginationModule,RouterModule,  CarouselModule.forRoot()]
+    ImagemListComponent,
+    ImagemFormComponent,
+  ], imports: [
+    SharedModule,
+    CommonModule,
+    AdmRoutingModule,
+    NgxPaginationModule,
+    RouterModule,
+    CarouselModule.forRoot()]
 })
 export class AdmModule { }
 
