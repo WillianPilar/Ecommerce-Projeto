@@ -10,6 +10,7 @@ import { UsuariosComponent } from './usuarios/usuario-list/usuarios.component';
 import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ImagemListComponent } from './imagem/imagem-list/imagem-list.component';
 import { ImagemFormComponent } from './imagem/imagem-form/imagem-form.component';
 
@@ -23,7 +24,13 @@ import { ImagemFormComponent } from './imagem/imagem-form/imagem-form.component'
     UsuarioFormComponent,
     ImagemListComponent,
     ImagemFormComponent,
-  ], imports: [SharedModule, CommonModule,
-    AdmRoutingModule, NgxPaginationModule,RouterModule]
+  ], imports: [
+    SharedModule,
+    CommonModule,
+    AdmRoutingModule,
+    NgxPaginationModule,
+    RouterModule,
+    CarouselModule.forRoot()]
 })
 export class AdmModule { }
+
