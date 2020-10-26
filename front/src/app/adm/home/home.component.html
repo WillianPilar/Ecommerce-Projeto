@@ -29,13 +29,13 @@
     <div
         *ngFor="let prod of produtosApi | paginate: { itemsPerPage: linhas, currentPage: paginador , totalItems: totalElementos}">
         <div id="box" class="card mx-4 my-4" style="width: 18rem;">
-            <!-- <img [src]="prod?.imagens[0].url" style="height:200px;" class="card-img-top" alt="..."> -->
+             <img [src]="prod?.imagens[0]?.url" style="height:200px;" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title" style="height:60px;">Nome: {{prod?.nome}}</h5>
                 <p class="card-text">Descrição: {{prod?.descricao}}</p>
                 <p class="card-text">Categoria: {{prod?.categoria?.nome}}</p>
                 <p class="card-text">Preço: {{prod?.preco | currency:'BRL' : 'symbol' : '0.2-2'}}</p>
-                <button class="btn btn-primary" type="button" (click)="inserirNoCarrinho(prod)">Comprar</button>
+                <!-- <button class="btn btn-primary" type="button" (click)="inserirNoCarrinho(prod)">Comprar</button> -->
             </div>
         </div>
     </div>

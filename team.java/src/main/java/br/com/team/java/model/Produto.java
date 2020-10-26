@@ -41,8 +41,7 @@ public class Produto {
 	@ManyToMany
 	@JoinTable( name = "produto_imagem",
 		joinColumns = @JoinColumn(name="produto_id"),
-		inverseJoinColumns = @JoinColumn(name="imagem_id")
-	)		
+		inverseJoinColumns = @JoinColumn(name="imagem_id"))		
 	private List<Imagem> imagens;
 	
 }

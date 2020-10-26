@@ -33,8 +33,8 @@
           <td>{{prod?.nome}}</td>
           <td>{{prod?.descricao}}</td>
           <td>{{prod?.preco}}</td>
-          <td>{{prod.categoria?.nome}}</td>
-          <td><img class="" [src]="prod.imagens[0].url" style="width: 4rem;"></td>
+          <td>{{prod?.categoria?.nome}}</td>
+          <td><img class="" [src]="prod?.imagens[0]?.url" style="width: 4rem;"></td>
           <td class="text-center">
               <button class="btn mr-2" [routerLink]="['/adm/produto/form', prod?.id]">Atualizar</button>
               <button class="btn" (click)="excluirProduto(prod?.id)">Deletar</button>
