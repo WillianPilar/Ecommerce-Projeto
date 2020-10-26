@@ -7,9 +7,6 @@ import { UsuarioPagination } from 'src/app/shared/models/usuario-pagination';
   providedIn: 'root'
 })
 export class UsuariosService {
-
-  public authSubject = new Subject<boolean>();
-
   constructor(private httpClient:HttpClient) { }
 
   public consultarUsuarios(){
@@ -37,13 +34,18 @@ export class UsuariosService {
     return this.httpClient.post('http://localhost:8081/autenticacao',body);
   }
 
-  public sendMessage(msg:boolean){
-    this.authSubject.next(msg);
-  }
-
   //Paginação
   public paginationLike(pagina: number, linhas: number, nome: string){
     return this.httpClient.get<UsuarioPagination>(`http://localhost:8081/usuarios/paginadorLike?pagina=${pagina}&linhas=${linhas}&nome=${nome}`);
+  }
+
+  //endereco
+  public cadastrarEndereco(body){
+    return this.httpClient.post("http://localhost:8081/enderecos",body);
+  }
+  //Service buscar CEP
+  public buscarCEP(cep){
+    return this.httpClient.get(`https://viacep.com.br/ws/${cep}/json/`);
   }
 
 

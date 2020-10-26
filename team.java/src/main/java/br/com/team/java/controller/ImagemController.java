@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.team.java.model.Imagem;
-import br.com.team.java.model.Produto;
 import br.com.team.java.service.ImagemService;
 
 @RestController

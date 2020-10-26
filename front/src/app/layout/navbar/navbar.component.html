@@ -4,38 +4,66 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div  class="collapse navbar-collapse " id="navbarSupportedContent">
+  <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <div *ngIf="isAuthenticated">
+        <li class="nav-item ">
+          <a class="nav-link" [routerLink]="['/meu-perfil']" routerLinkActive="active">Meu Perfil<span
+              class="sr-only"></span></a>
+        </li>
+      </div>
       <li class="nav-item ">
-        <a class="nav-link" [routerLink]="['/meu-perfil']" routerLinkActive="active">Meu Perfil<span class="sr-only"></span></a>
+        <a class="nav-link" [routerLink]="['/adm/login']" routerLinkActive="active">Login <span
+            class="sr-only"></span></a>
       </li>
-    </div>
-    <li class="nav-item ">
-      <a class="nav-link" [routerLink]="['/adm/login']" routerLinkActive="active">Login <span class="sr-only"></span></a>
-  </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['adm/produto']" routerLinkActive="active">Produto</a>
       </li>
       <li class="nav-item ">
-          <a class="nav-link" [routerLink]="['adm/produto/form']" routerLinkActive="active">Cadastro Produto<span class="sr-only"></span></a>
-        </li>
-      <li class="nav-item ">
-          <a class="nav-link" [routerLink]="['/adm/categoria']" routerLinkActive="active">Categoria <span class="sr-only"></span></a>
+        <a class="nav-link" [routerLink]="['adm/produto/form']" routerLinkActive="active">Cadastro Produto<span
+            class="sr-only"></span></a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" [routerLink]="['adm/categoria/form']" routerLinkActive="active">Cadastro Categoria <span class="sr-only"></span></a>
+        <a class="nav-link" [routerLink]="['/adm/categoria']" routerLinkActive="active">Categoria <span
+            class="sr-only"></span></a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" [routerLink]="['adm/imagem/list']" routerLinkActive="active">Imagem <span class="sr-only"></span></a>
+        <a class="nav-link" [routerLink]="['adm/categoria/form']" routerLinkActive="active">Cadastro Categoria <span
+            class="sr-only"></span></a>
+      </li>
+      <!-- <li class="nav-item ">
+        <a class="nav-link" [routerLink]="['adm/imagem/list']" routerLinkActive="active">Imagem <span
+            class="sr-only"></span></a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" [routerLink]="['adm/imagem/form']" routerLinkActive="active">Cadastro Imagem <span class="sr-only"></span></a>
+        <a class="nav-link" [routerLink]="['adm/imagem/form']" routerLinkActive="active">Cadastro Imagem <span
+            class="sr-only"></span></a>
+      </li> -->
+      <li class="nav-item dropdown bg-danger lista rounded" *ngIf="isAdmin">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Administrador
+        </a>
+        <div class="dropdown-menu bg-danger" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['adm/produto/list']" routerLinkActive="active">Lista de produtos</a>
+          <a class="dropdown-item" [routerLink]="['/adm/categoria']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Lista de categorias</a>
+          <a class="dropdown-item" [routerLink]="['/adm/imagem/list']" routerLinkActive="active">Lista de imagens</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/adm/produto/form']" routerLinkActive="active">Formulário de Produtos</a>
+          <a class="dropdown-item" [routerLink]="['/adm/categoria/form']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Formulário de Categorias</a>
+          <a class="dropdown-item" [routerLink]="['/adm/imagem/form']" routerLinkActive="active">Formulário de Imagens</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/adm/usuarios']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Lista de usuários</a>
+          <a class="dropdown-item" [routerLink]="['/adm/usuarios/form']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Formulário de usuários</a>
+
+          
+        </div>
+
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form> -->
   </div>
 </nav>
