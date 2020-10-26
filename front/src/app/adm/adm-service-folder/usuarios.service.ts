@@ -46,5 +46,14 @@ export class UsuariosService {
     return this.httpClient.get<UsuarioPagination>(`http://localhost:8081/usuarios/paginadorLike?pagina=${pagina}&linhas=${linhas}&nome=${nome}`);
   }
 
+  //endereco
+  public cadastrarEndereco(body){
+    return this.httpClient.post("http://localhost:8081/enderecos",body);
+  }
+  //Service buscar CEP
+  public buscarCEP(cep){
+    return this.httpClient.get(`https://viacep.com.br/ws/${cep}/json/`);
+  }
+
 
 }

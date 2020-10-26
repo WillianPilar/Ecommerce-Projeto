@@ -7,9 +7,10 @@ import { RouterModule } from '@angular/router';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { PerfilPipe } from './pipes/perfil.pipe';
 
 @NgModule({
-  declarations: [MostrarErrosComponent],
+  declarations: [MostrarErrosComponent, PerfilPipe],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -28,7 +29,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
             HttpClientModule,
             RouterModule,
             NgMultiSelectDropDownModule,
-            CarouselModule
+            CarouselModule,PerfilPipe
             ]
 })
 export class SharedModule { }
