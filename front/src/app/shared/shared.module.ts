@@ -6,9 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CommonModule } from '@angular/common';
+import { PerfilPipe } from './pipes/perfil.pipe';
 
 @NgModule({
-  declarations: [MostrarErrosComponent],
+  declarations: [MostrarErrosComponent, PerfilPipe],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -25,6 +26,7 @@ import { CommonModule } from '@angular/common';
             ReactiveFormsModule,
             HttpClientModule,
             RouterModule,
-            NgMultiSelectDropDownModule]
+            NgMultiSelectDropDownModule,
+            PerfilPipe]
 })
 export class SharedModule { }

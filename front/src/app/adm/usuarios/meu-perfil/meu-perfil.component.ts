@@ -26,13 +26,4 @@ export class MeuPerfilComponent implements OnInit {
       }
     );
   }
-
-
-
-
-
-
-
-
-
 }

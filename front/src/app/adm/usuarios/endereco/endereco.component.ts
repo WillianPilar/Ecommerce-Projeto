@@ -66,7 +66,6 @@ export class EnderecoComponent implements OnInit {
 
   public cepFalse(){
     this.cep = false;
-    alert();
   }
 
 
@@ -84,13 +83,28 @@ export class EnderecoComponent implements OnInit {
 
     this.enderecoService.buscarCEP(this.formEndereco.value.cep).subscribe(
       (response: any) => {
-        console.log(response);
+        console.log(response.erro);
+        if (response.erro){
+          this.toastr.error("Informe um CEP válido!");
+          this.resetarCampos();
+        } else {
         this.formEndereco.patchValue({ estado: response.uf, bairro: response.bairro, cidade: response.localidade, logradouro: response.logradouro });
         this.toastr.success("Validação de endereço feita com sucesso!");
         this.cep = true;
+        }
       }
     );
   }
+
+  resetarCampos(){
+    this.formEndereco.get('logradouro').reset();
+    this.formEndereco.get('numero').reset();
+    this.formEndereco.get('bairro').reset();
+    this.formEndereco.get('cidade').reset();
+    this.formEndereco.get('estado').reset();
+
+  }
+
 
   public preencherInformacoes() {
     this.enderecoService.consultarUsuarioId(this.idLocalUser).subscribe(
