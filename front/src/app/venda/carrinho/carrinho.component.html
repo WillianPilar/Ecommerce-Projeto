@@ -1,1 +1,38 @@
-<p>carrinho works!</p>
+
+<table class="table">
+  <tr>
+      <th>Produto</th>
+      <th>Preço</th>
+      <th>Quantidade atual</th>
+      <th>Preço total por item</th>
+      <th>Quantidade para atualizar</th>
+  </tr>
+
+  <!-- ao inves de usar "*ngIf="alunos != null" na tag tabela, podemos usar alunos?.data para parar de dar erros
+  porem caso n tiver .data ou outra coisa do tipo, vc ira usa colchetes(instanciar um array) na variavel ou usar ? em cada atributo ex "alun?.id" -->
+  <tr *ngFor="let prodCarrinho of carrinho">
+      <td>
+          {{prodCarrinho?.produto.nome}}
+      </td>
+      <td>
+          {{prodCarrinho?.produto.preco}}
+      </td>
+      <td>
+          {{prodCarrinho?.quantidade}}
+      </td>
+      <td>
+          {{prodCarrinho?.quantidade * prodCarrinho?.produto.preco}}
+      </td>
+      <td>
+          <input #quantidadeInput type="text" value="{{prodCarrinho?.quantidade}}">
+      </td>
+      <td>
+          <button class="btn" (click) = "atualizarCarrinho(quantidadeInput.value,prodCarrinho?.produto.id)">Atualizar</button>
+      </td>
+      <td>
+          <button class="btn" (click) = "deletarDoCarrinho(prodCarrinho)">Deletar</button>
+      </td>
+  </tr>
+  Preço Total: R${{valorTotal}}
+  <button class="btn" [routerLink]="['venda/carrinho']">Formas de Pagamento</button>
+</table>
