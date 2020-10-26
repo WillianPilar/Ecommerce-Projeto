@@ -21,11 +21,6 @@ export class CarrinhoComponent implements OnInit {
   getCarrinho(){
 
     this.carrinho = this.storageService.getCarrinho()
-
-  }
-
-  setCarrinho(){
-
   }
 
   deletarDoCarrinho(produto){

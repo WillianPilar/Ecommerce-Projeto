@@ -28,7 +28,7 @@ export class StorageService {
 
   //---------------- Carrinho----------------------------\\
 
-  getCarrinho(): ItemVenda[] {
+  public getCarrinho(): ItemVenda[] {
   
     let str = localStorage.getItem('carrinho');
 
@@ -40,7 +40,7 @@ export class StorageService {
     }
   }
 
-  setCarrinho(obj: ItemVenda[]) {
+  public setCarrinho(obj: ItemVenda[]) {
     if (obj != null) {
 
       localStorage.setItem('carrinho', JSON.stringify(obj));

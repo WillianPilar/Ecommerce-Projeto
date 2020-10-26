@@ -2,6 +2,8 @@ import { ProdutoService } from './../adm-service-folder/produto.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { CategoriaService } from '../adm-service-folder/categoria.service';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
+import { ItemVenda } from 'src/app/shared/models/Item-Venda';
+import { StorageService } from 'src/app/shared/services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +25,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private produtosService: ProdutoService,
     private categoriaService: CategoriaService,
-    // private storageService: StorageService
+    private storageService: StorageService
   ) {
   }
 
@@ -108,25 +110,25 @@ export class HomeComponent implements OnInit {
     this.pagination();
   }
 
-  // inserirNoCarrinho(produto) {
-  //   let itemVenda : ItemVenda = { produto : produto, quantidade : 1 , id: null };
-  //   let carrinho : ItemVenda[] = this.storageService.getCarrinho();
+  inserirNoCarrinho(produto) {
+    let itemVenda : ItemVenda = { produto : produto, quantidade : 1 , id: null };
+    let carrinho : ItemVenda[] = this.storageService.getCarrinho();
 
-  //   if (carrinho == null){
-  //     carrinho = [];
-  //   }
-  //   console.log(carrinho)
-  //   let index = carrinho.findIndex( x => { return x.produto.id == produto.id });
-  //   console.log(index);
-  //   if (index >= 0){
-  //     carrinho[index].quantidade++;
-  //   }
-  //   else {
-  //     carrinho.push(itemVenda);
-  //   }
+    if (carrinho == null){
+      carrinho = [];
+    }
+    console.log(carrinho)
+    let index = carrinho.findIndex( x => { return x.produto.id == produto.id });
+    console.log(index);
+    if (index >= 0){
+      carrinho[index].quantidade++;
+    }
+    else {
+      carrinho.push(itemVenda);
+    }
 
-  //   this.storageService.setCarrinho(carrinho);
-  // }
+    this.storageService.setCarrinho(carrinho);
+  }
 
   // public finalizarVenda() {
   //   let venda : VendasModel = {
