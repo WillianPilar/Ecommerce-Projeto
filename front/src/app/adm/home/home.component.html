@@ -34,9 +34,10 @@
                 <p class="card-title" id="title">{{prod?.nome}}</p>
                 <!-- <p class="card-text">Descrição: {{prod?.descricao}}</p>
                 <p class="card-text">Categoria: {{prod?.categoria?.nome}}</p> -->
-                <span id="texto-label">Preço
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <span id="texto-label">Preço</span>
                     <span class="card-text" id="texto">: {{prod?.preco | currency:'BRL' : 'symbol' : '0.2-2'}}</span>
-                </span>
+                </div>
                 <div align="center">
                     <button class="btn btn-primary btn-lg" type="button"
                         (click)="inserirNoCarrinho(prod)">Comprar</button>

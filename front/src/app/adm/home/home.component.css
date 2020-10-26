@@ -9,15 +9,24 @@
 }
 
 #title {
-    font-size: 28px;
+    font-size: 30px;
     margin-bottom: 20px;
     text-align: center;
     font-weight: 700;
 }
 
-#text-label {
-    font-size: 30px;
+#texto-label {
+    text-align: center;
+    align-items: center;
+    color: rgb(2, 2, 175);
+    font-weight: 500;
+    font-size: 20px;
 }
 #texto { 
     text-align: center;
+    align-items: center;
+    font-size: 25px;
+    color: rgb(2, 2, 175);
+    font-weight: 500;
+
 }
