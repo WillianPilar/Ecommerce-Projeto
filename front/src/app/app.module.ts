@@ -10,6 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { AuthInterceptorsService } from './shared/interceptors/auth-interceptors.service';
 import { HttpConfigInterceptorService } from './shared/interceptors/http-config-interceptor.service';
+import { VendasModule } from './venda/vendas.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { HttpConfigInterceptorService } from './shared/interceptors/http-config-
     BrowserAnimationsModule,
     AppRoutingModule,
     LayoutModule,
+    VendasModule,
     SharedModule,
     HttpClientModule
   ],
