@@ -13,16 +13,17 @@ export class HomeComponent implements OnInit {
   public produtosApiBackup: any = [];
   public categoriasDaBox: any = [];
   public pagina: number = 0;
-  public paginador: number = this.pagina+1;
+  public paginador: number = this.pagina + 1;
   public linhas: number = 3;
   public nome: string = "";
   public totalElementos: number = 0;
   public totalPaginas: number = 0;
+  public busca = '';
 
   constructor(
     private produtosService: ProdutoService,
     private categoriaService: CategoriaService,
-   // private storageService: StorageService
+    // private storageService: StorageService
   ) {
   }
 
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit {
     this.getCategorias();
     this.pagination();
 
-}
+  }
 
   public getCategorias() {
     this.categoriaService.getAllCategorias()
@@ -68,7 +69,7 @@ export class HomeComponent implements OnInit {
   }
 
   private pagination(): void {
-    this.produtosService.pagination(this.pagina, this.linhas).subscribe(
+    this.produtosService.pagination(this.pagina, this.linhas, this.busca).subscribe(
       (response: any) => {
         console.log(response);
         this.produtosApi = response.content;
@@ -100,7 +101,7 @@ export class HomeComponent implements OnInit {
     this.pagination();
   }
 
-  pageChange(event){
+  pageChange(event) {
     console.log(event);
     this.pagina = event - 1;
     this.paginador = event;

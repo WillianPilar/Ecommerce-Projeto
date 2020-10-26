@@ -34,8 +34,8 @@
                 <h5 class="card-title" style="height:60px;">Nome: {{prod?.nome}}</h5>
                 <p class="card-text">Descrição: {{prod?.descricao}}</p>
                 <p class="card-text">Categoria: {{prod?.categoria?.nome}}</p>
-                <p class="card-text">{{prod?.preco | currency:'BRL' : 'symbol' : '0.2-2'}}</p>
-                <!-- <button class="btn btn-primary" type="button" (click)="inserirNoCarrinho(prod)">Comprar</button> -->
+                <p class="card-text">Preço: {{prod?.preco | currency:'BRL' : 'symbol' : '0.2-2'}}</p>
+                <button class="btn btn-primary" type="button" (click)="inserirNoCarrinho(prod)">Comprar</button>
             </div>
         </div>
     </div>
