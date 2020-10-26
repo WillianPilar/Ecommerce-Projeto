@@ -13,6 +13,7 @@ import { StorageService } from 'src/app/shared/services/storage.service';
 })
 export class NavbarComponent implements OnInit {
 
+  public isAdmin = false;
   public paginacao: Categoria;
   public isAuthenticated = false;
 
@@ -26,10 +27,17 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     //this.getAllAlunos();
      this.isAuthenticated = this.storageService.getLocalUser() ? true : false;
-
+     this.isAdmin = this.authService.isAdmin();
+     console.log(this.isAdmin);
+     
     this.authService.authSubject.subscribe(
-      (message) => { this.isAuthenticated = message }
+      (message) => { 
+        this.isAuthenticated = message.isAuthenticated;
+        this.isAdmin = message.isAdmin;
+      }
     );
+
+
 
     if (!this.isAuthenticated) {
       this.storageService.setLocalUser(null);

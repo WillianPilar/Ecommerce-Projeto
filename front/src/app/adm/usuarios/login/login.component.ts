@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
+import { Auth } from 'src/app/shared/models/auth';
 import { Usuario } from 'src/app/shared/models/Usuario';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { UsuariosService } from '../../adm-service-folder/usuarios.service';
@@ -20,7 +22,7 @@ export class LoginComponent implements OnInit {
   formLogin : FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuariosService, activatedRoute : ActivatedRoute, private router: Router, private toastr: ToastrService, private storage:StorageService) {
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuariosService, activatedRoute : ActivatedRoute, private router: Router, private toastr: ToastrService, private storage:StorageService,private authService:AuthService) {
     this.formLogin = this.formBuilder.group({
       email:['',[Validators.required]],
       senha:['',[Validators.required]]
@@ -42,10 +44,11 @@ export class LoginComponent implements OnInit {
           token : response.token,
           nome: decodedToken.nome,
           email : decodedToken.sub,
-          id : decodedToken.id
+          id : decodedToken.id,
+          perfis:decodedToken.scopes
         };
         this.storage.setLocalUser(localUser);
-        this.usuarioService.sendMessage(true);
+        this.authService.sendMessage({isAdmin:this.authService.isAdmin(),isAuthenticated:true});
         //this.toastr.success("Login feito com sucesso")
         this.router.navigate(['/']);
 
