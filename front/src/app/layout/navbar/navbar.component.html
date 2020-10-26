@@ -12,9 +12,35 @@
         <a class="nav-link" [routerLink]="['/meu-perfil']" routerLinkActive="active">Meu Perfil<span
             class="sr-only"></span></a>
       </li>
+      <li class="nav-item dropdown bg-danger lista rounded" *ngIf="isAdmin">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Administrador
+        </a>
+        <div class="dropdown-menu bg-danger" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['adm/produto/list']" routerLinkActive="active">Lista de produtos</a>
+          <a class="dropdown-item" [routerLink]="['/adm/categoria']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">Lista de categorias</a>
+          <a class="dropdown-item" [routerLink]="['/adm/imagem/list']" routerLinkActive="active">Lista de imagens</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/adm/produto/form']" routerLinkActive="active">Formulário de
+            Produtos</a>
+          <a class="dropdown-item" [routerLink]="['/adm/categoria/form']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">Formulário de Categorias</a>
+          <a class="dropdown-item" [routerLink]="['/adm/imagem/form']" routerLinkActive="active">Formulário de
+            Imagens</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/adm/usuarios']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">Lista de usuários</a>
+          <a class="dropdown-item" [routerLink]="['/adm/usuarios/form']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">Formulário de usuários</a>
+        </div>
+      </li>
     </ul>
+
     <ul class="nav navbar-nav navbar-right nav-link" *ngIf="!isAuthenticated">
-      <li><a class="nav-link " [routerLink]="['/login']" routerLinkActive="active"><i class="material-icons">login</i> Login</a></li>
+      <li><a class="nav-link " [routerLink]="['/login']" routerLinkActive="active"><i class="material-icons">login</i>
+          Login</a></li>
       <li><a class="nav-link " [routerLink]="['/cadastro']" routerLinkActive="active">
           <i class="material-icons">person</i> Cadastro</a></li>
     </ul>
