@@ -16,6 +16,7 @@ export class CarrinhoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCarrinho();
+    this.calculoDoTotal();
   }
 
   getCarrinho(){
