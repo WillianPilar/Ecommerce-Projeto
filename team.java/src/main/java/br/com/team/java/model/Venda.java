@@ -40,14 +40,14 @@ public class Venda implements Serializable {
 
 	// Atributos
 	@Id
-	 @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VENDAS_NAME_SEQ")
-	 @SequenceGenerator(sequenceName = "vendas_seq", allocationSize = 1, name = "VENDAS_NAME_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VENDAS_NAME_SEQ")
+	@SequenceGenerator(sequenceName = "vendas_seq", allocationSize = 1, name = "VENDAS_NAME_SEQ")
 	private int id;
 
 	@Column(name = "valor")
 	private double valor;
 
-	@OneToMany(mappedBy = "venda" ,cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<ItemVenda> item;
 
 	@ManyToOne
