@@ -1,7 +1,6 @@
-import { ProdutoService } from './../adm-service-folder/produto.service';
+import { CategoriaService } from './../../adm/adm-service-folder/categoria.service';
+import { ProdutoService } from './../../adm/adm-service-folder/produto.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { CategoriaService } from '../adm-service-folder/categoria.service';
-import { CarouselConfig } from 'ngx-bootstrap/carousel';
 
 @Component({
   selector: 'app-home',

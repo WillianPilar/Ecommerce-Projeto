@@ -1,4 +1,3 @@
-import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CategoriaListComponent } from './categoria/categoria-list/categoria-list.component';
@@ -12,9 +11,6 @@ import { ImagemListComponent } from './imagem/imagem-list/imagem-list.component'
 import { ImagemFormComponent } from './imagem/imagem-form/imagem-form.component';
 
 const routes: Routes = [
-  {path : '', component: HomeComponent },  
-  {path : 'home', component: HomeComponent },
-
   { path: 'usuarios', component: UsuariosComponent },
   { path: "usuarios/form", component: UsuarioFormComponent },
   { path: "login", component: LoginComponent },

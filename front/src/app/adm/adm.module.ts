@@ -8,7 +8,6 @@ import { ProdutoFormComponent } from './produto/produto-form/produto-form.compon
 import { ProdutoListComponent } from './produto/produto-list/produto-list.component';
 import { UsuariosComponent } from './usuarios/usuario-list/usuarios.component';
 import { UsuarioFormComponent } from './usuarios/usuario-form/usuario-form.component';
-import { HomeComponent } from './home/home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -22,7 +21,6 @@ import { ImagemFormComponent } from './imagem/imagem-form/imagem-form.component'
     ProdutoFormComponent,
     ProdutoListComponent,
     UsuariosComponent,
-    HomeComponent,
     UsuarioFormComponent,
     ImagemListComponent,
     ImagemFormComponent,
