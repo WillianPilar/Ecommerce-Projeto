@@ -23,8 +23,9 @@ const routes: Routes = [
   { path: 'imagem', component : ImagemListComponent},
   { path: 'imagem/list', component : ImagemListComponent},
   { path: 'produto',component: ProdutoListComponent},
-  { path: 'produto/form', component: ProdutoFormComponent },
   { path: 'produto/list', component: ProdutoListComponent },
+  { path: 'produto/form', component: ProdutoFormComponent },
+ 
 
   { path : 'imagem/form', component : ImagemFormComponent},
   { path : 'imagem/form/:id', component : ImagemFormComponent},
