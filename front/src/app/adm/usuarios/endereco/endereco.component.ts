@@ -13,7 +13,7 @@ import { StorageService } from 'src/app/shared/services/storage.service';
 export class EnderecoComponent implements OnInit {
 
   formEndereco: FormGroup;
-  public endereco;
+  public endereco = null;
   public idLocalUser = this.storageService.getLocalUser()?.id;
   public cep: boolean = false;
 
@@ -64,7 +64,7 @@ export class EnderecoComponent implements OnInit {
 
   }
 
-  public cepFalse(){
+  public cepFalse() {
     this.cep = false;
   }
 
@@ -84,19 +84,19 @@ export class EnderecoComponent implements OnInit {
     this.enderecoService.buscarCEP(this.formEndereco.value.cep).subscribe(
       (response: any) => {
         console.log(response.erro);
-        if (response.erro){
+        if (response.erro) {
           this.toastr.error("Informe um CEP válido!");
           this.resetarCampos();
         } else {
-        this.formEndereco.patchValue({ estado: response.uf, bairro: response.bairro, cidade: response.localidade, logradouro: response.logradouro });
-        this.toastr.success("Validação de endereço feita com sucesso!");
-        this.cep = true;
+          this.formEndereco.patchValue({ estado: response.uf, bairro: response.bairro, cidade: response.localidade, logradouro: response.logradouro });
+          this.toastr.success("Validação de endereço feita com sucesso!");
+          this.cep = true;
         }
       }
     );
   }
 
-  resetarCampos(){
+  resetarCampos() {
     this.formEndereco.get('logradouro').reset();
     this.formEndereco.get('numero').reset();
     this.formEndereco.get('bairro').reset();
@@ -110,7 +110,9 @@ export class EnderecoComponent implements OnInit {
     this.enderecoService.consultarUsuarioId(this.idLocalUser).subscribe(
       (response: any) => {
         this.endereco = response?.endereco;
-        this.formEndereco.patchValue(this.endereco);
+        if (this.endereco) {
+          this.formEndereco.patchValue(this.endereco);
+        }
         console.log(this.endereco);
       }
     );
