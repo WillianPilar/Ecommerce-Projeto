@@ -4,6 +4,7 @@ import { StorageService } from 'src/app/shared/services/storage.service';
 import { VendaService } from '../Venda-Services/venda.service';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { UsuariosService } from 'src/app/adm/adm-service-folder/usuarios.service';
 
 @Component({
   selector: 'app-finalizar-venda',
@@ -18,14 +19,30 @@ export class FinalizarVendaComponent implements OnInit {
 
   public formaPagamento = "";
 
-  public formCompra : FormGroup;
+
+  //public formCompra : FormGroup;
+  public formEndereco : FormGroup;
+
+  public idLocalUser = this.storageService.getLocalUser()?.id;
+  public endereco = null;
 
   constructor(private storageService : StorageService,
               private vendaService : VendaService,
-              private formBuilder : FormBuilder) {
-      this.formCompra = this.formBuilder.group(
+              private formBuilder : FormBuilder,
+              private usuariosService : UsuariosService) {
+      // this.formCompra = this.formBuilder.group(
+      //   {
+      //     //select : ['',[]]
+      //   }
+      // );
+
+      this.formEndereco = this.formBuilder.group(
         {
-          //select : ['',[]]
+          logradouro : [''],
+          numero : [''],
+          cidade : [''],
+          estado : [''],
+          cep : ['']
         }
       );
 
@@ -39,7 +56,7 @@ export class FinalizarVendaComponent implements OnInit {
     this.getCarrinho();
     this.calculoDoTotal();
     this.somarQuantProdutos();
-    //this.quant = this.storageService.getCarrinho();
+    this.preencherInformacoes();
   }
 
   getCarrinho(){
@@ -89,6 +106,18 @@ export class FinalizarVendaComponent implements OnInit {
       quantTotalArray += response?.quantidade;
     });
     this.quant = quantTotalArray;
+  }
+
+  public preencherInformacoes() {
+    this.usuariosService.consultarUsuarioId(this.idLocalUser).subscribe(
+      (response: any) => {
+        this.endereco = response?.endereco;
+        if (this.endereco) {
+          this.formEndereco.patchValue(this.endereco);
+        }
+        console.log(this.endereco);
+      }
+    );
   }
 
 //------------------------------------------
