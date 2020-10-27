@@ -1,8 +1,8 @@
-<div class="container mt-2 mb-6">
+<!-- <div class="container mt-2 mb-6">
     <img src="https://www.extra-imagens.com.br/criacao/01-home/header/2020/10-out/12/header-clube.png">
-</div>
-
-<div id="carouselExampleControls" class="carousel slide mt-3" data-ride="carousel">
+</div> -->
+<div style="display: flex; flex-direction: row; justify-content: center;" class="mb-3">
+<div id="carouselExampleControls" class="carousel slide d-block w-75" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img class="d-block w-100"
@@ -24,7 +24,7 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-
+</div>
 <div class="row justify-content-center">
     <div
         *ngFor="let prod of produtosApi | paginate: { itemsPerPage: linhas, currentPage: paginador , totalItems: totalElementos}">
@@ -48,6 +48,7 @@
 <div class="row justify-content-center">
     <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
 </div>
+
 
 <!-- <div id="carouselExampleControls" class="carousel slide mt-3" data-ride="carousel">
     <div class="carousel-inner">
