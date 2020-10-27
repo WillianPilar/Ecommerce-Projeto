@@ -14,39 +14,42 @@ import { isThisTypeNode } from 'typescript';
 })
 export class FinalizarVendaComponent implements OnInit {
 
-  public carrinho : any  = [];
+  public carrinho: any = [];
   public valorTotal;
-  public quant : any;
-  public formaPagamento :any;
-  public formEndereco : FormGroup;
-  public formPagamento : FormGroup;
-  public isCartao : boolean = false;
-  public varPagamento : any = "";
+  public quant: any;
+  public formaPagamento: any;
+  public formEndereco: FormGroup;
+  public formPagamento: FormGroup;
+  public isCartao: boolean = false;
+  public varPagamento: any = "";
+  public desativarCompra: boolean = true;
+  public valParcelas:any = 1;
 
 
   public idLocalUser = this.storageService.getLocalUser()?.id;
   public endereco = null;
 
-  constructor(private storageService : StorageService,
-              private vendaService : VendaService,
-              private formBuilder : FormBuilder,
-              private usuariosService : UsuariosService) {
+  constructor(private storageService: StorageService,
+    private vendaService: VendaService,
+    private formBuilder: FormBuilder,
+    private usuariosService: UsuariosService) {
 
-        this.formEndereco = this.formBuilder.group(
-        {
-          logradouro : [''],
-          numero : [''],
-          cidade : [''],
-          estado : [''],
-          cep : ['']
-        }
-      );
+    this.formEndereco = this.formBuilder.group(
+      {
+        logradouro: [''],
+        numero: [''],
+        cidade: [''],
+        estado: [''],
+        cep: ['']
+      }
+    );
 
-        this.formPagamento = this.formBuilder.group(
-          {
-            metodo : ['']
-          }
-        );
+    this.formPagamento = this.formBuilder.group(
+      {
+        metodo: [''],
+        parcela: ['']
+      }
+    );
 
 
 
@@ -61,48 +64,18 @@ export class FinalizarVendaComponent implements OnInit {
     this.preencherInformacoes();
   }
 
-  getCarrinho(){
+  getCarrinho() {
     this.carrinho = this.storageService.getCarrinho();
   }
 
-  deletarDoCarrinho(produto){
-    let index = this.carrinho.findIndex( x => { return x.produto.id == produto.id });
 
-    this.carrinho.splice(index, 1);
-
-    this.storageService.setCarrinho(this.carrinho);
-
-    this.calculoDoTotal();
-  }
-
-//--------------------------------------------------
-  atualizarCarrinho(selectedOption, id){
-    let num = parseInt(selectedOption)
-    //REVISão condição IF após conclusão
-    if(num <= 0){
-      this.deletarDoCarrinho(id);
-    }
-//-------------------------------------------------
-    let find = this.carrinho.find((item: ItemVenda) => item.produto.id === id)
-
-    if (find) {
-      find.quantidade = num
-    }
-
-    console.log(this.carrinho)
-    console.log(selectedOption)
-    console.log(id)
-    this.storageService.setCarrinho(this.carrinho);
-    this.calculoDoTotal();
-  }
-
-  calculoDoTotal(){
+  calculoDoTotal() {
 
     this.valorTotal = this.carrinho.reduce((valorProdutos, item) => valorProdutos + (item.produto.preco * item.quantidade), 0)
   }
 
   public somarQuantProdutos() {
-    let quantTotalArray= 0;
+    let quantTotalArray = 0;
     this.carrinho.forEach(function (response) {
       quantTotalArray += response?.quantidade;
     });
@@ -121,16 +94,36 @@ export class FinalizarVendaComponent implements OnInit {
     );
   }
 
-  formaPag(){
-    alert(this.formPagamento.value.metodo)
+  formaPag() {
+    if (this.formPagamento.value.metodo == "cartao") {
+      this.isCartao = true;
+    } else {
+      this.isCartao = false;
+    }
+    this.verificarCampos();
   }
 
+  verificarCampos() {
+    if(this.valParcelas == ""){
+      this.desativarCompra = true;
+    }else if (this.formPagamento.value.metodo == "boleto") {
+      this.valParcelas = 1;
+      this.desativarCompra = false;
+    }else if (this.formPagamento.value.metodo == "cartao") {
+      this.desativarCompra = false;
+    }else {
+      this.desativarCompra = true;
+    }
 
-  onSubmit(){
+
 
   }
 
-//------------------------------------------
+  onSubmit() {
+
+  }
+
+  //------------------------------------------
   // Finalização da compra
 
   // finalizarCompra(){
@@ -157,4 +150,4 @@ export class FinalizarVendaComponent implements OnInit {
   //   }
 
 
-  }
+}

@@ -4,7 +4,6 @@
 </head>
 
 <h2>Finalizar Compra</h2>
-<p>...</p>
 
 <div class="row">
   <div class="col-75">
@@ -26,12 +25,12 @@
           <div class="row">
             <div class="col-50">
               <label> Estado</label>
-              <input type="text" formControlName="estado"  readonly>
+              <input type="text" formControlName="estado" readonly>
             </div>
 
             <div class="col-50">
               <label for="zip"> CEP</label>
-              <input type="text" formControlName="cep"  readonly>
+              <input type="text" formControlName="cep" readonly>
             </div>
           </div>
         </div>
@@ -40,11 +39,13 @@
     </div>
   </div>
 
-    <!--CARD DO CARRINHO-->
+  <!--CARD DO CARRINHO-->
   <div class="col-15">
     <div class="container">
-      <h4>Produtos<span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b> {{quant}}</b></span></h4>
-      <p *ngFor="let prod of carrinho"><a>{{prod?.produto.nome}} - x{{prod?.quantidade}}</a> <span class="price">{{prod?.quantidade * prod?.produto.preco | currency }}</span></p>
+      <h4>Produtos<span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b> {{quant}}</b></span>
+      </h4>
+      <p *ngFor="let prod of carrinho"><a>{{prod?.produto.nome}} - x{{prod?.quantidade}}</a> <span
+          class="price">{{prod?.quantidade * prod?.produto.preco | currency }}</span></p>
       <hr>
       <p>Total <span class="price" style="color:black"><b>R{{valorTotal | currency}}</b></span></p>
     </div>
@@ -61,19 +62,26 @@
             <i class="fa fa-cc-discover" style="color:orange;">ﾠ</i>
           </div>
           <div>
-              <label>Métodos de pagamento</label>
-              <div>
-                  <select formControlName="metodo" class="form-control form-control-lg" (change) = "formaPag()">
-                    <option value="" selected="selected">Selecione uma opção...</option>
-                    <option value="boleto">Boleto </option>
-                    <option value="cartao">Cartão de crédito </option>
-                  </select>
-              </div>
+            <label>Métodos de pagamento</label>
+            <div>
+              <select formControlName="metodo" class="form-control form-control-lg" (change)="formaPag()">
+                <option value="" selected="selected">Selecione uma opção...</option>
+                <option value="boleto">Boleto </option>
+                <option value="cartao">Cartão de crédito </option>
+              </select>
+            </div>
           </div>
-          <div *ngIf = "isCartao">
-            <label>Você escolheu cartão de crédito!</label>
+          <div *ngIf="isCartao" class="mt-2">
+            <label>Parcelamento</label>
+            <div>
+              <select formControlName="parcela"  [ngModel]="valParcelas" class="form-control form-control-lg">
+                <option value="1" >1x de {{valorTotal|currency:'BRL'}}</option>
+                <option value="2">2x de {{valorTotal/2|currency:'BRL'}}</option>
+                <option value="3">3x de {{valorTotal/3|currency:'BRL'}} </option>
+              </select>
+            </div>
           </div>
-          <input type="submit" value="Finalizar" class="btn">
+          <input type="submit" value="Finalizar" class="btn"  [disabled]="desativarCompra">
         </div>
       </div>
     </form>
@@ -84,4 +92,3 @@
 
 
 </div>
-
