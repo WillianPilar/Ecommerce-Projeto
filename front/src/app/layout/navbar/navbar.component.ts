@@ -26,18 +26,16 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     //this.getAllAlunos();
-     this.isAuthenticated = this.storageService.getLocalUser() ? true : false;
-     this.isAdmin = this.authService.isAdmin();
-     console.log(this.isAdmin);
-     
+    this.isAuthenticated = this.storageService.getLocalUser() ? true : false;
+    this.isAdmin = this.authService.isAdmin();
+    console.log(this.isAdmin);
+
     this.authService.authSubject.subscribe(
-      (message) => { 
+      (message) => {
         this.isAuthenticated = message.isAuthenticated;
         this.isAdmin = message.isAdmin;
       }
     );
-
-
 
     if (!this.isAuthenticated) {
       this.storageService.setLocalUser(null);
@@ -49,5 +47,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.storageService.setLocalUser(null);
     this.router.navigate(['/login']);
+    this.isAuthenticated = this.storageService.getLocalUser() ? true : false;
+    this.isAdmin = this.authService.isAdmin();
   }
 }

@@ -8,6 +8,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { PerfilPipe } from './pipes/perfil.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [MostrarErrosComponent, PerfilPipe],
@@ -16,6 +17,7 @@ import { PerfilPipe } from './pipes/perfil.pipe';
     HttpClientModule,
     ToastrModule.forRoot(),
     FormsModule,
+    NgxPaginationModule,
     ReactiveFormsModule,
     RouterModule,
     NgMultiSelectDropDownModule,
@@ -29,7 +31,8 @@ import { PerfilPipe } from './pipes/perfil.pipe';
             HttpClientModule,
             RouterModule,
             NgMultiSelectDropDownModule,
-            CarouselModule,PerfilPipe
+            CarouselModule,PerfilPipe,
+            NgxPaginationModule
             ]
 })
 export class SharedModule { }
