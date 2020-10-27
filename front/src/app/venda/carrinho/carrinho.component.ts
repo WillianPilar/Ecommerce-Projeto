@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { ItemVenda } from 'src/app/shared/models/Item-Venda';
+import { Vendas } from 'src/app/shared/models/Vendas';
 import { StorageService } from 'src/app/shared/services/storage.service';
+import { VendaService } from '../Venda-Services/venda.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -12,7 +15,8 @@ export class CarrinhoComponent implements OnInit {
   public carrinho : any  = [];
   public valorTotal;
 
-  constructor(private storageService : StorageService) { }
+  constructor(private storageService : StorageService,
+              private vendaService : VendaService) { }
 
   ngOnInit(): void {
     this.getCarrinho();
@@ -60,6 +64,32 @@ export class CarrinhoComponent implements OnInit {
     this.valorTotal = this.carrinho.reduce((valorProdutos, item) => valorProdutos + (item.produto.preco * item.quantidade), 0)
   }
 
+  //------------------------------------------
+  // Finalização da compra
+
+  finalizarCompra(){
+    let venda:Vendas ={
+      id:null,
+      usuario:this.storageService.getLocalUser(),
+      statusVenda : 'Aberta',
+      pagamento : '2',
+      totalItens: this.storageService.getCarrinho().length,
+      valor : this.valorTotal,
+      parcela :2,
+      valorParcela : this.valorTotal/2,
+      item:this.storageService.getCarrinho(),
+      dataVenda : moment(new Date()).format("DD-MM-yyyy HH:mm:ss")
+    }
+    delete venda.usuario.perfis
+
+    this.vendaService.finalizarCompra(venda).subscribe(
+      (response)=>{
+        console.log(response);
+      }
+    );
+
+
+  }
 
 
 
