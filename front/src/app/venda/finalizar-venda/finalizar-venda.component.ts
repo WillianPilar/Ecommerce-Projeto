@@ -5,6 +5,7 @@ import { VendaService } from '../Venda-Services/venda.service';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UsuariosService } from 'src/app/adm/adm-service-folder/usuarios.service';
+import { isThisTypeNode } from 'typescript';
 
 @Component({
   selector: 'app-finalizar-venda',
@@ -16,12 +17,12 @@ export class FinalizarVendaComponent implements OnInit {
   public carrinho : any  = [];
   public valorTotal;
   public quant : any;
-
-  public formaPagamento = "";
-
-
-  //public formCompra : FormGroup;
+  public formaPagamento :any;
   public formEndereco : FormGroup;
+  public formPagamento : FormGroup;
+  public isCartao : boolean = false;
+  public varPagamento : any = "";
+
 
   public idLocalUser = this.storageService.getLocalUser()?.id;
   public endereco = null;
@@ -30,13 +31,8 @@ export class FinalizarVendaComponent implements OnInit {
               private vendaService : VendaService,
               private formBuilder : FormBuilder,
               private usuariosService : UsuariosService) {
-      // this.formCompra = this.formBuilder.group(
-      //   {
-      //     //select : ['',[]]
-      //   }
-      // );
 
-      this.formEndereco = this.formBuilder.group(
+        this.formEndereco = this.formBuilder.group(
         {
           logradouro : [''],
           numero : [''],
@@ -46,9 +42,15 @@ export class FinalizarVendaComponent implements OnInit {
         }
       );
 
+        this.formPagamento = this.formBuilder.group(
+          {
+            metodo : ['']
+          }
+        );
+
+
 
   }
-
 
   ngOnInit(): void {
 
@@ -60,7 +62,6 @@ export class FinalizarVendaComponent implements OnInit {
   }
 
   getCarrinho(){
-
     this.carrinho = this.storageService.getCarrinho();
   }
 
@@ -120,6 +121,15 @@ export class FinalizarVendaComponent implements OnInit {
     );
   }
 
+  formaPag(){
+    alert(this.formPagamento.value.metodo)
+  }
+
+
+  onSubmit(){
+
+  }
+
 //------------------------------------------
   // Finalização da compra
 
@@ -146,7 +156,5 @@ export class FinalizarVendaComponent implements OnInit {
 
   //   }
 
-    selectPagamento(){
-      console.log("FOII")
-    }
+
   }

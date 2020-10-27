@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<h2>Finalização da Compra</h2>
+<h2>Finalizar Compra</h2>
 <p>...</p>
 
 <div class="row">
@@ -11,32 +11,32 @@
     <div class="container">
 
       <!--FORM ENDEREÇO-->
-      <div class="row"  [formGroup]="formEndereco">
+      <div class="row" [formGroup]="formEndereco">
         <div class="col-25">
           <h3>Endereço de entrega</h3>
-          <label for="adr"><i class="fa fa-address-card-o"></i>Endereço</label>
-          <input type="text" formControlName="logradouro" placeholder="Rua do João, 23" readonly>
+          <label><i class="fa fa-address-card-o"></i> Logradouro</label>
+          <input type="text" formControlName="logradouro" readonly>
 
-          <label for="zip">Número</label>
+          <label> Número</label>
           <input type="text" formControlName="numero" readonly>
 
-          <label for="city"><i class="fa fa-institution"></i>Cidade</label>
+          <label><i class="fa fa-institution"></i> Cidade</label>
           <input type="text" formControlName="cidade" readonly>
 
           <div class="row">
             <div class="col-50">
-              <label for="state">Estado</label>
+              <label> Estado</label>
               <input type="text" formControlName="estado"  readonly>
             </div>
 
             <div class="col-50">
-              <label for="zip">CEP</label>
+              <label for="zip"> CEP</label>
               <input type="text" formControlName="cep"  readonly>
             </div>
           </div>
         </div>
       </div>
-      <input type="submit" value="Continue a Compra" class="btn">
+      <input type="submit" value="Alterar Endereço" class="btn btn-danger">
     </div>
   </div>
 
@@ -44,34 +44,42 @@
   <div class="col-15">
     <div class="container">
       <h4>Produtos<span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b> {{quant}}</b></span></h4>
-      <p *ngFor="let prod of carrinho"><a>{{prod?.produto.nome}} - x{{prod?.quantidade}}</a> <span class="price">R{{prod?.quantidade * prod?.produto.preco | currency }}</span></p>
+      <p *ngFor="let prod of carrinho"><a>{{prod?.produto.nome}} - x{{prod?.quantidade}}</a> <span class="price">{{prod?.quantidade * prod?.produto.preco | currency }}</span></p>
       <hr>
       <p>Total <span class="price" style="color:black"><b>R{{valorTotal | currency}}</b></span></p>
     </div>
 
-    <div class="col-15 mt-5">
-      <div class="container">
-        <h3>Pagamento</h3>
-        <label for="fname">Cartões aceitos</label>
-        <div class="icon-container">
-          <i class="fa fa-cc-visa" style="color:navy;"></i>
-          <i class="fa fa-cc-amex" style="color:blue;"></i>
-          <i class="fa fa-cc-mastercard" style="color:red;"></i>
-          <i class="fa fa-cc-discover" style="color:orange;"></i>
-        </div>
-        <div>
-          <label for="teste">📃💳 Forma de pagamento</label>
-          <select class="form-control form-control-lg"   >
-            <option value="" selected="selected">selecione uma opção...</option>
-            <option value="boleto" >Boleto 📃</option>
-            <option value="cartao">Cartão de crédito 💳</option>
-          </select>
+    <!--FORM OPÇÂO DE PAGAMENTO-->
+    <form [formGroup]="formPagamento" (submit)="onSubmit()">
+      <div class="col-15 mt-5">
+        <div class="container">
+          <h3>Pagamento</h3>
+          <div class="icon-container">
+            <i class="fa fa-cc-visa" style="color:navy;">ﾠ</i>
+            <i class="fa fa-cc-amex" style="color:blue;">ﾠ</i>
+            <i class="fa fa-cc-mastercard" style="color:red;">ﾠ</i>
+            <i class="fa fa-cc-discover" style="color:orange;">ﾠ</i>
+          </div>
+          <div>
+              <label>Métodos de pagamento</label>
+              <div>
+                  <select formControlName="metodo" class="form-control form-control-lg" (change) = "formaPag()">
+                    <option value="" selected="selected">Selecione uma opção...</option>
+                    <option value="boleto">Boleto </option>
+                    <option value="cartao">Cartão de crédito </option>
+                  </select>
+              </div>
+          </div>
+          <div *ngIf = "isCartao">
+            <label>Você escolheu cartão de crédito!</label>
+          </div>
+          <input type="submit" value="Finalizar" class="btn">
         </div>
       </div>
-    </div>
+    </form>
   </div>
 
-  <!--FORM OPÇÂO DE PAGAMENTO-->
+
 
 
 
