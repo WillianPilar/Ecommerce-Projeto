@@ -36,5 +36,5 @@
   Preço Total: R${{valorTotal}}
   <button class="btn" [routerLink]="['venda/carrinho']">Formas de Pagamento</button>
 
-  <button class="btn btn-primary"  (click)="finalizarCompra()">Finalizar Compra</button>
+  <button class="btn btn-primary"  [routerLink]="['../finalizar-venda']" routerLinkActive="router-link-active">Finalizar Compra</button>
 </table>
