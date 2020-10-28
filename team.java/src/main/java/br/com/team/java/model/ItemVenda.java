@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,6 +41,7 @@ public class ItemVenda implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "venda_id")
+	@JsonIgnore
 	private Venda venda;
 	
 	@Column(name = "quantidade")

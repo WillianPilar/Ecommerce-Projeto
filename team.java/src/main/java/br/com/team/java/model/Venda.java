@@ -59,6 +59,8 @@ public class Venda implements Serializable {
 	private Date dataVenda = new Date(System.currentTimeMillis());
 
 	private StatusVenda statusVenda;
+	
+	private String formaPagamento;
 
 	private int totalItens;
 
