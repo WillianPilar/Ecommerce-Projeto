@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
           perfis:decodedToken.scopes
         };
         this.storage.setLocalUser(localUser);
-        this.authService.sendMessage({isAdmin:this.authService.isAdmin(),isAuthenticated:true});
+        this.authService.sendMessage({isAdmin:this.authService.isAdmin(),isAuthenticated:true,nome:this.storage.getLocalUser().nome});
         //this.toastr.success("Login feito com sucesso")
         this.router.navigate(['/']);
 

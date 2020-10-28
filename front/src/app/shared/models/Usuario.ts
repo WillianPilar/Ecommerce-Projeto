@@ -3,5 +3,5 @@ export class Usuario{
   nome:string;
   email:string;
   id:number;
-  perfis:any = []; 
+  perfis:any = [];
 }

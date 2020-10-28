@@ -1,5 +1,5 @@
 
-<table class="table mt-4">
+<table class="table mt-4" *ngIf="carrinhoNotnull">
   <tr class="thead-dark">
       <th>Produto</th>
       <th>Preço</th>
@@ -33,6 +33,6 @@
           <button class="btn btn-danger" (click) = "deletarDoCarrinho(prodCarrinho)">Deletar</button>
       </td>
   </tr>
-  <h5>Preço Total: R${{valorTotal}}</h5>
-  <button class="btn btn-primary" [routerLink]="['venda/carrinho']">Formas de Pagamento</button>
+  Preço Total: R${{valorTotal}}
+  <button class="btn btn-primary"  [routerLink]="['../finalizar-venda']" routerLinkActive="router-link-active">Finalizar Compra</button>
 </table>

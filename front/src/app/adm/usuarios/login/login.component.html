@@ -1,20 +1,24 @@
-<form [formGroup]="formLogin" (submit)="onSubmit()" class="col-4">
-  <div class="form-group">
-      <label for="Email">Email</label>
-      <input type="text" class="form-control" formControlName="email"
-          placeholder="Insira o seu email">
-  </div>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-  <app-mostrar-erros [isError]="isErrorField('email')" [mensagem]="'Email obrigatório'"></app-mostrar-erros>
+    <div class = "container">
+	<div class="wrapper">
+		<form [formGroup]="formLogin" (submit)="onSubmit()" class="form-signin">       
+		    <h3 class="form-signin-heading">Bem vindo de volta, por favor faça seu login</h3>
+			  <hr class="colorgraph"><br>
+			  
+        <input type="text" class="form-control" formControlName="email" placeholder="Email" required="" autofocus="" />
+        
+        <app-mostrar-erros [isError]="isErrorField('email')" [mensagem]="'Email obrigatório'"></app-mostrar-erros>
 
-  <div class="form-group">
-      <label for="senha">Senha</label>
-      <input type="password" class="form-control" formControlName="senha" placeholder="Insira a sua senha">
-  </div>
-
-  <app-mostrar-erros [isError]="isErrorField('senha')" [mensagem]="'Senha obrigatória'"></app-mostrar-erros>
-
-
-
-  <button class="btn btn-dark" type="submit" class="btn btn-primary mt-4">Logar</button>
-</form>
+        <input type="password" class="form-control" formControlName="senha" placeholder="Senha" required=""/> 
+        
+        <app-mostrar-erros [isError]="isErrorField('senha')" [mensagem]="'Senha obrigatória'"></app-mostrar-erros>    		  
+			 
+			  <button class="btn btn-lg btn-primary btn-block" value="Login" type="submit">Login</button>  			
+		</form>			
+	</div>
+</div>
+   

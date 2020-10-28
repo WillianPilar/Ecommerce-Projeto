@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UsuariosService } from '../../adm-service-folder/usuarios.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private usuariosService: UsuariosService) {
+    private usuariosService: UsuariosService,private toastr:ToastrService) {
 
     this.formCadastro = this.formBuilder.group({
       //valor inicial e os validadores
@@ -34,7 +35,9 @@ export class CadastroComponent implements OnInit {
     let body  = Object.assign(this.formCadastro.value,{perfis:[2]});
     this.usuariosService.cadastrarUsuario(body).subscribe(
     (response) => {
-      console.log(response);
+      // console.log(response);
+      this.toastr.success("Cadastro feito com sucesso");
+      this.router.navigate(['']);
     }
     );
   }

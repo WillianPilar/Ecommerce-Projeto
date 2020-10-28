@@ -1,45 +1,50 @@
 <div class="container">
 
-  <div class="mb-2 mt-4" style="display: flex;align-items: flex-end;flex-direction:row;">
-    <input type="text" (keyup)="onKeyUp()" [(ngModel)]="nome" class="form-control" placeholder="Buscar por nome do usuário"/>
+  <div class="mb-2 mt-4" style="display: flex;align-items:flex-end;flex-direction:row;">
+
+    <input type="text" (keyup)="onKeyUp()" [(ngModel)]="nome" class="form-control col-6"
+      placeholder="Buscar por nome do usuário" />
   </div>
 
   <!-- TABELA DE USUARIOS -->
-    <div class="d-flex justify-content">
-        <h2 class="h2 mr-5"> Lista de Usuários</h2>
-        <button class="btn btn-dark mb-2" [routerLink]="['form']">
-            Cadastrar Usuario
-        </button>
+  <table class="table">
+    <tr class="bg-dark">
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Perfil</th>
+      <th style="text-align:center;" colspan="2">Operações</th>
+    </tr>
+
+    <tr
+      *ngFor="let user of usuarios?.content | paginate: { itemsPerPage: linhas, currentPage: paginador , totalItems: totalElementos}">
+      <td>{{ user?.id }}</td>
+      <td>{{ user?.nome }}</td>
+      <td>{{ user?.email }}</td>
+      <td>{{ user?.perfis | perfil }}</td>
+      <td colspan="2" style="text-align:center;"><button class="btn btn-warning mr-2"
+          [routerLink]="['form', user?.id]">Editar </button>
+        <button class="btn btn-danger" (click)="deletarUsuario(user?.id)">Deletar</button>
+      </td>
+    </tr>
+
+  </table>
+
+  <div class="row">
+    <div class="col-4">
+      <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
     </div>
-    <table class="table">
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Perfil</th>
-            <th style="text-align:center;" colspan="2">Operações</th>
-        </tr>
-
-        <tr *ngFor="let user of usuarios?.content | paginate: { itemsPerPage: linhas, currentPage: paginador , totalItems: totalElementos}">
-            <td>{{ user?.id }}</td>
-            <td>{{ user?.nome }}</td>
-            <td>{{ user?.email }}</td>
-            <td>{{ user?.perfis | perfil }}</td>
-            <td colspan="2" style="text-align:center;"><button class="btn btn-dark mr-2" [routerLink] = "['form', user?.id]">Editar </button>
-                <button class="btn btn-danger" (click)="deletarUsuario(user?.id)">Deletar</button>
-            </td>
-        </tr>
-
-    </table>
-
-    <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
 
     <div class="form-group">
-      <label>Nº de registro por páginas</label>
-      <select class="form-control" [(ngModel)]="linhas" (change)="onChangeSelected()">
-        <option value="2">2</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
-      </select>
+      <div class="col-12">
+        <label>Nº de registro por páginas</label>
+        <select class="form-control" [(ngModel)]="linhas" (change)="onChangeSelected()">
+          <option value="2">2</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+        </select>
+      </div>
     </div>
+
+  </div>
 </div>
