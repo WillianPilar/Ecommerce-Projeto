@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
 import { ItemVenda } from 'src/app/shared/models/Item-Venda';
-import { Vendas } from 'src/app/shared/models/Vendas';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { VendaService } from '../Venda-Services/venda.service';
 
