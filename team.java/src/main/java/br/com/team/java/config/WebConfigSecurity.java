@@ -37,7 +37,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 
 	
 	private static final String[] PUBLIC_ENDPOINT_GET = {
-			"/produtos", "/csrf", "/", "/usuarios"
+			"/produto/**", "/csrf", "/", "/categoria/**"
 	};
 	
 	private static final String[] PUBLIC_ENDPOINT_POST = {

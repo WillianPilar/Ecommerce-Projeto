@@ -1,5 +1,5 @@
 
-<table class="table">
+<table class="table" *ngIf="carrinhoNotnull">
   <tr>
       <th>Produto</th>
       <th>Preço</th>
@@ -34,7 +34,5 @@
       </td>
   </tr>
   Preço Total: R${{valorTotal}}
-  <button class="btn" [routerLink]="['venda/carrinho']">Formas de Pagamento</button>
-
   <button class="btn btn-primary"  [routerLink]="['../finalizar-venda']" routerLinkActive="router-link-active">Finalizar Compra</button>
 </table>

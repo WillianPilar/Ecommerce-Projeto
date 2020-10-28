@@ -6,6 +6,10 @@ import * as moment from 'moment';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UsuariosService } from 'src/app/adm/adm-service-folder/usuarios.service';
 import { isThisTypeNode } from 'typescript';
+import { Vendas } from 'src/app/shared/models/Vendas';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-finalizar-venda',
@@ -23,7 +27,7 @@ export class FinalizarVendaComponent implements OnInit {
   public isCartao: boolean = false;
   public varPagamento: any = "";
   public desativarCompra: boolean = true;
-  public valParcelas:any = 1;
+  public valParcelas: any = 1;
 
 
   public idLocalUser = this.storageService.getLocalUser()?.id;
@@ -32,7 +36,7 @@ export class FinalizarVendaComponent implements OnInit {
   constructor(private storageService: StorageService,
     private vendaService: VendaService,
     private formBuilder: FormBuilder,
-    private usuariosService: UsuariosService) {
+    private usuariosService: UsuariosService,private toastr:ToastrService,private router:Router) {
 
     this.formEndereco = this.formBuilder.group(
       {
@@ -104,14 +108,14 @@ export class FinalizarVendaComponent implements OnInit {
   }
 
   verificarCampos() {
-    if(this.valParcelas == ""){
+    if (this.valParcelas == "") {
       this.desativarCompra = true;
-    }else if (this.formPagamento.value.metodo == "boleto") {
+    } else if (this.formPagamento.value.metodo == "boleto") {
       this.valParcelas = 1;
       this.desativarCompra = false;
-    }else if (this.formPagamento.value.metodo == "cartao") {
+    } else if (this.formPagamento.value.metodo == "cartao") {
       this.desativarCompra = false;
-    }else {
+    } else {
       this.desativarCompra = true;
     }
 
@@ -120,34 +124,38 @@ export class FinalizarVendaComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.finalizarCompra();
   }
 
   //------------------------------------------
   // Finalização da compra
 
-  // finalizarCompra(){
-  //   let venda:Vendas ={
-  //     id:null,
-  //     usuario:this.storageService.getLocalUser(),
-  //     statusVenda : 'Aberta',
-  //     pagamento : '2',
-  //     totalItens: this.storageService.getCarrinho().length,
-  //     valor : this.valorTotal,
-  //     parcela :2,
-  //     valorParcela : this.valorTotal/2,
-  //     item:this.storageService.getCarrinho(),
-  //     dataVenda : moment(new Date()).format("DD-MM-yyyy HH:mm:ss")
-  //   }
-  //   delete venda.usuario.perfis
+  finalizarCompra() {
+    let venda: Vendas = {
+      id: null,
+      usuario: this.storageService.getLocalUser(),
+      statusVenda: 'Aberta',
+      pagamento: '2',
+      totalItens: this.storageService.getCarrinho().length,
+      valor: this.valorTotal,
+      parcela: this.formPagamento.value.parcela,
+      valorParcela: this.valorTotal / this.formPagamento.value.parcela,
+      item: this.carrinho,
+      dataVenda: moment(new Date()).format("DD-MM-yyyy HH:mm:ss"),
+      formaPagamento:this.formPagamento.value.metodo
+    }
+    delete venda.usuario.perfis
 
-  //   this.vendaService.finalizarCompra(venda).subscribe(
-  //     (response)=>{
-  //       console.log(response);
-  //     }
-  //   );
+    this.vendaService.finalizarCompra(venda).subscribe(
+      (response) => {
+        console.log(response);
+        this.toastr.success("Parabéns pela compra!!");
+        this.router.navigate(['../../']);
+        this.storageService.setCarrinho(null);
+      }
+    );
 
-  //   }
+  }
 
 
 }

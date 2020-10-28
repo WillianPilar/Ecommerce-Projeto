@@ -12,56 +12,63 @@ import { VendaService } from '../Venda-Services/venda.service';
 })
 export class CarrinhoComponent implements OnInit {
 
-  public carrinho : any  = [];
+  public carrinho: any = [];
   public valorTotal;
+  public carrinhoNotnull = false;
 
-  constructor(private storageService : StorageService,
-              private vendaService : VendaService) { }
+  constructor(private storageService: StorageService,
+    private vendaService: VendaService) { }
 
   ngOnInit(): void {
     this.getCarrinho();
     this.calculoDoTotal();
   }
 
-  getCarrinho(){
-
-    this.carrinho = this.storageService.getCarrinho()
+  getCarrinho() {
+    
+    this.carrinho = this.storageService.getCarrinho();
+    this.carrinhoNotnull = this.carrinho && this.carrinho.length>0;
+    console.log(this.carrinho);
+    console.log(this.carrinhoNotnull);
   }
 
-  deletarDoCarrinho(produto){
-    let index = this.carrinho.findIndex( x => { return x.produto.id == produto.id });
+  deletarDoCarrinho(produto) {
+    let index = this.carrinho.findIndex(x => { return x.produto.id == produto.id });
 
     this.carrinho.splice(index, 1);
 
     this.storageService.setCarrinho(this.carrinho);
-
     this.calculoDoTotal();
+    this.getCarrinho();
   }
 
-//--------------------------------------------------
-  atualizarCarrinho(selectedOption, id){
+  //--------------------------------------------------
+  atualizarCarrinho(selectedOption, id) {
     let num = parseInt(selectedOption)
     //REVISão condição IF após conclusão
-    if(num <= 0){
+    if (num <= 0) {
       this.deletarDoCarrinho(id);
     }
-//-------------------------------------------------
+    //-------------------------------------------------
     let find = this.carrinho.find((item: ItemVenda) => item.produto.id === id)
 
     if (find) {
       find.quantidade = num
     }
 
-    console.log(this.carrinho)
-    console.log(selectedOption)
-    console.log(id)
+    console.log(this.carrinho);
+    console.log(selectedOption);
+    console.log(id);
     this.storageService.setCarrinho(this.carrinho);
     this.calculoDoTotal();
+    this.getCarrinho();
   }
 
-  calculoDoTotal(){
+  calculoDoTotal() {
 
-    this.valorTotal = this.carrinho.reduce((valorProdutos, item) => valorProdutos + (item.produto.preco * item.quantidade), 0)
+    if (this.carrinho) {
+      this.valorTotal = this.carrinho.reduce((valorProdutos, item) => valorProdutos + (item.produto.preco * item.quantidade), 0)
+    }
   }
 
   //------------------------------------------

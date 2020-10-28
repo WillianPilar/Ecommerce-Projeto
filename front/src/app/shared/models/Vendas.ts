@@ -10,6 +10,7 @@ export class Vendas{
     valor : number;
     parcela : number;
     valorParcela : number;
-    item: ItemVenda[] = [];
+    item: ItemVenda[];
     dataVenda : string;
+    formaPagamento:string;
 }
