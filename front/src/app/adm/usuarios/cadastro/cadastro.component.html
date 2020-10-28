@@ -1,32 +1,30 @@
-<h2>{{texto}} Usuário</h2>
-<form [formGroup]="formCadastro" (submit)="onSubmit()">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-  <!-- Nome do Usuario -->
-  <div class="form-group">
-    <label for="nome">Nome</label>
-    <input type="text" class="form-control" formControlName="nome" placeholder="Nome do usuário">
-  </div>
+    <div class = "container">
+	<div class="wrapper">
+		<form [formGroup]="formCadastro" (submit)="onSubmit()" class="form-signin">       
+		    <h3 class="form-signin-heading">Cadastre-se agora e venha comprar conosco</h3>
+			  <hr class="colorgraph"><br>
+        
+        <input type="text" class="form-control" formControlName="nome" placeholder="Nome Completo" required="" autofocus="" />
 
-  <app-mostrar-erros [isError]="isErrorField('nome')" [mensagem]="'Nome Obrigatório'">
-  </app-mostrar-erros>
+        <app-mostrar-erros [isError]="isErrorField('nome')" [mensagem]="'Nome Obrigatório'">
+        </app-mostrar-erros>
 
-  <!-- Email do ALUNO -->
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" formControlName="email" placeholder="Email do usuário">
-  </div>
 
-  <app-mostrar-erros [isError]="isErrorField('email')" [mensagem]="'Email Obrigatório'">
-  </app-mostrar-erros>
+        <input type="text" class="form-control" formControlName="email" placeholder="Email" required="" autofocus="" />
+        
+        <app-mostrar-erros [isError]="isErrorField('email')" [mensagem]="'Email obrigatório'"></app-mostrar-erros>
 
-  <div class="form-group">
-    <label for="senha">Senha</label>
-    <input type="text" class="form-control" formControlName="senha" placeholder="Senha do usuário">
-  </div>
-
-  <app-mostrar-erros [isError]="isErrorField('senha')" [mensagem]="'Senha Obrigatória'">
-  </app-mostrar-erros>
-
-  <button type="submit" class="btn btn-primary">{{textoBotao}}</button>
-
-</form>
+        <input type="password" class="form-control" formControlName="senha" placeholder="Senha" required=""/> 
+        
+        <app-mostrar-erros [isError]="isErrorField('senha')" [mensagem]="'Senha obrigatória'"></app-mostrar-erros>    		  
+			 
+			  <button class="btn btn-lg btn-primary btn-block" value="Cadastrar" type="submit">Cadastrar</button>  			
+		</form>			
+	</div>
+</div>
+   

@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     //this.getAllAlunos();
-    this.nomeUsuario = this.storageService.getLocalUser().nome;
+    this.nomeUsuario = this.storageService.getLocalUser()?.nome;
     this.isAuthenticated = this.storageService.getLocalUser() ? true : false;
     this.isAdmin = this.authService.isAdmin();
     console.log(this.isAdmin);
