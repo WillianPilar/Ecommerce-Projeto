@@ -65,7 +65,7 @@ public class UsuarioService {
 		PageRequest pageRequest = PageRequest.of(pagina, linhas);
 		Page<Usuario> entities = this.usuarioRepository.findByNomeContainsIgnoreCase(nome, pageRequest);
 //		Page<UsuarioDto> dtoPage = DtoUtil.mapEntityPageIntoDtoPage(entities, UsuarioDto.class);
-		//Page<UsuarioDto> dtoPage = entities.map((object -> DozerBeanMapperBuilder.buildDefault().map(object, UsuarioDto.class)));
+		Page<UsuarioDto> dtoPage = entities.map((object -> DozerBeanMapperBuilder.buildDefault().map(object, UsuarioDto.class)));
 		return dtoPage;
 	}
 
