@@ -1,6 +1,7 @@
 package br.com.team.java.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Usuario;
 import br.com.team.java.service.UsuarioService;
 
@@ -25,11 +27,20 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@GetMapping
-	public ResponseEntity<List<Usuario>> consultarUsuarios(){
+//	@GetMapping
+//	public ResponseEntity<List<Usuario>> consultarUsuarios(){
+//		List<Usuario> list = this.usuarioService.consultarTodosUsuarios();
+//		return ResponseEntity.ok().body(list);
+//	}
+
+	@GetMapping 
+	public ResponseEntity <List<UsuarioDto>> findAll(){
 		List<Usuario> list = this.usuarioService.consultarTodosUsuarios();
-		return ResponseEntity.ok().body(list);
+		List<UsuarioDto> listDTO = list.stream().map( (objeto) -> new UsuarioDto(objeto)  ).collect(Collectors.toList());		
+		
+		return ResponseEntity.ok().body(listDTO);
 	}
+	
 	
 	@GetMapping (value = "/{id}")
 	public ResponseEntity<Usuario> consultarUsuario(@PathVariable int id){

@@ -81,6 +81,9 @@ public class Application implements CommandLineRunner {
 	c.addPerfil(Perfil.CLIENTE);		
 	c= this.usuarioRepository.save(c);
 		
+		
+	
+	
 	}
 
 }
