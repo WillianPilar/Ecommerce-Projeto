@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.team.java.dto.ProdutoDto;
 import br.com.team.java.model.Produto;
 import br.com.team.java.service.ProdutoService;
+import br.com.team.java.util.DtoUtil;
 
 @RestController
 @RequestMapping("/produto")
@@ -52,12 +53,13 @@ public class ProdutoController {
 //	}
 	
 	@PostMapping
-	public ResponseEntity<ProdutoDto> create(@RequestBody Produto produto) {
-		Produto p = this.produtoService.save(produto);
+	public ResponseEntity<ProdutoDto> create(@RequestBody ProdutoDto produtoDtoRecebido) {
 		
-		ProdutoDto produtoDto = new ProdutoDto(p);
+		Produto produto = this.produtoService.save(produtoDtoRecebido);
 		
-		return ResponseEntity.ok().body(produtoDto);
+		ProdutoDto produtoDtoEnviar = new ProdutoDto(produto);
+		
+		return ResponseEntity.ok().body(produtoDtoEnviar);
 	}
 	
 	@PatchMapping(value="{id}")

@@ -15,29 +15,29 @@ import br.com.team.java.dto.EnderecoDto;
 //import br.com.team.java.dto.CategoriaDto;
 //import br.com.team.java.dto.ImagemDto;
 //import br.com.team.java.dto.ItemVendaDto;
-//import br.com.team.java.dto.ProdutoDto;
+import br.com.team.java.dto.ProdutoDto;
 //import br.com.team.java.dto.VendaDto;
 
 
 
 
 public class DtoUtil {
-//	public static Produto produtoFromDto(ProdutoDto prodDto) {
-//
-//		Produto obj = Produto
-//				.builder()
-//				.id(prodDto.getId())
-//				.nome(prodDto.getNome())
-//				.preco(prodDto.getPreco())
-//				.descricao(prodDto.getDescricao())
-//				.categoria( categoriaFromDto( prodDto.getCategoria() ) )
-//				.imagens(prodDto.getImagens().stream().map(dto -> imagemFromDto(dto) ).collect(Collectors.toList()))
-//				
-//				.build();
-//		
-//		return obj;
-//
-//	}
+	public static Produto produtoFromDto(ProdutoDto prodDto) {
+
+		Produto obj = Produto
+				.builder()
+				
+				.nome(prodDto.getNome())
+				.preco(prodDto.getPreco())
+				.descricao(prodDto.getDescricao())
+				.categoria( categoriaFromDto( prodDto.getCategoria() ) )
+				.imagens(prodDto.getImagens().stream().map(dto -> imagemFromDto(dto) ).collect(Collectors.toList()))
+				
+				.build();
+		
+		return obj;
+
+	}
 	
 //	public static ItemVenda itemVendaFromDto(ItemVendaDto objDto) {
 //		
@@ -116,7 +116,7 @@ public class DtoUtil {
 //	public static Categoria categoriaFromDto(CategoriaDto obj) {
 //		return new Categoria(obj.getId(), obj.getNome(), obj.getDescricao(), null);
 //	}
-//	
+	
 //	public static Imagem imagemFromDto(ImagemDto obj) {
 //		return new Imagem(obj.getId() , obj.getUrl(), null);
 //	}

@@ -10,12 +10,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import br.com.team.java.dto.ProdutoDto;
 import br.com.team.java.model.Categoria;
 import br.com.team.java.model.Imagem;
 import br.com.team.java.model.Produto;
 import br.com.team.java.repository.CategoriaRepository;
 import br.com.team.java.repository.ImagemRepository;
 import br.com.team.java.repository.ProdutoRepository;
+import br.com.team.java.util.DtoUtil;
 
 @Service
 public class ProdutoService {
@@ -37,7 +39,9 @@ public class ProdutoService {
 		return this.produtoRepository.findById(id).orElse(new Produto());
 	}
 
-	public Produto save(Produto produto) {
+	public Produto save(ProdutoDto produtoDto) {
+		Produto produto = DtoUtil.produtoFromDto(produtoDto);
+		
 		if(produto.getCategoria() != null) {
 			br.com.team.java.model.Categoria c = this.categoriaRepository.findById(produto.getCategoria().getId())
 					.orElse(this.categoriaRepository.save(produto.getCategoria()));

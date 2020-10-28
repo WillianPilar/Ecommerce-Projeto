@@ -6,7 +6,9 @@ import br.com.team.java.model.Categoria;
 import br.com.team.java.model.Imagem;
 import br.com.team.java.model.ItemVenda;
 import br.com.team.java.model.Produto;
+import lombok.Data;
 
+@Data
 public class ProdutoDto {
 	private String nome;
 	private String descricao;
