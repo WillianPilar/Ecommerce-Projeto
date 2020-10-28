@@ -52,15 +52,20 @@ public class ProdutoController {
 //	}
 	
 	@PostMapping
-	public ResponseEntity<Produto> create(@RequestBody Produto produto) {
+	public ResponseEntity<ProdutoDto> create(@RequestBody Produto produto) {
 		Produto p = this.produtoService.save(produto);
-		return ResponseEntity.ok().body(p);
+		
+		ProdutoDto produtoDto = new ProdutoDto(p);
+		
+		return ResponseEntity.ok().body(produtoDto);
 	}
 	
 	@PatchMapping(value="{id}")
-	public  ResponseEntity<Produto> update(@RequestBody Produto produto, @PathVariable int id) {
+	public  ResponseEntity<ProdutoDto> update(@RequestBody Produto produto, @PathVariable int id) {
 		Produto p = this.produtoService.update(id, produto);
-		return ResponseEntity.ok().body(p);
+		
+		ProdutoDto produtoDto = new ProdutoDto(p);
+		return ResponseEntity.ok().body(produtoDto);
 	}
 	
 	@DeleteMapping(value="{id}")
@@ -74,7 +79,10 @@ public class ProdutoController {
 			@RequestParam ( value = "linhas", defaultValue = "5" ) int linhas,
 			@RequestParam ( value = "busca", defaultValue = "" ) String busca
 							) {
-		Page<Produto> prod = this.produtoService.paginacao(pagina, linhas, busca);
-		return ResponseEntity.ok().body(prod);
+		Page<Produto> produto = this.produtoService.paginacao(pagina, linhas, busca);
+		
+		//Page<ProdutoDto> produtoDto = (Page<ProdutoDto>) produto.stream().map((objeto)-> new ProdutoDto(objeto)).collect(Collectors.toList()); 
+		
+		return ResponseEntity.ok().body(produto);
 	}
 }
