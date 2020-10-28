@@ -22,8 +22,8 @@ public class EnderecoService {
 		return this.enderecoRepository.findAll();
 	}
 	
-	public Optional<Endereco> consultarEnderecoId(int id){
-		return this.enderecoRepository.findById(id);
+	public Endereco consultarEnderecoId(int id){
+		return this.enderecoRepository.findById(id).get();
 	}
 	
 	public Endereco inserirEndereco(Endereco endereco) {
