@@ -1,6 +1,7 @@
 package br.com.team.java.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.team.java.dto.ProdutoDto;
 import br.com.team.java.model.Produto;
 import br.com.team.java.service.ProdutoService;
 
@@ -26,15 +28,21 @@ public class ProdutoController {
 	private ProdutoService produtoService;
 	
 	@GetMapping
-	public ResponseEntity<List<Produto>> getAll(){
-		List<Produto> p = this.produtoService.getAll();
-		return ResponseEntity.ok().body(p);
+	public ResponseEntity<List<ProdutoDto>> getAll(){
+		List<Produto> produto = this.produtoService.getAll();
+		
+		List<ProdutoDto> produtoDto = produto.stream().map( (objeto) -> new ProdutoDto(objeto) ).collect(Collectors.toList()); 
+		
+		return ResponseEntity.ok().body(produtoDto);
 	}
 	
 	@GetMapping(value="{id}")
-	public ResponseEntity<Produto> getOne(@PathVariable int id){
+	public ResponseEntity<ProdutoDto> getOne(@PathVariable int id){
 		Produto produto = this.produtoService.getOne(id);
-		return ResponseEntity.ok().body(produto);
+		
+		ProdutoDto produtoDto = new ProdutoDto(produto);
+		
+		return ResponseEntity.ok().body(produtoDto);
 	}
 	
 //	@GetMapping(value="/search")
