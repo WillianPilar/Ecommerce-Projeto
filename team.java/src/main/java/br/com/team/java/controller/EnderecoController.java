@@ -45,14 +45,16 @@ public class EnderecoController {
 	
 	
 	@GetMapping("/{id}")
-	public Optional<Endereco> consultarEnderecoId(@PathVariable int id) {
-		return this.enderecoService.consultarEnderecoId(id);
+	public ResponseEntity<EnderecoDto> consultarEnderecoId(@PathVariable int id) {
+		
+		Endereco endereco = this.enderecoService.consultarEnderecoId(id);
+		EnderecoDto enderecoDto = new EnderecoDto(endereco);
+		return ResponseEntity.ok().body(enderecoDto);
 	}
 	
 	@PostMapping
-	public Endereco inserirEndereco(@RequestBody EnderecoDto endereco) {
-		return DtoUtil.enderecoUsuarioFromDto(endereco);
-		
+	public Endereco inserirEndereco(@RequestBody Endereco endereco) {
+		return this.enderecoService.inserirEndereco(endereco);
 	}
 	
 	@PatchMapping("/{id}")

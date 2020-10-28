@@ -9,9 +9,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Usuario;
 
 import br.com.team.java.repository.UsuarioRepository;
+import br.com.team.java.util.DtoUtil;
 
 @Service
 public class UsuarioService {
@@ -59,9 +61,12 @@ public class UsuarioService {
 		return update;
 	}
 
-	public Page<Usuario> paginacaoLike(int pagina, int linhas, String nome) {
+	public Page<UsuarioDto> paginacaoLike(int pagina, int linhas, String nome) {
 		PageRequest pageRequest = PageRequest.of(pagina, linhas);
-		return this.usuarioRepository.findByNomeContainsIgnoreCase(nome, pageRequest);
+		Page<Usuario> entities = this.usuarioRepository.findByNomeContainsIgnoreCase(nome, pageRequest);
+//		Page<UsuarioDto> dtoPage = DtoUtil.mapEntityPageIntoDtoPage(entities, UsuarioDto.class);
+		//Page<UsuarioDto> dtoPage = entities.map((object -> DozerBeanMapperBuilder.buildDefault().map(object, UsuarioDto.class)));
+		return dtoPage;
 	}
 
 }
