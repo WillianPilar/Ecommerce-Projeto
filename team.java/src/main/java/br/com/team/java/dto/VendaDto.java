@@ -12,9 +12,7 @@ import br.com.team.java.model.enums.StatusVenda;
 import lombok.Data;
 
 @Data
-public class VendaDto implements Serializable{/**
-	 * 
-	 */
+public class VendaDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
@@ -33,7 +31,6 @@ public class VendaDto implements Serializable{/**
 
 	public Venda toEntity() {
 		ModelMapper modelMapper = new ModelMapper();
-		// user here is a prepopulated User instance
 		Venda entity = modelMapper.map(this, Venda.class);
 		return entity;
 	}

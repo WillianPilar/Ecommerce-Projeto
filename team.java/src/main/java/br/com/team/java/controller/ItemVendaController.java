@@ -29,7 +29,7 @@ public class ItemVendaController {
 	public ResponseEntity<List<ItemVendaDto>> getAll() {
 		List<ItemVenda> list = this.itemVendaService.findAll();
 		List<ItemVendaDto> listDTO = list.stream()
-									 .map((objeto) -> new ItemVendaDto(objeto))
+									 .map(objeto -> new ItemVendaDto(objeto))
 								     .collect(Collectors.toList());
 		
 		return ResponseEntity.ok().body(listDTO);

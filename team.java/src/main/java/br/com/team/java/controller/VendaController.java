@@ -28,7 +28,7 @@ public class VendaController {
 	@GetMapping
 	public ResponseEntity<List<VendaDto>> findAll(){
 		List<Venda> list = this.vendaService.findAll();
-		List<VendaDto> listDTO = list.stream().map((objeto) -> objeto.toDto())
+		List<VendaDto> listDTO = list.stream().map(objeto -> objeto.toDto())
 				.collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
