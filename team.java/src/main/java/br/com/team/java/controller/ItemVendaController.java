@@ -43,14 +43,14 @@ public class ItemVendaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<ItemVendaDto> save(@RequestBody ItemVenda itemVenda) {
+	public ResponseEntity<ItemVendaDto> save(@RequestBody ItemVendaDto itemVenda) {
 		ItemVenda v = this.itemVendaService.save(itemVenda);
 		ItemVendaDto itemVendaDto = new ItemVendaDto(v);
 		return ResponseEntity.ok().body(itemVendaDto);
 	}
 
 	@PatchMapping(value = "{id}")
-	public ResponseEntity<ItemVendaDto> update(@RequestBody ItemVenda itemVenda, @PathVariable int id) {
+	public ResponseEntity<ItemVendaDto> update(@RequestBody ItemVendaDto itemVenda, @PathVariable int id) {
 		ItemVenda v = this.itemVendaService.update(id, itemVenda);
 		ItemVendaDto itemVendaDto = new ItemVendaDto(v);
 		return ResponseEntity.ok().body(itemVendaDto);

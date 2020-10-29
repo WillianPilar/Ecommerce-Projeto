@@ -12,8 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.team.java.dto.ItemVendaDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -47,5 +50,10 @@ public class ItemVenda implements Serializable{
 	@Column(name = "quantidade")
 	private int quantidade;
 	
-	
+	public ItemVendaDto toDto() {
+		ModelMapper modelMapper = new ModelMapper();
+		// user here is a prepopulated User instance
+		ItemVendaDto entity = modelMapper.map(this, ItemVendaDto.class);
+		return entity;
+	}
 }

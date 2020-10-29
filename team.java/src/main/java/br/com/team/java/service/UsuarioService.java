@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.team.java.dto.UsuarioDto;
+import br.com.team.java.dto.UsuarioSenhaDto;
 import br.com.team.java.model.Usuario;
 import br.com.team.java.repository.UsuarioRepository;
 
@@ -23,9 +24,10 @@ public class UsuarioService {
 	@Autowired
 	public BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	public Usuario salvarUsuario(Usuario usuario) {
-		usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
-		return this.usuarioRepository.save(usuario);
+	public Usuario salvarUsuario(UsuarioSenhaDto usuario) {
+		Usuario user = usuario.toEntity();
+		user.setSenha(bCryptPasswordEncoder.encode(user.getSenha()));
+		return this.usuarioRepository.save(user);
 	}
 
 	public Usuario consultarUsuarioId(int id) {
@@ -40,7 +42,7 @@ public class UsuarioService {
 		this.usuarioRepository.deleteById(id);
 	}
 
-	public Usuario atualizarUsuario(int id, Usuario usuario) {
+	public Usuario atualizarUsuario(int id, UsuarioSenhaDto usuario) {
 		Optional<Usuario> obj = this.usuarioRepository.findById(id);
 		Usuario update = null;
 

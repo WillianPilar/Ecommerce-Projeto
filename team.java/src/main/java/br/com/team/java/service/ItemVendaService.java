@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.team.java.dto.ItemVendaDto;
 import br.com.team.java.model.ItemVenda;
 import br.com.team.java.repository.ItemVendaRepository;
 
@@ -21,14 +22,16 @@ public class ItemVendaService {
 	
 	public ItemVenda getOne(int id) {
 		return this.itemVendaRepository.findById(id).orElse(new ItemVenda());
-				//.orElseThrow( () -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 	
-	public ItemVenda save(ItemVenda itemvenda) {
-		return this.itemVendaRepository.save(itemvenda);
+	public ItemVenda save(ItemVendaDto itemvenda) {
+		ItemVenda ItemVenda = itemvenda.toEntity();
+		return this.itemVendaRepository.save(ItemVenda);
 	}
 	
-	public ItemVenda update(int id, ItemVenda venda) {
+	public ItemVenda update(int id, ItemVendaDto vendaDto) {
+		ItemVenda venda = vendaDto.toEntity();
+
 		Optional<ItemVenda> a = this.itemVendaRepository.findById(id);
 		ItemVenda update = null;
 		

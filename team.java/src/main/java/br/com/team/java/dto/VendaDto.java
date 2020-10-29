@@ -26,6 +26,8 @@ public class VendaDto implements Serializable {
 	private int parcela;
 
 	private double valorParcela;
+	
+
 
 	public Venda toEntity() {
 		ModelMapper modelMapper = new ModelMapper();

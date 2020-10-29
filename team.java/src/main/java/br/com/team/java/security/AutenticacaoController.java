@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.team.java.dto.UsuarioSenhaDto;
 import br.com.team.java.model.Usuario;
 
 
@@ -27,9 +28,9 @@ public class AutenticacaoController {
 	private JwtUtil jwtUtil;
 	
 	@PostMapping (value = "")
-	public AuthToken autenticacao( @RequestBody Usuario usuario  ) {
+	public AuthToken autenticacao( @RequestBody UsuarioSenhaDto usuario  ) {
 		
-		System.out.println( "EMAIL : " + usuario.getEmail() + " " + "SENHA : " + usuario.getSenha() );
+		//System.out.println( "EMAIL : " + usuario.getEmail() + " " + "SENHA : " + usuario.getSenha() );
 
 		final Authentication authentication = authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha() ));
