@@ -1,8 +1,8 @@
 package br.com.team.java.service;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.Optional;
+import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Usuario;
-
 import br.com.team.java.repository.UsuarioRepository;
-import br.com.team.java.util.DtoUtil;
 
 @Service
 public class UsuarioService {
