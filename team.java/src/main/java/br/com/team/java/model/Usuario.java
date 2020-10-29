@@ -59,11 +59,6 @@ public class Usuario {
 	@CollectionTable(name = "PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
 	
-	
-//	public Set<Perfil> getPerfis() {
-//		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
-//	}
-	
 	public Set<Perfil> getPerfisSetList() {
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}

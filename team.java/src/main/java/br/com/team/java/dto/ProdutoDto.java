@@ -23,21 +23,9 @@ public class ProdutoDto {
 	private Categoria categoria;
 	private List<Imagem> imagens;
 	private List<ItemVenda> item;
-	
-//	public ProdutoDto(Produto produto) {
-//		this.id = produto.getId();
-//		this.nome = produto.getNome();
-//		this.descricao = produto.getDescricao();
-//		this.preco = produto.getPreco();
-//		this.categoria = produto.getCategoria();
-//		this.imagens = produto.getImagens();
-//		this.item = produto.getItem();
-//		
-//	}
-	
+
 	public Produto toEntity() {
 		ModelMapper modelMapper = new ModelMapper();
-		// user here is a prepopulated User instance
 		Produto entity = modelMapper.map(this, Produto.class);
 		return entity;
 	}

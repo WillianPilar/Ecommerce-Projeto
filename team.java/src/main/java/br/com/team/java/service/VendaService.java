@@ -11,7 +11,6 @@ import br.com.team.java.model.Categoria;
 import br.com.team.java.model.ItemVenda;
 import br.com.team.java.model.Venda;
 import br.com.team.java.repository.ItemVendaRepository;
-import br.com.team.java.repository.UsuarioRepository;
 import br.com.team.java.repository.VendaRepository;
 
 @Service
@@ -30,10 +29,14 @@ public class VendaService {
 		return this.vendaRepository.findById(id).orElse(new Venda());
 	}
 
+<<<<<<< HEAD
+	public Venda save(Venda venda) {
+=======
 	
 	
 	public Venda save(VendaDto vendaDto) {
 		Venda venda = vendaDto.toEntity();
+>>>>>>> c82dbe13febe68136f08f79f9be5821b968ab692
 		Venda vendaSalva = this.vendaRepository.save(venda);
 		if (venda.getItem() != null) {
 			for (ItemVenda item : venda.getItem()) {
@@ -53,7 +56,6 @@ public class VendaService {
 		if (a.isPresent()) {
 			update = a.get();
 
-			update.setDataVenda(venda.getDataVenda());
 			update.setItem(venda.getItem());
 			update.setPagamento(venda.getPagamento());
 			update.setParcela(venda.getParcela());

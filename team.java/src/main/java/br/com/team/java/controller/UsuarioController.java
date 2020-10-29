@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.jaxb.SpringDataJaxb.PageDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Usuario;
 import br.com.team.java.service.UsuarioService;
-import br.com.team.java.util.DtoUtil;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -28,12 +26,6 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
-	
-//	@GetMapping
-//	public ResponseEntity<List<Usuario>> consultarUsuarios(){
-//		List<Usuario> list = this.usuarioService.consultarTodosUsuarios();
-//		return ResponseEntity.ok().body(list);
-//	}
 
 	@GetMapping 
 	public ResponseEntity <List<UsuarioDto>> findAll(){
@@ -78,5 +70,4 @@ public class UsuarioController {
 		return ResponseEntity.ok().body(page);
 	}
 	
-
 }
