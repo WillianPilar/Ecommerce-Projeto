@@ -8,9 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import br.com.team.java.dto.ImagemDto;
 import br.com.team.java.model.Imagem;
-import br.com.team.java.model.Produto;
 import br.com.team.java.repository.ImagemRepository;
+import br.com.team.java.util.DtoUtil;
 
 @Service
 public class ImagemService {
@@ -22,7 +23,8 @@ public class ImagemService {
 		this.imagemRepository.deleteById(id);
 	}
 
-	public Imagem save(Imagem imagem) {
+	public Imagem save(ImagemDto imagemDto) {
+		Imagem imagem = DtoUtil.ImagemProdFromDto(imagemDto);
 		return this.imagemRepository.save(imagem);
 	}
 		
@@ -44,7 +46,10 @@ public class ImagemService {
 		return this.imagemRepository.findById(id).orElse(new Imagem());
 	}
 
-	public Imagem atualizarImagem(Imagem imagem, int id) {
+	public Imagem atualizarImagem(ImagemDto imagemDto, int id) {
+		
+		Imagem imagem = DtoUtil.ImagemProdFromDto(imagemDto);
+		
 		Optional<Imagem> imagemBuscada = imagemRepository.findById(id);
 		Imagem novaImagem = null;
 

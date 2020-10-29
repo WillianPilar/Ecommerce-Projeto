@@ -1,6 +1,7 @@
 package br.com.team.java.service;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Usuario;
 
 import br.com.team.java.repository.UsuarioRepository;
+import br.com.team.java.util.DtoUtil;
 
 @Service
 public class UsuarioService {
@@ -59,9 +62,19 @@ public class UsuarioService {
 		return update;
 	}
 
-	public Page<Usuario> paginacaoLike(int pagina, int linhas, String nome) {
+	public Page<UsuarioDto> paginacaoLike(int pagina, int linhas, String nome) {
 		PageRequest pageRequest = PageRequest.of(pagina, linhas);
-		return this.usuarioRepository.findByNomeContainsIgnoreCase(nome, pageRequest);
+		Page<Usuario> entities = this.usuarioRepository.findByNomeContainsIgnoreCase(nome, pageRequest);
+		Page<UsuarioDto> dtoPage = entities.map(new Function<Usuario, UsuarioDto>() {
+			@Override
+			public UsuarioDto apply(Usuario entity) {
+				UsuarioDto dto = new UsuarioDto(entity);
+				// Conversion logic
+				return dto;
+			}
+		});
+
+		return dtoPage;
 	}
 
 }
