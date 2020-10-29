@@ -1,6 +1,7 @@
 package br.com.team.java.service;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +65,15 @@ public class UsuarioService {
 	public Page<UsuarioDto> paginacaoLike(int pagina, int linhas, String nome) {
 		PageRequest pageRequest = PageRequest.of(pagina, linhas);
 		Page<Usuario> entities = this.usuarioRepository.findByNomeContainsIgnoreCase(nome, pageRequest);
-//		Page<UsuarioDto> dtoPage = DtoUtil.mapEntityPageIntoDtoPage(entities, UsuarioDto.class);
-		Page<UsuarioDto> dtoPage = entities.map((object -> DozerBeanMapperBuilder.buildDefault().map(object, UsuarioDto.class)));
+		Page<UsuarioDto> dtoPage = entities.map(new Function<Usuario, UsuarioDto>() {
+			@Override
+			public UsuarioDto apply(Usuario entity) {
+				UsuarioDto dto = new UsuarioDto(entity);
+				// Conversion logic
+				return dto;
+			}
+		});
+
 		return dtoPage;
 	}
 
