@@ -1,6 +1,7 @@
 package br.com.team.java.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.team.java.dto.CategoriaDTO;
+import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Categoria;
+import br.com.team.java.model.Usuario;
 import br.com.team.java.service.CategoriaService;
-
 
 @RestController
 @RequestMapping(value = "categoria")
@@ -25,39 +28,48 @@ public class CategoriaController {
 
 	@Autowired
 	private CategoriaService categoriaService;
-	
-	@GetMapping(value = "")
-	public ResponseEntity<List<Categoria>> findAll(){
-		return ResponseEntity.ok().body(this.categoriaService.findAll());
+
+	@GetMapping
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<Categoria> list = this.categoriaService.findAll();
+		List<CategoriaDTO> listDTO = list.stream().map((objeto) -> new CategoriaDTO(objeto))
+				.collect(Collectors.toList());
+
+		return ResponseEntity.ok().body(listDTO);
 	}
-	
+
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Categoria> getOne(@PathVariable int id){
-		return ResponseEntity.ok().body(this.categoriaService.getOne(id));
+	public ResponseEntity<CategoriaDTO> getOne(@PathVariable int id) {
+		Categoria categoria = this.categoriaService.getOne(id);
+		CategoriaDTO CategoriaDTO = new CategoriaDTO(categoria);
+		return ResponseEntity.ok().body(CategoriaDTO);
 	}
-	
-	@PostMapping(value = "")
-	public ResponseEntity<Categoria> save(@RequestBody Categoria categoria){
-		return ResponseEntity.ok().body(this.categoriaService.save(categoria));	
+
+	@PostMapping
+	public ResponseEntity<CategoriaDTO> save(@RequestBody Categoria categoria) {
+		categoria = this.categoriaService.save(categoria);
+		CategoriaDTO CategoriaDTO = new CategoriaDTO(categoria);
+		return ResponseEntity.ok().body(CategoriaDTO);
 	}
-	
-	@PatchMapping(value = "")
-	public ResponseEntity<Categoria> update(@RequestBody Categoria categoria, @PathVariable int id){
-		return ResponseEntity.ok().body(this.categoriaService.update(id, categoria));
+
+	@PatchMapping(value = "/{id}")
+	public ResponseEntity<CategoriaDTO> update(@RequestBody Categoria categoria, @PathVariable int id) {
+		categoria = this.categoriaService.update(id, categoria);
+		CategoriaDTO CategoriaDTO = new CategoriaDTO(categoria);
+		return ResponseEntity.ok().body(CategoriaDTO);
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
 	public void delete(@PathVariable int id) {
-		
 		this.categoriaService.delete(id);
 	}
-	
-	@GetMapping (value = "/pagination")
-	public ResponseEntity<Page<Categoria>> paginacao(
-			@RequestParam(value = "pagina", defaultValue = "5") int pagina,
+
+	@GetMapping(value = "/pagination")
+	public ResponseEntity<Page<CategoriaDTO>> paginacao(@RequestParam(value = "pagina", defaultValue = "5") int pagina,
 			@RequestParam(value = "linhas", defaultValue = "5") int linhas,
-			@RequestParam(value = "busca", defaultValue = "" ) String busca){
-		return ResponseEntity.ok().body(this.categoriaService.pagination(pagina, linhas, busca));
+			@RequestParam(value = "busca", defaultValue = "") String busca) {
+		Page<CategoriaDTO> page = this.categoriaService.pagination(pagina, linhas, busca);
+		return ResponseEntity.ok().body(page);
 	}
-	
+
 }

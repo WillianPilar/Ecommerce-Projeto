@@ -1,16 +1,18 @@
 package br.com.team.java.service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
-
+import br.com.team.java.dto.CategoriaDTO;
+import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Categoria;
+import br.com.team.java.model.Usuario;
 import br.com.team.java.repository.CategoriaRepository;
 
 @Service
@@ -52,10 +54,18 @@ public class CategoriaService {
 		
 	}
 	
-	public Page<Categoria> pagination(int pagina, int linhas, String busca){
+	public Page<CategoriaDTO> pagination(int pagina, int linhas, String busca){
 		PageRequest pageRequest = PageRequest.of(pagina, linhas);
+		Page<Categoria> entities = this.categoriaRepository.findByNomeContainsIgnoreCase(busca, pageRequest);
+		Page<CategoriaDTO> dtoPage = entities.map(new Function<Categoria, CategoriaDTO>() {
+			@Override
+			public CategoriaDTO apply(Categoria entity) {
+				CategoriaDTO dto = new CategoriaDTO(entity);
+				return dto;
+			}
+		});
 		
-		return this.categoriaRepository.findByNomeContainsIgnoreCase(busca, pageRequest);
+		return dtoPage;
 	}
 	
 }
