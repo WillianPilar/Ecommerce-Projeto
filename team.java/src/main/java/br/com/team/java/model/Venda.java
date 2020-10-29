@@ -1,7 +1,6 @@
 package br.com.team.java.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,7 +21,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.team.java.dto.ProdutoDto;
 import br.com.team.java.dto.VendaDto;
 import br.com.team.java.model.enums.StatusPagamento;
 import br.com.team.java.model.enums.StatusVenda;
@@ -59,7 +57,6 @@ public class Venda implements Serializable {
 	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-	private Date dataVenda = new Date(System.currentTimeMillis());
 
 	private StatusVenda statusVenda;
 	
@@ -78,7 +75,6 @@ public class Venda implements Serializable {
 	
 	public VendaDto toDto() {
 		ModelMapper modelMapper = new ModelMapper();
-		// user here is a prepopulated User instance
 		VendaDto entity = modelMapper.map(this, VendaDto.class);
 		return entity;
 	}

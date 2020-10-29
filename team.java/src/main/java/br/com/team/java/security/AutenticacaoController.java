@@ -30,7 +30,7 @@ public class AutenticacaoController {
 	@PostMapping (value = "")
 	public AuthToken autenticacao( @RequestBody UsuarioSenhaDto usuario  ) {
 		
-		System.out.println( "EMAIL : " + usuario.getEmail() + " " + "SENHA : " + usuario.getSenha() );
+		//System.out.println( "EMAIL : " + usuario.getEmail() + " " + "SENHA : " + usuario.getSenha() );
 
 		final Authentication authentication = authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(usuario.getEmail(), usuario.getSenha() ));

@@ -30,32 +30,37 @@ public class CategoriaController {
 	@GetMapping
 	public ResponseEntity<List<CategoriaDto>> findAll() {
 		List<Categoria> list = this.categoriaService.findAll();
-		List<CategoriaDto> listDTO = list.stream().map((objeto) -> new CategoriaDto(objeto))
+		List<CategoriaDto> listDto = list.stream().map(objeto -> new CategoriaDto(objeto))
 				.collect(Collectors.toList());
 
-		return ResponseEntity.ok().body(listDTO);
+		return ResponseEntity.ok().body(listDto);
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CategoriaDto> getOne(@PathVariable int id) {
 		Categoria categoria = this.categoriaService.getOne(id);
-		CategoriaDto CategoriaDTO = new CategoriaDto(categoria);
-		return ResponseEntity.ok().body(CategoriaDTO);
+		CategoriaDto CategoriaDto = new CategoriaDto(categoria);
+		return ResponseEntity.ok().body(CategoriaDto);
 	}
 
 	@PostMapping
-	public ResponseEntity<CategoriaDto> save(@RequestBody Categoria categoria) {
-		categoria = this.categoriaService.save(categoria);
-		CategoriaDto CategoriaDTO = new CategoriaDto(categoria);
-		return ResponseEntity.ok().body(CategoriaDTO);
+	public ResponseEntity<CategoriaDto> save(@RequestBody CategoriaDto categoriaDto) {
+		Categoria categoria = this.categoriaService.save(categoriaDto);
+		CategoriaDto CategoriaDto = categoria.toDto();
+		return ResponseEntity.ok().body(CategoriaDto);
 	}
+	
+	
+	
+	
 
 	@PatchMapping(value = "/{id}")
-	public ResponseEntity<CategoriaDto> update(@RequestBody Categoria categoria, @PathVariable int id) {
-		categoria = this.categoriaService.update(id, categoria);
-		CategoriaDto CategoriaDTO = new CategoriaDto(categoria);
+	public ResponseEntity<CategoriaDto> update(@RequestBody CategoriaDto categoriaDto, @PathVariable int id) {
+		Categoria categoria = this.categoriaService.update(id, categoriaDto);
+		CategoriaDto CategoriaDTO = categoria.toDto();
 		return ResponseEntity.ok().body(CategoriaDTO);
 	}
+	
 
 	@DeleteMapping(value = "/{id}")
 	public void delete(@PathVariable int id) {

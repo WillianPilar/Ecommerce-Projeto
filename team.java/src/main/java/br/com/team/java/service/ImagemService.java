@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import br.com.team.java.dto.ImagemDto;
 import br.com.team.java.model.Imagem;
 import br.com.team.java.repository.ImagemRepository;
-import br.com.team.java.util.DtoUtil;
 
 @Service
 public class ImagemService {

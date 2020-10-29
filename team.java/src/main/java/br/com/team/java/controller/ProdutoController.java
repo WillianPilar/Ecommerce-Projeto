@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.team.java.dto.ProdutoDto;
 import br.com.team.java.model.Produto;
 import br.com.team.java.service.ProdutoService;
-import br.com.team.java.util.DtoUtil;
 
 @RestController
 @RequestMapping("/produto")
@@ -31,8 +30,7 @@ public class ProdutoController {
 	@GetMapping
 	public ResponseEntity<List<ProdutoDto>> getAll(){
 		List<Produto> produto = this.produtoService.getAll();
-		
-		List<ProdutoDto> produtoDto = produto.stream().map( (objeto) -> objeto.toDto() ).collect(Collectors.toList()); 
+		List<ProdutoDto> produtoDto = produto.stream().map(objeto -> objeto.toDto() ).collect(Collectors.toList()); 
 		
 		return ResponseEntity.ok().body(produtoDto);
 	}
@@ -46,18 +44,9 @@ public class ProdutoController {
 		return ResponseEntity.ok().body(produtoDto);
 	}
 	
-//	@GetMapping(value="/search")
-//	public ResponseEntity<List<Produto>>findByNomeContainsIgnoreCase(@RequestParam String nome){
-//		List<Produto> p = this.produtoService.findByNomeContainsIgnoreCase(nome);
-//		return ResponseEntity.ok().body(p);
-//	}
-	
 	@PostMapping
 	public ResponseEntity<ProdutoDto> create(@RequestBody ProdutoDto produtoDtoRecebido) {
-		
 		Produto produto = this.produtoService.save(produtoDtoRecebido);
-		
-		//ProdutoDto produtoDtoEnviar = new ProdutoDto(produto);
 		ProdutoDto produtoDtoEnviar = produto.toDto();
 		
 		return ResponseEntity.ok().body(produtoDtoEnviar);
@@ -83,8 +72,6 @@ public class ProdutoController {
 			@RequestParam ( value = "busca", defaultValue = "" ) String busca
 							) {
 		Page<Produto> produto = this.produtoService.paginacao(pagina, linhas, busca);
-		
-		
 		
 		return ResponseEntity.ok().body(produto);
 	}

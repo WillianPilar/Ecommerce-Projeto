@@ -1,9 +1,7 @@
 package br.com.team.java.service;
 
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,13 +9,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.team.java.dto.ProdutoDto;
-import br.com.team.java.model.Categoria;
+import br.com.team.java.exception.ObjectNotFoundException;
 import br.com.team.java.model.Imagem;
 import br.com.team.java.model.Produto;
 import br.com.team.java.repository.CategoriaRepository;
 import br.com.team.java.repository.ImagemRepository;
 import br.com.team.java.repository.ProdutoRepository;
-import br.com.team.java.util.DtoUtil;
 
 @Service
 public class ProdutoService {
@@ -56,13 +53,13 @@ public class ProdutoService {
 		
 		Produto produto = produtoDto.toEntity();
 		
-		Produto newProduto = this.produtoRepository.findById(id).get();
+		Produto newProduto = this.produtoRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Problema no produto"));
 		List<Imagem> imagens = new ArrayList<Imagem>();
 
 		if (produto != null) {
 						
 			for (Imagem imagem : produto.getImagens()) {
-				imagem = imagemRepository.findById(imagem.getId()).get();
+				imagem = imagemRepository.findById(imagem.getId()).orElse(new Imagem());
 				imagens.add(imagem);
 			}
 

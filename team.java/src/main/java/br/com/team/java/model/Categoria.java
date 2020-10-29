@@ -10,8 +10,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.team.java.dto.CategoriaDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,5 +38,12 @@ public class Categoria {
 	@OneToMany(mappedBy = "categoria")
 	@JsonIgnore
 	private List<Produto> produto;
+	
+	public CategoriaDto toDto() {
+		ModelMapper modelMapper = new ModelMapper();
+		// user here is a prepopulated User instance
+		CategoriaDto entity = modelMapper.map(this, CategoriaDto.class);
+		return entity;
+	}
 }
 

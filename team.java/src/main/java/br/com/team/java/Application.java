@@ -32,18 +32,10 @@ public class Application implements CommandLineRunner {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
-
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-
-		// Usuario u = new Usuario(0,"Usuario 1", "123456", "usuario@usuario.com" );
-//		Usuario u = Usuario.builder().nome("Admin").email("admin@admin.com").senha("123456").build();
-//		u = this.usuarioRepository.save(u);
-
-		//Criando produtos para teste
 		Produto p = Produto.builder().nome("Bola").preco(10).build();
 		this.produtoRepository.save(p);
 
@@ -52,16 +44,6 @@ public class Application implements CommandLineRunner {
 		
 		Categoria a = Categoria.builder().nome("Carro").descricao("anda").build();
 		this.categoriaRepository.save(a);
-
-		
-		//Usuario u = new Usuario(0,"Usuario 1", "123456", "usuario@usuario.com" );
-//		Usuario u = Usuario.builder()
-//					.nome("Admin")
-//					.email("admin@admin.com")
-//					.senha("123456")				
-//					.build();			
-//			u = this.usuarioRepository.save(u);
-		
 		
 		Usuario u2 = Usuario.builder()
 					.nome("Admin")
@@ -70,7 +52,7 @@ public class Application implements CommandLineRunner {
 					.build();
 
 		u2.addPerfil(Perfil.ADMIN);		
-		u2= this.usuarioRepository.save(u2);
+		this.usuarioRepository.save(u2);
 		
 		Usuario c = Usuario.builder()
 				.nome("Cliente 1")
@@ -79,11 +61,10 @@ public class Application implements CommandLineRunner {
 				.build();
 
 	c.addPerfil(Perfil.CLIENTE);		
-	c= this.usuarioRepository.save(c);
+	this.usuarioRepository.save(c);
 		
 		
 	
 	
 	}
-
 }

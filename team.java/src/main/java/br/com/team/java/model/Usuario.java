@@ -4,6 +4,7 @@ package br.com.team.java.model;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -20,7 +21,6 @@ import org.modelmapper.ModelMapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.com.team.java.dto.ProdutoDto;
 import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.dto.UsuarioSenhaDto;
 import br.com.team.java.model.enums.Perfil;
@@ -59,11 +59,6 @@ public class Usuario {
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
-	
-	
-//	public Set<Perfil> getPerfis() {
-//		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
-//	}
 	
 	public Set<Perfil> getPerfisSetList() {
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
