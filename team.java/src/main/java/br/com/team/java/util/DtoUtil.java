@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
-import br.com.team.java.dto.CategoriaDTO;
+import br.com.team.java.dto.CategoriaDto;
 import br.com.team.java.dto.EnderecoDto;
 import br.com.team.java.dto.ImagemDto;
 import br.com.team.java.dto.UsuarioDto;
