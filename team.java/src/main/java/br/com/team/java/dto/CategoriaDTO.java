@@ -7,7 +7,6 @@ import org.modelmapper.ModelMapper;
 
 import br.com.team.java.model.Categoria;
 import br.com.team.java.model.Produto;
-import br.com.team.java.model.Usuario;
 import lombok.Data;
 
 @Data

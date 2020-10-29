@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.team.java.dto.CategoriaDTO;
-import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Categoria;
-import br.com.team.java.model.Usuario;
 import br.com.team.java.service.CategoriaService;
 
 @RestController

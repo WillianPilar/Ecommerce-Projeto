@@ -23,13 +23,7 @@ public class UsuarioDto {
 
 	public Usuario toEntity() {
 		ModelMapper modelMapper = new ModelMapper();
-		// user here is a prepopulated User instance
 		Usuario entity = modelMapper.map(this, Usuario.class);
 		return entity;
 	}
-
-//		public Usuario transformaParaObjeto(){
-//			//int senha = null;
-//		    return new Usuario(id, nome, email, endereco, null, null);
-//		}
 }

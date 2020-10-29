@@ -10,9 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.team.java.dto.CategoriaDTO;
-import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Categoria;
-import br.com.team.java.model.Usuario;
 import br.com.team.java.repository.CategoriaRepository;
 
 @Service
