@@ -70,7 +70,7 @@ public class Application implements CommandLineRunner {
 					.build();
 
 		u2.addPerfil(Perfil.ADMIN);		
-		u2= this.usuarioRepository.save(u2);
+		this.usuarioRepository.save(u2);
 		
 		Usuario c = Usuario.builder()
 				.nome("Cliente 1")
@@ -79,7 +79,7 @@ public class Application implements CommandLineRunner {
 				.build();
 
 	c.addPerfil(Perfil.CLIENTE);		
-	c= this.usuarioRepository.save(c);
+	this.usuarioRepository.save(c);
 		
 		
 	

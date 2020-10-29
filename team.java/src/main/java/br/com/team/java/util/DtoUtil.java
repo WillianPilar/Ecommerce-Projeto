@@ -114,4 +114,6 @@ public class DtoUtil {
 
 		return entities.map(objectEntity -> modelMapper.map(objectEntity, dtoClass));
 	}
+	
+	private DtoUtil() {}
 }
