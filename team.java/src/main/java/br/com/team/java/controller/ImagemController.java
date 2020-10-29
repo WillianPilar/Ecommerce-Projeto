@@ -35,9 +35,13 @@ public class ImagemController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Imagem> save(@RequestBody Imagem imagem) {
-		Imagem img = this.imagemService.save(imagem);
-		return ResponseEntity.ok().body(img);
+	public ResponseEntity<ImagemDto> save(@RequestBody ImagemDto imagemDto) {
+		
+		Imagem img = this.imagemService.save(imagemDto);
+		
+		ImagemDto imgDto = new ImagemDto(img);
+		
+		return ResponseEntity.ok().body(imgDto);
 	}
 	
 	@GetMapping(value="all")
@@ -50,21 +54,27 @@ public class ImagemController {
 	}
 	
 	@GetMapping(value="{id}")
-	public ResponseEntity<Imagem> getOneById(@PathVariable int id){
+	public ResponseEntity<ImagemDto> getOneById(@PathVariable int id){
+		
 		Imagem imagem = this.imagemService.getOne();
-		return ResponseEntity.ok().body(imagem);
+		ImagemDto imagemDto = new ImagemDto(imagem);
+		
+		return ResponseEntity.ok().body(imagemDto);
 	}
 	
 	
 	@GetMapping(value="thumb")
-	public ResponseEntity<Imagem> getOne(){
+	public ResponseEntity<ImagemDto> getOne(){
+		
 		Imagem imagem = this.imagemService.getOne();
-		return ResponseEntity.ok().body(imagem);
+		ImagemDto imagemDto = new ImagemDto(imagem);
+		return ResponseEntity.ok().body(imagemDto);
 	}
 	
 	@PatchMapping(value = "{id}")
-	public ResponseEntity<Imagem> imagemAtualizar(@PathVariable int id, @RequestBody Imagem imagem){
-		return ResponseEntity.ok().body(imagemService.atualizarImagem(imagem, id));
+	public ResponseEntity<Imagem> imagemAtualizar(@PathVariable int id, @RequestBody ImagemDto imagemDto){
+		
+		return ResponseEntity.ok().body(imagemService.atualizarImagem(imagemDto, id));
 	}
 	
 	@GetMapping(value ="paginador")
