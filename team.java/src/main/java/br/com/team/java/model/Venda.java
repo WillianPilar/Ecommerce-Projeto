@@ -21,7 +21,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.team.java.dto.ProdutoDto;
 import br.com.team.java.dto.VendaDto;
 import br.com.team.java.model.enums.StatusPagamento;
 import br.com.team.java.model.enums.StatusVenda;
