@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.team.java.dto.CategoriaDTO;
+import br.com.team.java.dto.CategoriaDto;
 import br.com.team.java.model.Categoria;
 import br.com.team.java.service.CategoriaService;
 
@@ -28,34 +28,39 @@ public class CategoriaController {
 	private CategoriaService categoriaService;
 
 	@GetMapping
-	public ResponseEntity<List<CategoriaDTO>> findAll() {
+	public ResponseEntity<List<CategoriaDto>> findAll() {
 		List<Categoria> list = this.categoriaService.findAll();
-		List<CategoriaDTO> listDTO = list.stream().map((objeto) -> new CategoriaDTO(objeto))
+		List<CategoriaDto> listDTO = list.stream().map((objeto) -> new CategoriaDto(objeto))
 				.collect(Collectors.toList());
 
 		return ResponseEntity.ok().body(listDTO);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<CategoriaDTO> getOne(@PathVariable int id) {
+	public ResponseEntity<CategoriaDto> getOne(@PathVariable int id) {
 		Categoria categoria = this.categoriaService.getOne(id);
-		CategoriaDTO CategoriaDTO = new CategoriaDTO(categoria);
+		CategoriaDto CategoriaDTO = new CategoriaDto(categoria);
 		return ResponseEntity.ok().body(CategoriaDTO);
 	}
 
 	@PostMapping
-	public ResponseEntity<CategoriaDTO> save(@RequestBody Categoria categoria) {
-		categoria = this.categoriaService.save(categoria);
-		CategoriaDTO CategoriaDTO = new CategoriaDTO(categoria);
+	public ResponseEntity<CategoriaDto> save(@RequestBody CategoriaDto categoriaDto) {
+		Categoria categoria = this.categoriaService.save(categoriaDto);
+		CategoriaDto CategoriaDTO = categoria.toDto();
 		return ResponseEntity.ok().body(CategoriaDTO);
 	}
+	
+	
+	
+	
 
 	@PatchMapping(value = "/{id}")
-	public ResponseEntity<CategoriaDTO> update(@RequestBody Categoria categoria, @PathVariable int id) {
-		categoria = this.categoriaService.update(id, categoria);
-		CategoriaDTO CategoriaDTO = new CategoriaDTO(categoria);
+	public ResponseEntity<CategoriaDto> update(@RequestBody CategoriaDto categoriaDto, @PathVariable int id) {
+		Categoria categoria = this.categoriaService.update(id, categoriaDto);
+		CategoriaDto CategoriaDTO = categoria.toDto();
 		return ResponseEntity.ok().body(CategoriaDTO);
 	}
+	
 
 	@DeleteMapping(value = "/{id}")
 	public void delete(@PathVariable int id) {
@@ -63,10 +68,10 @@ public class CategoriaController {
 	}
 
 	@GetMapping(value = "/pagination")
-	public ResponseEntity<Page<CategoriaDTO>> paginacao(@RequestParam(value = "pagina", defaultValue = "5") int pagina,
+	public ResponseEntity<Page<CategoriaDto>> paginacao(@RequestParam(value = "pagina", defaultValue = "5") int pagina,
 			@RequestParam(value = "linhas", defaultValue = "5") int linhas,
 			@RequestParam(value = "busca", defaultValue = "") String busca) {
-		Page<CategoriaDTO> page = this.categoriaService.pagination(pagina, linhas, busca);
+		Page<CategoriaDto> page = this.categoriaService.pagination(pagina, linhas, busca);
 		return ResponseEntity.ok().body(page);
 	}
 

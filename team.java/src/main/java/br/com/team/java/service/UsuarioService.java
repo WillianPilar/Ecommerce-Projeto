@@ -32,7 +32,7 @@ public class UsuarioService {
 
 	public Usuario consultarUsuarioId(int id) {
 
-		return this.usuarioRepository.findById(id).get();
+		return this.usuarioRepository.findById(id).orElse(null);
 	}
 
 	public List<Usuario> consultarTodosUsuarios() {

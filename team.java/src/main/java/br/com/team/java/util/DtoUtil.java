@@ -47,7 +47,7 @@ public class DtoUtil {
 		return obj;
 	}
 
-	public static Categoria categoriaFromDto(CategoriaDTO obj) {
+	public static Categoria categoriaFromDto(CategoriaDto obj) {
 		return new Categoria(obj.getId(), obj.getNome(), obj.getDescricao(), null);
 	}
 	
