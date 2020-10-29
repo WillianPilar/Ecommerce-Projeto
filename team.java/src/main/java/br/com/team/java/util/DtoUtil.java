@@ -1,25 +1,17 @@
 package br.com.team.java.util;
 
-import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
+import br.com.team.java.dto.CategoriaDto;
 import br.com.team.java.dto.EnderecoDto;
-import br.com.team.java.dto.CategoriaDTO;
 import br.com.team.java.dto.ImagemDto;
-//import br.com.team.java.dto.ItemVendaDto;
-import br.com.team.java.dto.ProdutoDto;
-//import br.com.team.java.dto.VendaDto;
-import br.com.team.java.dto.ImagemDto;
-import br.com.team.java.dto.ProdutoDto;
 import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.dto.UsuarioNewDto;
 import br.com.team.java.model.Categoria;
 import br.com.team.java.model.Endereco;
 import br.com.team.java.model.Imagem;
-import br.com.team.java.model.Produto;
 import br.com.team.java.model.Usuario;
 
 public class DtoUtil {
@@ -110,7 +102,7 @@ public class DtoUtil {
 
 	}
 
-	public static Categoria categoriaFromDto(CategoriaDTO obj) {
+	public static Categoria categoriaFromDto(CategoriaDto obj) {
 		return new Categoria(obj.getId(), obj.getNome(), obj.getDescricao(), null);
 	}
 	

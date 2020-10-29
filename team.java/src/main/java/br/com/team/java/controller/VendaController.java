@@ -1,6 +1,7 @@
 package br.com.team.java.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.team.java.dto.VendaDto;
 import br.com.team.java.model.Venda;
 import br.com.team.java.service.VendaService;
 
@@ -24,27 +26,34 @@ public class VendaController {
 	private VendaService vendaService;
 	
 	@GetMapping
-	public ResponseEntity<List<Venda>> getAll(){
-		List<Venda> l = this.vendaService.findAll();
-		return ResponseEntity.ok().body(l);
+	public ResponseEntity<List<VendaDto>> findAll(){
+		List<Venda> list = this.vendaService.findAll();
+		List<VendaDto> listDTO = list.stream().map((objeto) -> objeto.toDto())
+				.collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
 	}
+	
 	
 	@GetMapping(value="{id}")
-	public ResponseEntity<Venda> getOne(@PathVariable int id){
-		Venda v = this.vendaService.getOne(id);
-		return ResponseEntity.ok().body(v);
+	public ResponseEntity<VendaDto> getOne(@PathVariable int id){
+		Venda venda = this.vendaService.getOne(id);
+		VendaDto vendaDTO = venda.toDto(); 
+		return ResponseEntity.ok().body(vendaDTO);
 	}
 	
+	
 	@PostMapping
-	public ResponseEntity<Venda> save(@RequestBody Venda venda){
+	public ResponseEntity<VendaDto> save(@RequestBody Venda venda){
 		Venda v = this.vendaService.save(venda);
-		return ResponseEntity.ok().body(v);
+		VendaDto vendaDTO = v.toDto();
+		return ResponseEntity.ok().body(vendaDTO);
 	}
 	
 	@PatchMapping(value="{id}")
-	public ResponseEntity<Venda> update(@RequestBody Venda venda, @PathVariable int id){
+	public ResponseEntity<VendaDto> update(@RequestBody Venda venda, @PathVariable int id){
 		Venda v = this.vendaService.update(id, venda);
-		return ResponseEntity.ok().body(v);
+		VendaDto vendaDTO = v.toDto();
+		return ResponseEntity.ok().body(vendaDTO);
 	}
 	
 	@DeleteMapping(value="{id}")

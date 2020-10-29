@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import br.com.team.java.dto.CategoriaDTO;
+import br.com.team.java.dto.CategoriaDto;
 import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Categoria;
 import br.com.team.java.model.Usuario;
@@ -54,13 +54,13 @@ public class CategoriaService {
 		
 	}
 	
-	public Page<CategoriaDTO> pagination(int pagina, int linhas, String busca){
+	public Page<CategoriaDto> pagination(int pagina, int linhas, String busca){
 		PageRequest pageRequest = PageRequest.of(pagina, linhas);
 		Page<Categoria> entities = this.categoriaRepository.findByNomeContainsIgnoreCase(busca, pageRequest);
-		Page<CategoriaDTO> dtoPage = entities.map(new Function<Categoria, CategoriaDTO>() {
+		Page<CategoriaDto> dtoPage = entities.map(new Function<Categoria, CategoriaDto>() {
 			@Override
-			public CategoriaDTO apply(Categoria entity) {
-				CategoriaDTO dto = new CategoriaDTO(entity);
+			public CategoriaDto apply(Categoria entity) {
+				CategoriaDto dto = new CategoriaDto(entity);
 				return dto;
 			}
 		});

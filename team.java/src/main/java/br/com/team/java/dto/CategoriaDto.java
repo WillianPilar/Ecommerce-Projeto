@@ -7,18 +7,17 @@ import org.modelmapper.ModelMapper;
 
 import br.com.team.java.model.Categoria;
 import br.com.team.java.model.Produto;
-import br.com.team.java.model.Usuario;
 import lombok.Data;
 
 @Data
-public class CategoriaDTO implements Serializable{
+public class CategoriaDto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
 	private String nome;
 	private String descricao;
 
-	public CategoriaDTO(Categoria categoria) {
+	public CategoriaDto(Categoria categoria) {
 		this.id = categoria.getId();
 		this.nome = categoria.getNome();
 		this.descricao = categoria.getDescricao();

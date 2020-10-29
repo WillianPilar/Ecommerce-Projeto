@@ -8,7 +8,6 @@ import br.com.team.java.model.Categoria;
 import br.com.team.java.model.Imagem;
 import br.com.team.java.model.ItemVenda;
 import br.com.team.java.model.Produto;
-import br.com.team.java.model.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
