@@ -1,6 +1,7 @@
 package br.com.team.java.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -57,7 +58,7 @@ public class Venda implements Serializable {
 	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-
+	private Date dataVenda = new Date(System.currentTimeMillis());
 	private StatusVenda statusVenda;
 	
 	private String formaPagamento;
