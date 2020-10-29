@@ -44,18 +44,23 @@ public class CategoriaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<CategoriaDto> save(@RequestBody Categoria categoria) {
-		categoria = this.categoriaService.save(categoria);
-		CategoriaDto CategoriaDTO = new CategoriaDto(categoria);
+	public ResponseEntity<CategoriaDto> save(@RequestBody CategoriaDto categoriaDto) {
+		Categoria categoria = this.categoriaService.save(categoriaDto);
+		CategoriaDto CategoriaDTO = categoria.toDto();
 		return ResponseEntity.ok().body(CategoriaDTO);
 	}
+	
+	
+	
+	
 
 	@PatchMapping(value = "/{id}")
-	public ResponseEntity<CategoriaDto> update(@RequestBody Categoria categoria, @PathVariable int id) {
-		categoria = this.categoriaService.update(id, categoria);
-		CategoriaDto CategoriaDTO = new CategoriaDto(categoria);
+	public ResponseEntity<CategoriaDto> update(@RequestBody CategoriaDto categoriaDto, @PathVariable int id) {
+		Categoria categoria = this.categoriaService.update(id, categoriaDto);
+		CategoriaDto CategoriaDTO = categoria.toDto();
 		return ResponseEntity.ok().body(CategoriaDTO);
 	}
+	
 
 	@DeleteMapping(value = "/{id}")
 	public void delete(@PathVariable int id) {

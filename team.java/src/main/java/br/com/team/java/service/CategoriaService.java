@@ -1,5 +1,6 @@
 package br.com.team.java.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -10,8 +11,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.team.java.dto.CategoriaDto;
+import br.com.team.java.dto.ProdutoDto;
 import br.com.team.java.dto.UsuarioDto;
+import br.com.team.java.exception.ObjectNotFoundException;
 import br.com.team.java.model.Categoria;
+import br.com.team.java.model.Imagem;
+import br.com.team.java.model.Produto;
 import br.com.team.java.model.Usuario;
 import br.com.team.java.repository.CategoriaRepository;
 
@@ -29,7 +34,8 @@ public class CategoriaService {
 		return this.categoriaRepository.findById(id).orElse(new Categoria());
 	}
 	
-	public Categoria save(Categoria categoria) {
+	public Categoria save(CategoriaDto categoriaDto) {
+		Categoria categoria = categoriaDto.toEntity();
 		return this.categoriaRepository.save(categoria);
 	}
 	
@@ -37,7 +43,8 @@ public class CategoriaService {
 		this.categoriaRepository.deleteById(id);
 	}
 	
-	public Categoria update(int id, Categoria categoria) {
+	public Categoria update(int id, CategoriaDto categoriaDto) {
+		Categoria categoria = categoriaDto.toEntity();
 		Optional<Categoria> a = this.categoriaRepository.findById(id);
 		Categoria update = null;
 		
@@ -50,9 +57,10 @@ public class CategoriaService {
 			update = this.categoriaRepository.save(update);
 		}
 		
-		return update;
-		
+		return update;		
 	}
+	
+
 	
 	public Page<CategoriaDto> pagination(int pagina, int linhas, String busca){
 		PageRequest pageRequest = PageRequest.of(pagina, linhas);
