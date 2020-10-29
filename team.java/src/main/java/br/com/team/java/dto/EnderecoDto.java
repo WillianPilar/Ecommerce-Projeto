@@ -1,7 +1,6 @@
 package br.com.team.java.dto;
 
 import br.com.team.java.model.Endereco;
-import br.com.team.java.model.Usuario;
 import lombok.Data;
 
 @Data
