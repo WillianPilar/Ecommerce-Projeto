@@ -27,7 +27,7 @@ public class EnderecoController {
 	@GetMapping 
 	public ResponseEntity <List<EnderecoDto>> consultarEnderecos(){
 		List<Endereco> list = this.enderecoService.consultarEnderecos();
-		List<EnderecoDto> listDTO = list.stream().map( (objeto) -> new EnderecoDto(objeto)  ).collect(Collectors.toList());		
+		List<EnderecoDto> listDTO = list.stream().map(objeto -> new EnderecoDto(objeto)  ).collect(Collectors.toList());		
 		
 		return ResponseEntity.ok().body(listDTO);
 	}

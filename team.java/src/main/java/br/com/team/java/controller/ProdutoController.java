@@ -30,7 +30,7 @@ public class ProdutoController {
 	@GetMapping
 	public ResponseEntity<List<ProdutoDto>> getAll(){
 		List<Produto> produto = this.produtoService.getAll();
-		List<ProdutoDto> produtoDto = produto.stream().map( (objeto) -> objeto.toDto() ).collect(Collectors.toList()); 
+		List<ProdutoDto> produtoDto = produto.stream().map(objeto -> objeto.toDto() ).collect(Collectors.toList()); 
 		
 		return ResponseEntity.ok().body(produtoDto);
 	}

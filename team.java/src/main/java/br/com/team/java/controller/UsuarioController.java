@@ -30,7 +30,7 @@ public class UsuarioController {
 	@GetMapping 
 	public ResponseEntity <List<UsuarioDto>> findAll(){
 		List<Usuario> list = this.usuarioService.consultarTodosUsuarios();
-		List<UsuarioDto> listDTO = list.stream().map( (objeto) -> new UsuarioDto(objeto)  ).collect(Collectors.toList());		
+		List<UsuarioDto> listDTO = list.stream().map(objeto -> new UsuarioDto(objeto)  ).collect(Collectors.toList());		
 		
 		return ResponseEntity.ok().body(listDTO);
 	}

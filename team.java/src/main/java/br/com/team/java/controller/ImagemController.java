@@ -48,7 +48,7 @@ public class ImagemController {
 	public ResponseEntity<List<ImagemDto>> getAll(){
 		List<Imagem> l = this.imagemService.getAll();
 		
-		List<ImagemDto> imgDto = l.stream().map((objeto)-> objeto.toDto()).collect(Collectors.toList());
+		List<ImagemDto> imgDto = l.stream().map(objeto-> objeto.toDto()).collect(Collectors.toList());
 		
 		return ResponseEntity.ok().body(imgDto);
 	}
