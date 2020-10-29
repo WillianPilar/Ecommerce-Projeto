@@ -39,7 +39,7 @@ public class ImagemController {
 		
 		Imagem img = this.imagemService.save(imagemDto);
 		
-		ImagemDto imgDto = new ImagemDto(img);
+		ImagemDto imgDto = img.toDto();
 		
 		return ResponseEntity.ok().body(imgDto);
 	}
@@ -48,7 +48,7 @@ public class ImagemController {
 	public ResponseEntity<List<ImagemDto>> getAll(){
 		List<Imagem> l = this.imagemService.getAll();
 		
-		List<ImagemDto> imgDto = l.stream().map((objeto)-> new ImagemDto(objeto)).collect(Collectors.toList());
+		List<ImagemDto> imgDto = l.stream().map((objeto)-> objeto.toDto()).collect(Collectors.toList());
 		
 		return ResponseEntity.ok().body(imgDto);
 	}
@@ -57,7 +57,7 @@ public class ImagemController {
 	public ResponseEntity<ImagemDto> getOneById(@PathVariable int id){
 		
 		Imagem imagem = this.imagemService.getOne();
-		ImagemDto imagemDto = new ImagemDto(imagem);
+		ImagemDto imagemDto = imagem.toDto();
 		
 		return ResponseEntity.ok().body(imagemDto);
 	}
@@ -67,7 +67,7 @@ public class ImagemController {
 	public ResponseEntity<ImagemDto> getOne(){
 		
 		Imagem imagem = this.imagemService.getOne();
-		ImagemDto imagemDto = new ImagemDto(imagem);
+		ImagemDto imagemDto = imagem.toDto();
 		return ResponseEntity.ok().body(imagemDto);
 	}
 	
