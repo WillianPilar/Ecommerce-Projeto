@@ -1,4 +1,4 @@
-package br.com.team.java.DTO;
+package br.com.team.java.dto;
 
 import java.io.Serializable;
 import java.util.List;
