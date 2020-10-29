@@ -15,7 +15,6 @@ import org.modelmapper.ModelMapper;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.team.java.dto.CategoriaDto;
-import br.com.team.java.dto.ProdutoDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

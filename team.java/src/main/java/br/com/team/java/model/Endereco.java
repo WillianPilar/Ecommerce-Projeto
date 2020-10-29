@@ -12,7 +12,6 @@ import org.modelmapper.ModelMapper;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.team.java.dto.EnderecoDto;
-import br.com.team.java.dto.UsuarioDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

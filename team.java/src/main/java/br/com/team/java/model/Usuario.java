@@ -20,7 +20,6 @@ import org.modelmapper.ModelMapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.com.team.java.dto.ProdutoDto;
 import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.enums.Perfil;
 import lombok.AllArgsConstructor;
