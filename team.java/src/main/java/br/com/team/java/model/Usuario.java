@@ -16,8 +16,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.com.team.java.dto.ProdutoDto;
+import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.enums.Perfil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -70,5 +74,12 @@ public class Usuario {
 		}
 		
 		perfis.add( perfil.getCodigo() );
+	}
+	
+	public UsuarioDto toDto() {
+		ModelMapper modelMapper = new ModelMapper();
+		// user here is a prepopulated User instance
+		UsuarioDto entity = modelMapper.map(this, UsuarioDto.class);
+		return entity;
 	}
 }

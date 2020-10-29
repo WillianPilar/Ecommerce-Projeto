@@ -52,9 +52,10 @@ public class UsuarioController {
 	}
 	
 	@PostMapping 
-	public ResponseEntity<Usuario>salvarUsuario(@RequestBody Usuario usuario){
+	public ResponseEntity<UsuarioDto>salvarUsuario(@RequestBody Usuario usuario){
 		Usuario user = this.usuarioService.salvarUsuario(usuario);
-		return ResponseEntity.ok().body(user);
+		UsuarioDto userDto = user.toDto();
+		return ResponseEntity.ok().body(userDto);
 	}
 	
 	@DeleteMapping(value="/{id}")
@@ -63,9 +64,10 @@ public class UsuarioController {
 	}
 	
 	@PatchMapping(value ="{id}")
-	public ResponseEntity<Usuario> atualizarUsuario(@PathVariable int id, @RequestBody Usuario usuario){
+	public ResponseEntity<UsuarioDto> atualizarUsuario(@PathVariable int id, @RequestBody Usuario usuario){
 		Usuario user = this.usuarioService.atualizarUsuario(id, usuario);
-		return ResponseEntity.ok().body(user);
+		UsuarioDto userDto = user.toDto();
+		return ResponseEntity.ok().body(userDto);
 	}
 	
 	@GetMapping("/paginadorLike")

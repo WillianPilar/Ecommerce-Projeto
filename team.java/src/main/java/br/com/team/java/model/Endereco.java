@@ -7,7 +7,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import br.com.team.java.dto.EnderecoDto;
+import br.com.team.java.dto.UsuarioDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,5 +42,12 @@ public class Endereco {
 	@OneToOne(mappedBy = "endereco")
 	@JsonIgnoreProperties("endereco")
 	private Usuario usuario;
+	
+	public EnderecoDto toDto() {
+		ModelMapper modelMapper = new ModelMapper();
+		// user here is a prepopulated User instance
+		EnderecoDto entity = modelMapper.map(this, EnderecoDto.class);
+		return entity;
+	}
 	
 }

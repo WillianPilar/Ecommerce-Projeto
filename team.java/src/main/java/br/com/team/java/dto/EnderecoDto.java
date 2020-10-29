@@ -1,10 +1,21 @@
 package br.com.team.java.dto;
 
+import java.util.Set;
+
+import org.modelmapper.ModelMapper;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.com.team.java.model.Endereco;
 import br.com.team.java.model.Usuario;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class EnderecoDto {
 	
 	private int id;
@@ -14,6 +25,7 @@ public class EnderecoDto {
 	private String cep;
 	private String estado;
 	private String cidade;
+	@JsonIgnoreProperties("endereco")
 	private UsuarioDto usuarioDto;
 	
 	public EnderecoDto ( Endereco endereco ) {
@@ -24,7 +36,16 @@ public class EnderecoDto {
 		this.cep = endereco.getCep();
 		this.estado = endereco.getEstado();
 		this.cidade = endereco.getCidade();
-		this.usuarioDto = new UsuarioDto(endereco.getUsuario());
-
+		UsuarioDto userDto = endereco.getUsuario().toDto();
+		this.usuarioDto = userDto;
+ 
+	}
+	
+	
+	public Endereco toEntity() {
+		ModelMapper modelMapper = new ModelMapper();
+		// user here is a prepopulated User instance
+		Endereco entity = modelMapper.map(this, Endereco.class);
+		return entity;
 	}
 }
