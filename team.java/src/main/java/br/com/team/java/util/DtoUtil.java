@@ -19,11 +19,10 @@ public class DtoUtil {
 	private static ModelMapper modelMapper;
 
 	public static Usuario usuarioFromDto(UsuarioDto objDto) {
-		Usuario obj = Usuario.builder().id(objDto.getId()).nome(objDto.getNome()).email(objDto.getEmail()).build();
-		return obj;
+		return Usuario.builder().id(objDto.getId()).nome(objDto.getNome()).email(objDto.getEmail()).build();
 	}
 
-	public static Imagem ImagemProdFromDto(ImagemDto obj) {
+	public static Imagem imagemProdFromDto(ImagemDto obj) {
 		return new Imagem(
 				obj.getId(), 
 				obj.getUrl(), 				
@@ -33,18 +32,14 @@ public class DtoUtil {
 	}
 
 	public static Usuario usuarioNewFromDto(UsuarioNewDto objDto) {
-		Usuario obj = Usuario.builder().id(objDto.getId()).email(objDto.getEmail()).senha(objDto.getSenha())
+		return Usuario.builder().id(objDto.getId()).email(objDto.getEmail()).senha(objDto.getSenha())
 				.nome(objDto.getNome()).build();
-
-		return obj;
 	}
 
 	public static Endereco enderecoUsuarioFromDto(EnderecoDto objDto) {
-		Endereco obj = Endereco.builder().id(objDto.getId()).cep(objDto.getCep()).bairro(objDto.getBairro())
+		return Endereco.builder().id(objDto.getId()).cep(objDto.getCep()).bairro(objDto.getBairro())
 				.cidade(objDto.getCidade()).estado(objDto.getEstado()).logradouro(objDto.getLogradouro())
 				.numero(objDto.getNumero()).build();
-
-		return obj;
 	}
 
 	public static Categoria categoriaFromDto(CategoriaDto obj) {

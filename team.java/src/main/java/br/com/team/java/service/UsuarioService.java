@@ -29,7 +29,6 @@ public class UsuarioService {
 	}
 
 	public Usuario consultarUsuarioId(int id) {
-
 		return this.usuarioRepository.findById(id).orElse(null);
 	}
 
@@ -43,7 +42,6 @@ public class UsuarioService {
 
 	public Usuario atualizarUsuario(int id, Usuario usuario) {
 		Optional<Usuario> obj = this.usuarioRepository.findById(id);
-
 		Usuario update = null;
 
 		if (obj.isPresent()) {
@@ -54,10 +52,9 @@ public class UsuarioService {
 				update.setSenha(usuario.getSenha());
 				update.setPerfis(usuario.getPerfis());
 			}
-			update = this.usuarioRepository.save(update);
 		}
 
-		return update;
+		return this.usuarioRepository.save(update);
 	}
 
 	public Page<UsuarioDto> paginacaoLike(int pagina, int linhas, String nome) {
@@ -66,9 +63,7 @@ public class UsuarioService {
 		Page<UsuarioDto> dtoPage = entities.map(new Function<Usuario, UsuarioDto>() {
 			@Override
 			public UsuarioDto apply(Usuario entity) {
-				UsuarioDto dto = new UsuarioDto(entity);
-				// Conversion logic
-				return dto;
+				return new UsuarioDto(entity);
 			}
 		});
 
