@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 import br.com.team.java.dto.EnderecoDto;
-import br.com.team.java.dto.CategoriaDTO;
+import br.com.team.java.dto.CategoriaDto;
 import br.com.team.java.dto.ImagemDto;
 //import br.com.team.java.dto.ItemVendaDto;
 import br.com.team.java.dto.ProdutoDto;
@@ -110,7 +110,7 @@ public class DtoUtil {
 
 	}
 
-	public static Categoria categoriaFromDto(CategoriaDTO obj) {
+	public static Categoria categoriaFromDto(CategoriaDto obj) {
 		return new Categoria(obj.getId(), obj.getNome(), obj.getDescricao(), null);
 	}
 	
