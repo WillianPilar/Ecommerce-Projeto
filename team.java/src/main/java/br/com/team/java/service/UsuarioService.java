@@ -14,7 +14,6 @@ import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Usuario;
 
 import br.com.team.java.repository.UsuarioRepository;
-import br.com.team.java.util.DtoUtil;
 
 @Service
 public class UsuarioService {
