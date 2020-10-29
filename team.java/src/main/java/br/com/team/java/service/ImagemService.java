@@ -24,7 +24,7 @@ public class ImagemService {
 	}
 
 	public Imagem save(ImagemDto imagemDto) {
-		Imagem imagem = DtoUtil.ImagemProdFromDto(imagemDto);
+		Imagem imagem = imagemDto.toEntity();
 		return this.imagemRepository.save(imagem);
 	}
 		
@@ -48,7 +48,7 @@ public class ImagemService {
 
 	public Imagem atualizarImagem(ImagemDto imagemDto, int id) {
 		
-		Imagem imagem = DtoUtil.ImagemProdFromDto(imagemDto);
+		Imagem imagem = imagemDto.toEntity();
 		
 		Optional<Imagem> imagemBuscada = imagemRepository.findById(id);
 		Imagem novaImagem = null;
