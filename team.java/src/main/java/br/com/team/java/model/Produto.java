@@ -57,8 +57,6 @@ public class Produto {
 	
 	public ProdutoDto toDto() {
 		ModelMapper modelMapper = new ModelMapper();
-		// user here is a prepopulated User instance
-		ProdutoDto entity = modelMapper.map(this, ProdutoDto.class);
-		return entity;
+		return modelMapper.map(this, ProdutoDto.class);
 	}
 }

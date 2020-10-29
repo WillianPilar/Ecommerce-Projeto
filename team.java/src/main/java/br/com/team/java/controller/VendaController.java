@@ -28,7 +28,7 @@ public class VendaController {
 	@GetMapping
 	public ResponseEntity<List<VendaDto>> findAll(){
 		List<Venda> list = this.vendaService.findAll();
-		List<VendaDto> listDTO = list.stream().map((objeto) -> objeto.toDto())
+		List<VendaDto> listDTO = list.stream().map(objeto -> objeto.toDto())
 				.collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
@@ -43,14 +43,14 @@ public class VendaController {
 	
 	
 	@PostMapping
-	public ResponseEntity<VendaDto> save(@RequestBody Venda venda){
-		Venda v = this.vendaService.save(venda);
+	public ResponseEntity<VendaDto> save(@RequestBody VendaDto vendaDto){
+		Venda v = this.vendaService.save(vendaDto);
 		VendaDto vendaDTO = v.toDto();
 		return ResponseEntity.ok().body(vendaDTO);
 	}
 	
 	@PatchMapping(value="{id}")
-	public ResponseEntity<VendaDto> update(@RequestBody Venda venda, @PathVariable int id){
+	public ResponseEntity<VendaDto> update(@RequestBody VendaDto venda, @PathVariable int id){
 		Venda v = this.vendaService.update(id, venda);
 		VendaDto vendaDTO = v.toDto();
 		return ResponseEntity.ok().body(vendaDTO);

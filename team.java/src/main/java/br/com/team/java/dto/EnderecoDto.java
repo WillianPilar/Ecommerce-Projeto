@@ -1,10 +1,7 @@
 package br.com.team.java.dto;
 
-import java.util.Set;
-
 import org.modelmapper.ModelMapper;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.team.java.model.Endereco;
