@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.team.java.dto.VendaDto;
+import br.com.team.java.model.Categoria;
 import br.com.team.java.model.ItemVenda;
 import br.com.team.java.model.Venda;
 import br.com.team.java.repository.ItemVendaRepository;
@@ -20,20 +22,18 @@ public class VendaService {
 	@Autowired
 	private ItemVendaRepository itemVendaRepository;
 
-	@Autowired
-	private UsuarioRepository userRepository;
-
 	public List<Venda> findAll() {
 		return this.vendaRepository.findAll();
 	}
 
 	public Venda getOne(int id) {
 		return this.vendaRepository.findById(id).orElse(new Venda());
-		// .orElseThrow( () -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 
-	public Venda save(Venda venda) {
-//		return this.vendaRepository.save(venda);
+	
+	
+	public Venda save(VendaDto vendaDto) {
+		Venda venda = vendaDto.toEntity();
 		Venda vendaSalva = this.vendaRepository.save(venda);
 		if (venda.getItem() != null) {
 			for (ItemVenda item : venda.getItem()) {
@@ -45,7 +45,8 @@ public class VendaService {
 
 	}
 
-	public Venda update(int id, Venda venda) {
+	public Venda update(int id, VendaDto vendaDto) {
+		Venda venda = vendaDto.toEntity();
 		Optional<Venda> a = this.vendaRepository.findById(id);
 		Venda update = null;
 
