@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.jaxb.SpringDataJaxb.PageDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.team.java.dto.UsuarioDto;
 import br.com.team.java.model.Usuario;
 import br.com.team.java.service.UsuarioService;
+import br.com.team.java.util.DtoUtil;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -43,9 +45,10 @@ public class UsuarioController {
 	
 	
 	@GetMapping (value = "/{id}")
-	public ResponseEntity<Usuario> consultarUsuario(@PathVariable int id){
+	public ResponseEntity<UsuarioDto> consultarUsuario(@PathVariable int id){
 		Usuario usuario = this.usuarioService.consultarUsuarioId(id);
-		return ResponseEntity.ok().body(usuario);
+		UsuarioDto usuarioDto = new UsuarioDto(usuario);
+		return ResponseEntity.ok().body(usuarioDto);
 	}
 	
 	@PostMapping 
@@ -66,10 +69,10 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/paginadorLike")
-	public ResponseEntity<Page<Usuario>> paginacaoLike(@RequestParam(value = "pagina", defaultValue = "0") int pagina,
+	public ResponseEntity<Page<UsuarioDto>> paginacaoLike(@RequestParam(value = "pagina", defaultValue = "0") int pagina,
 			@RequestParam(value = "linhas", defaultValue = "5") int linhas,
 			@RequestParam(value = "nome", defaultValue = "") String nome) {
-		Page<Usuario> page = this.usuarioService.paginacaoLike(pagina, linhas, nome);
+		Page<UsuarioDto> page = this.usuarioService.paginacaoLike(pagina, linhas, nome);
 		return ResponseEntity.ok().body(page);
 	}
 	

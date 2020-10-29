@@ -1,6 +1,7 @@
 package br.com.team.java.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.team.java.dto.ImagemDto;
 import br.com.team.java.model.Imagem;
 import br.com.team.java.service.ImagemService;
 
@@ -39,9 +41,12 @@ public class ImagemController {
 	}
 	
 	@GetMapping(value="all")
-	public ResponseEntity<List<Imagem>> getAll(){
+	public ResponseEntity<List<ImagemDto>> getAll(){
 		List<Imagem> l = this.imagemService.getAll();
-		return ResponseEntity.ok().body(l);
+		
+		List<ImagemDto> imgDto = l.stream().map((objeto)-> new ImagemDto(objeto)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(imgDto);
 	}
 	
 	@GetMapping(value="{id}")
