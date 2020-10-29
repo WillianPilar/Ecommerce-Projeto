@@ -39,7 +39,7 @@ export class ImagemListComponent implements OnInit {
   deletarImagem(id){
     this.imagemService.delete(id).subscribe(
       (dados)=> {
-        this.getAll();
+        this.getImagens();
       }
     )
   }
