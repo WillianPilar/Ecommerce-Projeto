@@ -32,7 +32,7 @@ public class ProdutoController {
 	public ResponseEntity<List<ProdutoDto>> getAll(){
 		List<Produto> produto = this.produtoService.getAll();
 		
-		List<ProdutoDto> produtoDto = produto.stream().map( (objeto) -> new ProdutoDto(objeto) ).collect(Collectors.toList()); 
+		List<ProdutoDto> produtoDto = produto.stream().map( (objeto) -> objeto.toDto() ).collect(Collectors.toList()); 
 		
 		return ResponseEntity.ok().body(produtoDto);
 	}
@@ -41,7 +41,7 @@ public class ProdutoController {
 	public ResponseEntity<ProdutoDto> getOne(@PathVariable int id){
 		Produto produto = this.produtoService.getOne(id);
 		
-		ProdutoDto produtoDto = new ProdutoDto(produto);
+		ProdutoDto produtoDto = produto.toDto();
 		
 		return ResponseEntity.ok().body(produtoDto);
 	}
@@ -57,7 +57,8 @@ public class ProdutoController {
 		
 		Produto produto = this.produtoService.save(produtoDtoRecebido);
 		
-		ProdutoDto produtoDtoEnviar = new ProdutoDto(produto);
+		//ProdutoDto produtoDtoEnviar = new ProdutoDto(produto);
+		ProdutoDto produtoDtoEnviar = produto.toDto();
 		
 		return ResponseEntity.ok().body(produtoDtoEnviar);
 	}
@@ -66,7 +67,7 @@ public class ProdutoController {
 	public  ResponseEntity<ProdutoDto> update(@RequestBody ProdutoDto produtoDtoRecebido, @PathVariable int id) {
 		Produto produto = this.produtoService.update(id, produtoDtoRecebido);
 		
-		ProdutoDto produtoDtoEnviar = new ProdutoDto(produto);
+		ProdutoDto produtoDtoEnviar = produto.toDto();
 		return ResponseEntity.ok().body(produtoDtoEnviar);
 	}
 	

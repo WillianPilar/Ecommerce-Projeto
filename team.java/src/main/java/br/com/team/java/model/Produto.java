@@ -14,8 +14,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.team.java.dto.ProdutoDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -51,4 +54,11 @@ public class Produto {
 	@OneToMany(mappedBy = "produto")
 	@JsonIgnore
 	private List<ItemVenda> item;
+	
+	public ProdutoDto toDto() {
+		ModelMapper modelMapper = new ModelMapper();
+		// user here is a prepopulated User instance
+		ProdutoDto entity = modelMapper.map(this, ProdutoDto.class);
+		return entity;
+	}
 }

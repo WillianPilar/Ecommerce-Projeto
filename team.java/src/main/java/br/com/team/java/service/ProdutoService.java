@@ -40,7 +40,9 @@ public class ProdutoService {
 	}
 
 	public Produto save(ProdutoDto produtoDto) {
-		Produto produto = DtoUtil.produtoFromDto(produtoDto);
+
+		//Produto produto = DtoUtil.produtoFromDto(produtoDto);
+		Produto produto = produtoDto.toEntity();
 		
 		if(produto.getCategoria() != null) {
 			br.com.team.java.model.Categoria c = this.categoriaRepository.findById(produto.getCategoria().getId())
@@ -52,7 +54,7 @@ public class ProdutoService {
 
 	public Produto update(int id, ProdutoDto produtoDto) {
 		
-		Produto produto = DtoUtil.produtoFromDto(produtoDto);
+		Produto produto = produtoDto.toEntity();
 		
 		Produto newProduto = this.produtoRepository.findById(id).get();
 		List<Imagem> imagens = new ArrayList<Imagem>();
