@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.team.java.dto.UsuarioDto;
+import br.com.team.java.dto.UsuarioSenhaDto;
 import br.com.team.java.model.Usuario;
 import br.com.team.java.service.UsuarioService;
 import br.com.team.java.util.DtoUtil;
@@ -52,8 +53,15 @@ public class UsuarioController {
 	}
 	
 	@PostMapping 
-	public ResponseEntity<UsuarioDto>salvarUsuario(@RequestBody Usuario usuario){
+	public ResponseEntity<UsuarioSenhaDto>salvarUsuario(@RequestBody UsuarioSenhaDto usuario){
 		Usuario user = this.usuarioService.salvarUsuario(usuario);
+		UsuarioSenhaDto userDto = user.toSenhaDto();
+		return ResponseEntity.ok().body(userDto);
+	}
+	
+	@PatchMapping(value ="{id}")
+	public ResponseEntity<UsuarioDto> atualizarUsuario(@PathVariable int id, @RequestBody UsuarioSenhaDto usuario){
+		Usuario user = this.usuarioService.atualizarUsuario(id, usuario);
 		UsuarioDto userDto = user.toDto();
 		return ResponseEntity.ok().body(userDto);
 	}
@@ -61,13 +69,6 @@ public class UsuarioController {
 	@DeleteMapping(value="/{id}")
 	public void delete(@PathVariable int id) {
 		this.usuarioService.delete(id); 
-	}
-	
-	@PatchMapping(value ="{id}")
-	public ResponseEntity<UsuarioDto> atualizarUsuario(@PathVariable int id, @RequestBody Usuario usuario){
-		Usuario user = this.usuarioService.atualizarUsuario(id, usuario);
-		UsuarioDto userDto = user.toDto();
-		return ResponseEntity.ok().body(userDto);
 	}
 	
 	@GetMapping("/paginadorLike")

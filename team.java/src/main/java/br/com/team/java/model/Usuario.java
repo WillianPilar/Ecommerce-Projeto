@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.team.java.dto.ProdutoDto;
 import br.com.team.java.dto.UsuarioDto;
+import br.com.team.java.dto.UsuarioSenhaDto;
 import br.com.team.java.model.enums.Perfil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -80,6 +81,13 @@ public class Usuario {
 		ModelMapper modelMapper = new ModelMapper();
 		// user here is a prepopulated User instance
 		UsuarioDto entity = modelMapper.map(this, UsuarioDto.class);
+		return entity;
+	}
+	
+	public UsuarioSenhaDto toSenhaDto() {
+		ModelMapper modelMapper = new ModelMapper();
+		// user here is a prepopulated User instance
+		UsuarioSenhaDto entity = modelMapper.map(this, UsuarioSenhaDto.class);
 		return entity;
 	}
 }
