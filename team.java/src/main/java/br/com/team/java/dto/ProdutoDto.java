@@ -10,6 +10,7 @@ import lombok.Data;
 
 @Data
 public class ProdutoDto {
+	private int id;
 	private String nome;
 	private String descricao;
 	private double preco;
@@ -18,6 +19,7 @@ public class ProdutoDto {
 	private List<ItemVenda> item;
 	
 	public ProdutoDto(Produto produto) {
+		this.id = produto.getId();
 		this.nome = produto.getNome();
 		this.descricao = produto.getDescricao();
 		this.preco = produto.getPreco();

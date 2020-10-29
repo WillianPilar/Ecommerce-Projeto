@@ -63,11 +63,11 @@ public class ProdutoController {
 	}
 	
 	@PatchMapping(value="{id}")
-	public  ResponseEntity<ProdutoDto> update(@RequestBody Produto produto, @PathVariable int id) {
-		Produto p = this.produtoService.update(id, produto);
+	public  ResponseEntity<ProdutoDto> update(@RequestBody ProdutoDto produtoDtoRecebido, @PathVariable int id) {
+		Produto produto = this.produtoService.update(id, produtoDtoRecebido);
 		
-		ProdutoDto produtoDto = new ProdutoDto(p);
-		return ResponseEntity.ok().body(produtoDto);
+		ProdutoDto produtoDtoEnviar = new ProdutoDto(produto);
+		return ResponseEntity.ok().body(produtoDtoEnviar);
 	}
 	
 	@DeleteMapping(value="{id}")
@@ -83,7 +83,7 @@ public class ProdutoController {
 							) {
 		Page<Produto> produto = this.produtoService.paginacao(pagina, linhas, busca);
 		
-		//Page<ProdutoDto> produtoDto = (Page<ProdutoDto>) produto.stream().map((objeto)-> new ProdutoDto(objeto)).collect(Collectors.toList()); 
+		
 		
 		return ResponseEntity.ok().body(produto);
 	}

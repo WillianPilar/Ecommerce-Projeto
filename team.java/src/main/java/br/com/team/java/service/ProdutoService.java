@@ -50,7 +50,9 @@ public class ProdutoService {
 		return this.produtoRepository.save(produto);
 	}
 
-	public Produto update(int id, Produto produto) {
+	public Produto update(int id, ProdutoDto produtoDto) {
+		
+		Produto produto = DtoUtil.produtoFromDto(produtoDto);
 		
 		Produto newProduto = this.produtoRepository.findById(id).get();
 		List<Imagem> imagens = new ArrayList<Imagem>();
