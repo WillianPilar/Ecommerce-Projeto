@@ -71,7 +71,7 @@ export class EnderecoComponent implements OnInit {
 
   public onSubmit() {
     if (this.cep == true) {
-      let body = Object.assign(this.formEndereco.value, { usuario: { id: this.idLocalUser } });
+      let body = Object.assign(this.formEndereco.value, { usuarioDto: { id: this.idLocalUser } });
       this.CadastrarEndereco(body);
     } else {
       this.toastr.warning("Por favor busque o CEP antes de editar");

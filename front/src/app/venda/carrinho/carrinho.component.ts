@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ItemVenda } from 'src/app/shared/models/Item-Venda';
+import { Produto } from 'src/app/shared/models/produto';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { VendaService } from '../Venda-Services/venda.service';
 
@@ -15,7 +17,8 @@ export class CarrinhoComponent implements OnInit {
   public carrinhoNotnull = false;
 
   constructor(private storageService: StorageService,
-    private vendaService: VendaService) { }
+    private vendaService: VendaService,
+    private toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.getCarrinho();
@@ -23,7 +26,7 @@ export class CarrinhoComponent implements OnInit {
   }
 
   getCarrinho() {
-    
+
     this.carrinho = this.storageService.getCarrinho();
     this.carrinhoNotnull = this.carrinho && this.carrinho.length>0;
     console.log(this.carrinho);
@@ -31,7 +34,8 @@ export class CarrinhoComponent implements OnInit {
   }
 
   deletarDoCarrinho(produto) {
-    let index = this.carrinho.findIndex(x => { return x.produto.id == produto.id });
+    let index = this.carrinho.findIndex(x => { return x.produto.id == produto.produto.id });
+    console.log("Index:  " + index);
 
     this.carrinho.splice(index, 1);
 
@@ -42,13 +46,15 @@ export class CarrinhoComponent implements OnInit {
 
   //--------------------------------------------------
   atualizarCarrinho(selectedOption, id) {
-    let num = parseInt(selectedOption)
+    console.log("ID  " + id);
+    let num = parseInt(selectedOption);
     //REVISão condição IF após conclusão
-    if (num <= 0) {
-      this.deletarDoCarrinho(id);
+    if (num <= 0 ) {
+      num = 1;
+      this.toastr.warning("Quantidade inválida");
     }
     //-------------------------------------------------
-    let find = this.carrinho.find((item: ItemVenda) => item.produto.id === id)
+    let find = this.carrinho.find((item: ItemVenda) => item.produto.id === id);
 
     if (find) {
       find.quantidade = num
@@ -68,34 +74,5 @@ export class CarrinhoComponent implements OnInit {
       this.valorTotal = this.carrinho.reduce((valorProdutos, item) => valorProdutos + (item.produto.preco * item.quantidade), 0)
     }
   }
-
-  //------------------------------------------
-  // Finalização da compra
-
-  // finalizarCompra(){
-  //   let venda:Vendas ={
-  //     id:null,
-  //     usuario:this.storageService.getLocalUser(),
-  //     statusVenda : 'Aberta',
-  //     pagamento : '2',
-  //     totalItens: this.storageService.getCarrinho().length,
-  //     valor : this.valorTotal,
-  //     parcela :2,
-  //     valorParcela : this.valorTotal/2,
-  //     item:this.storageService.getCarrinho(),
-  //     dataVenda : moment(new Date()).format("DD-MM-yyyy HH:mm:ss")
-  //   }
-  //   delete venda.usuario.perfis
-
-  //   this.vendaService.finalizarCompra(venda).subscribe(
-  //     (response)=>{
-  //       console.log(response);
-  //     }
-  //   );
-
-
-  //}
-
-
 
 }
