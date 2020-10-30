@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
+import { PerfilPipe } from 'src/app/shared/pipes/perfil.pipe';
 import { UsuariosService } from '../../adm-service-folder/usuarios.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class UsuarioFormComponent implements OnInit {
   textoBotao: string = 'Salvar';
   perfis = [
     { codigo: 1, descricao: 'ADMIN' },
-    { codigo: 2, descricao: 'Cli'}
+    { codigo: 2, descricao: 'CLIENTE'}
   ];
 
 
@@ -93,7 +94,7 @@ export class UsuarioFormComponent implements OnInit {
     let r =[[]];
     if(this.formUsuarios.value.perfis.length>0){
       this.formUsuarios.value.perfis.forEach(element => {
-        r.push(element.codigo,element.codigo|pe);
+        // r.push(element.codigo,element.codigo|pe);
       });
     }
     return r;
@@ -101,11 +102,22 @@ export class UsuarioFormComponent implements OnInit {
 
 
   public consultarUsuarioId(idUsuario) {
+
     this.usuariosService.consultarUsuarioId(idUsuario).subscribe(
       (response:any) => {
+        let perfilForm = [];
+        let descPerfil;
         console.log(response);
-
-        this.formUsuarios.patchValue({perfis:response.perfis});
+          response.perfis.forEach(element => {
+            console.log(element);
+            if(element == 1){
+              descPerfil = "ADMIN";
+            }else if(element == 2){
+              descPerfil = "CLIENTE";
+            }
+           perfilForm.push({codigo:element,descricao:descPerfil});
+          });
+        this.formUsuarios.patchValue({id:response.id,nome:response.nome,email:response.email,perfis:perfilForm});
       }
     );
   }
