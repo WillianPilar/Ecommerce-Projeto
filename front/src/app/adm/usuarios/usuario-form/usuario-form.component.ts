@@ -17,17 +17,24 @@ export class UsuarioFormComponent implements OnInit {
   exibir: boolean = false;
   texto: string = "Cadastrar";
   textoBotao: string = 'Salvar';
-  perfis = [1,2]
+  perfis = [
+    { codigo: 1, descricao: 'ADMIN' },
+    { codigo: 2, descricao: 'Cli'}
+  ];
 
-  dropdownSettings : IDropdownSettings = {
+
+  dropdownSettings =  {
     singleSelection: false,
-    idField: 'id',
-    textField: 'url',
+    idField: 'codigo',
+    textField: 'descricao',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 3,
-    allowSearchFilter: true
+    itemsShowLimit: 10,
+    allowSearchFilter: true,
+    defaultOpen: true
   };
+
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,6 +52,7 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.activatedRoute
       .params.subscribe(
         (parametros) => {
@@ -62,7 +70,7 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.formUsuarios.value.perfis = this.getPerfis();
     if (this.isEdicao) {
        this.alterarUsuario(this.idUsuario, this.formUsuarios.value);
     }
@@ -71,11 +79,33 @@ export class UsuarioFormComponent implements OnInit {
     }
   }
 
+  private getPerfis(){
+    let r =[];
+    if(this.formUsuarios.value.perfis.length>0){
+      this.formUsuarios.value.perfis.forEach(element => {
+        r.push(element.codigo);
+      });
+    }
+    return r;
+  }
+
+  private getRoules(){
+    let r =[[]];
+    if(this.formUsuarios.value.perfis.length>0){
+      this.formUsuarios.value.perfis.forEach(element => {
+        r.push(element.codigo,element.codigo|pe);
+      });
+    }
+    return r;
+  }
+
 
   public consultarUsuarioId(idUsuario) {
     this.usuariosService.consultarUsuarioId(idUsuario).subscribe(
-      (response) => {
-        this.formUsuarios.patchValue(response);
+      (response:any) => {
+        console.log(response);
+
+        this.formUsuarios.patchValue({perfis:response.perfis});
       }
     );
   }

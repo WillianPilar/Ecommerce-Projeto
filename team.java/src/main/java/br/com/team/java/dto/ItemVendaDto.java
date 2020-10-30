@@ -35,8 +35,6 @@ public class ItemVendaDto implements Serializable {
 
 	public ItemVenda toEntity() {
 		ModelMapper modelMapper = new ModelMapper();
-		// user here is a prepopulated User instance
-		ItemVenda entity = modelMapper.map(this, ItemVenda.class);
-		return entity;
+		return modelMapper.map(this, ItemVenda.class);
 	}
 }

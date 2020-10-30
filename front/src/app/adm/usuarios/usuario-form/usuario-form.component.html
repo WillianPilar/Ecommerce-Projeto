@@ -16,8 +16,6 @@
 
     </app-mostrar-erros>
 
-
-      <!-- RA do ALUNO -->
     <div class="form-group">
       <label for="email">Email</label>
       <input type="email" class="form-control" formControlName="email" placeholder="Email do usuário">
@@ -26,18 +24,11 @@
     <app-mostrar-erros [isError]="isErrorField('email')" [mensagem] = "'Email Obrigatório'">
     </app-mostrar-erros>
 
-    <!-- <div class = "form-group">
-      <label class= "mr-sm-2"> Perfil </label>
-      <select formControlName = "" class = "form-control">
-      <option value="1">Admin</option>
-      <option value="2">Cliente</option>
-    </select>
-    </div> -->
-
     <div class="form-group">
-    <ng-multiselect-dropdown [placeholder]="'Perfils'" [data]="perfis" formControlName="perfis"
-    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-    </ng-multiselect-dropdown>
+      <ng-multiselect-dropdown [placeholder]="'Perfils'" [settings]="dropdownSettings"  [data]="perfis" formControlName="perfis"
+       (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+
+      </ng-multiselect-dropdown>
     </div>
 
 

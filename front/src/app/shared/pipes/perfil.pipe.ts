@@ -15,6 +15,7 @@ export class PerfilPipe implements PipeTransform {
         } else if (element == 2) {
           response += "CLIENTE";
         }
+        response += " ";
       });
     }
     return response;
