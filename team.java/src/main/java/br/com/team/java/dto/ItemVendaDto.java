@@ -4,17 +4,25 @@ import java.io.Serializable;
 
 import org.modelmapper.ModelMapper;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.com.team.java.model.ItemVenda;
 import br.com.team.java.model.Produto;
 import br.com.team.java.model.Venda;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ItemVendaDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private Produto produto;
+	@JsonIgnoreProperties("item")
 	private Venda venda;
 	private int quantidade;
 
