@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ImagemListComponent } from './imagem/imagem-list/imagem-list.component';
 import { ImagemFormComponent } from './imagem/imagem-form/imagem-form.component';
+import { PerfilPipe } from 'src/app/shared/pipes/perfil.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,11 @@ import { ImagemFormComponent } from './imagem/imagem-form/imagem-form.component'
     AdmRoutingModule,
     NgxPaginationModule,
     RouterModule,
-    CarouselModule.forRoot()]
+    CarouselModule.forRoot()
+  ],
+  providers: [
+    PerfilPipe
+  ]
 })
 export class AdmModule { }
 

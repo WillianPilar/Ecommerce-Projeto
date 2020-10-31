@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
+import { PerfilPipe } from 'src/app/shared/pipes/perfil.pipe';
 import { UsuariosService } from '../../adm-service-folder/usuarios.service';
 
 @Component({
   selector: 'app-usuario-form',
   templateUrl: './usuario-form.component.html',
-  styleUrls: ['./usuario-form.component.css']
+  styleUrls: ['./usuario-form.component.css'],
 })
 export class UsuarioFormComponent implements OnInit {
   formUsuarios: FormGroup;
@@ -17,56 +18,57 @@ export class UsuarioFormComponent implements OnInit {
   exibir: boolean = false;
   texto: string = "Cadastrar";
   textoBotao: string = 'Salvar';
-  perfis = [
-    { codigo: 1, descricao: 'ADMIN' },
-    { codigo: 2, descricao: 'Cli'}
-  ];
-
-
-  dropdownSettings =  {
-    singleSelection: false,
-    idField: 'codigo',
-    textField: 'descricao',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 10,
-    allowSearchFilter: true,
-    defaultOpen: true
-  };
-
-
+  perfis:[];
+  dropdownSettings={};
 
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService, private usuariosService: UsuariosService) {
+    private toastr: ToastrService,
+    private usuariosService: UsuariosService,
+    private perfilPipe: PerfilPipe) {
     this.formUsuarios = this.formBuilder.group({
       //valor inicial e os validadores
       id: ['', []],
       nome: ['', [Validators.required]],
       email: ['', [Validators.required]],
       senha: ['', [Validators.required]],
-      perfis: ['',[ ]]
+      perfis: ['',[Validators.required]]
     });
   }
 
   ngOnInit(): void {
 
-    this.activatedRoute
-      .params.subscribe(
-        (parametros) => {
-          console.log(parametros);
-          if (parametros.id) {
-            this.isEdicao = true;
-            this.idUsuario = parametros.id;
-            this.consultarUsuarioId(this.idUsuario);
-            this.textoBotao = 'Editar';
-            this.texto = "Alterar";
-          }
-        }
+    this.perfis = [
+      { codigo: 1, descricao: 'ADMIN' },
+      { codigo: 2, descricao: 'CLIENTE'}
+    ];
 
-      )
+    this.dropdownSettings =  {
+
+      idField:'codigo',
+      textField:'descricao',
+      selectAllText:'Selecionar todos',
+      unSelectAllText:'Limpar seleção',
+      allowSearchFilter:false,
+      defaultOpen:false,
+      showSelectedItemsAtTop:true,
+      enableCheckAll:true
+    };
+
+    this.activatedRoute
+        .params.subscribe(
+          (parametros) => {
+            if (parametros.id) {
+              this.isEdicao = true;
+              this.idUsuario = parametros.id;
+              this.consultarUsuarioId(this.idUsuario);
+              this.textoBotao = 'Editar';
+              this.texto = "Alterar";
+            }
+          }
+        )
   }
 
   onSubmit() {
@@ -89,23 +91,19 @@ export class UsuarioFormComponent implements OnInit {
     return r;
   }
 
-  private getRoules(){
-    let r =[[]];
-    if(this.formUsuarios.value.perfis.length>0){
-      this.formUsuarios.value.perfis.forEach(element => {
-        r.push(element.codigo,element.codigo|pe);
-      });
-    }
+  private getRoules(perfils:number[]){
+    let r =[];
+    perfils.forEach(element => {
+      r.push({codigo:element,descricao:this.perfilPipe.transform([element])});
+    });
     return r;
   }
 
-
-  public consultarUsuarioId(idUsuario) {
+  public consultarUsuarioId(idUsuario:number) {
     this.usuariosService.consultarUsuarioId(idUsuario).subscribe(
       (response:any) => {
-        console.log(response);
-
-        this.formUsuarios.patchValue({perfis:response.perfis});
+        response.perfis=this.getRoules(response.perfis);
+        this.formUsuarios.patchValue(response);
       }
     );
   }
