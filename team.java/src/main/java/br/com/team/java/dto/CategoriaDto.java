@@ -1,14 +1,19 @@
 package br.com.team.java.dto;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
 
 import br.com.team.java.model.Categoria;
 import br.com.team.java.model.Produto;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class CategoriaDto implements Serializable{
 	private static final long serialVersionUID = 1L;

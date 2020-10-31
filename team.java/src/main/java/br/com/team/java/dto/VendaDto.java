@@ -16,8 +16,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import br.com.team.java.model.Venda;
 import br.com.team.java.model.enums.StatusPagamento;
 import br.com.team.java.model.enums.StatusVenda;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class VendaDto implements Serializable {
 	private static final long serialVersionUID = 1L;

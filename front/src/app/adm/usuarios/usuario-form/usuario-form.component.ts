@@ -18,7 +18,7 @@ export class UsuarioFormComponent implements OnInit {
   exibir: boolean = false;
   texto: string = "Cadastrar";
   textoBotao: string = 'Salvar';
-  perfis:[];
+  perfis:any[];
   dropdownSettings={};
 
   constructor(
