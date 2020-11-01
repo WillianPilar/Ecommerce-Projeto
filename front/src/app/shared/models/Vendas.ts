@@ -1,5 +1,5 @@
 import { ItemVenda } from './item-Venda';
-import { Usuario } from './Usuario';
+import { Usuario } from './usuario';
 
 export class Vendas{
     id:number;

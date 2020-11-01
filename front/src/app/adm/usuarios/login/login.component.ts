@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { Auth } from 'src/app/shared/models/auth';
-import { Usuario } from 'src/app/shared/models/Usuario';
+import { Usuario } from 'src/app/shared/models/usuario';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 import { StorageService } from 'src/app/shared/services/storage.service';

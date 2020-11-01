@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ItemVenda } from '../models/Item-Venda';
-import { Usuario } from '../models/Usuario';
+import { Usuario } from '../models/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class StorageService {
   //---------------- Carrinho----------------------------\\
 
   public getCarrinho(): ItemVenda[] {
-  
+
     let str = localStorage.getItem('carrinho');
 
     if (str != null) {

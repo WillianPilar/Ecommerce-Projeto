@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UsuariosService } from 'src/app/adm/adm-service-folder/usuarios.service';
 import { isThisTypeNode } from 'typescript';
-import { Vendas } from 'src/app/shared/models/Vendas';
+import { Vendas } from 'src/app/shared/models/vendas';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
